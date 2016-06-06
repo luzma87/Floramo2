@@ -3,6 +3,7 @@
 
     <string name="floraBase" translatable="false">http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=</string>
     <string name="tropicosBase" translatable="false">http://www.tropicos.org/Name/</string>
+    <string name="folder_name" translatable="false">Floramo</string>
 
     <string name="action_settings">Settings</string>
     <string name="menu_title">Navigation</string>

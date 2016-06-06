@@ -12,23 +12,34 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:weightSum="1">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imageView"
-        android:layout_width="100dp"
+        android:layout_width="100dip"
         android:layout_height="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/nav_header_vertical_spacing"
         android:layout_weight="1"
         android:contentDescription="@string/app_name_drawer"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/ic_app_icon_drawer" />
+
+        android:src="@drawable/ic_app_icon_drawer"
+        app:riv_border_color="@color/primary"
+
+        app:riv_border_width="5dip"
+        app:riv_corner_radius="5dip"
+
+        app:riv_mutate_background="true"
+        app:riv_oval="true"
+        app:riv_tile_mode="repeat" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/app_name_drawer"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/primary_text"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textStyle="bold" />
 
 </LinearLayout>
