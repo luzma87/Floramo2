@@ -1,6 +1,7 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lzm.Cajas.db.DbHelper;
+import com.lzm.Cajas.detail.DetailFragment;
+import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 
 public class MainActivity extends AppCompatActivity
@@ -81,7 +84,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -99,7 +101,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onPlantSelected(Long speciesId) {
+        Fragment newFragment = DetailFragment.newInstance(speciesId);
 
+        FragmentHelper.openFragment(this, newFragment, "Details....");
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//
+//        transaction.replace(R.id.fragment_container, newFragment);
+//        transaction.addToBackStack(null);
+//
+//        transaction.commit();
     }
 }

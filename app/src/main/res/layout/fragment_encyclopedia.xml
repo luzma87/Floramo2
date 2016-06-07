@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
-    tools:context="com.lzm.Cajas.EncyclopediaFragment">
+    tools:context=".encyclopedia.EncyclopediaFragment">
 
-    <com.lzm.Cajas.indexableList.IndexableListView
+    <com.lzm.Cajas.encyclopedia.indexableList.IndexableListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
