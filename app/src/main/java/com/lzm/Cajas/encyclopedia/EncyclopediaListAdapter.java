@@ -1,7 +1,6 @@
 package com.lzm.Cajas.encyclopedia;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,21 +87,18 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
             convertView = infalInflater.inflate(R.layout.encyclopedia_row, null);
         }
 
-        ImageView itemFoto = (ImageView) convertView.findViewById(R.id.busqueda_results_image);
+        ImageView itemFoto = (ImageView) convertView.findViewById(R.id.encyclopedia_row_image);
 
-        TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.busqueda_results_nombre_cientifico);
-        TextView itemNombreFamilia = (TextView) convertView.findViewById(R.id.busqueda_results_familia);
-        TextView itemCantFotos = (TextView) convertView.findViewById(R.id.busqueda_results_cant_fotos);
-        ImageView itemColor1 = (ImageView) convertView.findViewById(R.id.busqueda_results_cl_1);
-        ImageView itemColor2 = (ImageView) convertView.findViewById(R.id.busqueda_results_cl_2);
-        ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_1);
-        ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.busqueda_results_fv_2);
+        TextView itemNombreCientifico = (TextView) convertView.findViewById(R.id.encyclopedia_row_nombre_cientifico);
+        TextView itemNombreFamilia = (TextView) convertView.findViewById(R.id.encyclopedia_row_familia);
+        ImageView itemColor1 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_cl_1);
+        ImageView itemColor2 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_cl_2);
+        ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_fv_1);
+        ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_fv_2);
 
-        ColorStateList oldColors = itemCantFotos.getTextColors();
 
         itemNombreCientifico.setText(labelNombreCientifico);
         itemNombreFamilia.setText(labelNombreFamilia);
-        itemCantFotos.setText(labelCantFotos);
 
         itemColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
         if (especie.color2 != null && !especie.color2.equals("none")) {
@@ -135,8 +131,6 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
 //            itemFoto.setImageResource(ResourcesHelper.getImageResourceByName(context, path));
         }
 
-        itemNombreCientifico.setTextColor(oldColors);
-        itemNombreFamilia.setTextColor(oldColors);
         return convertView;
     }
 

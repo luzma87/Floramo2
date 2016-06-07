@@ -6,9 +6,8 @@
     android:paddingEnd="30dp"
     android:paddingRight="30dp">
 
-
     <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/busqueda_results_image"
+        android:id="@+id/encyclopedia_row_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentLeft="true"
@@ -17,7 +16,7 @@
         android:layout_marginRight="10dp"
 
         android:scaleType="fitCenter"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_app_icon_drawer"
         app:riv_border_color="@color/primary"
 
         app:riv_border_width="2dip"
@@ -28,111 +27,95 @@
         app:riv_tile_mode="clamp" />
 
     <TextView
-        android:id="@+id/busqueda_results_nombre_cientifico"
+        android:id="@+id/encyclopedia_row_nombre_cientifico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/busqueda_results_image"
+        android:layout_toEndOf="@id/encyclopedia_row_image"
 
-        android:layout_toRightOf="@id/busqueda_results_image"
+        android:layout_toRightOf="@id/encyclopedia_row_image"
         android:text="level3 nombre cientifico"
         android:textStyle="bold|italic" />
 
     <TextView
-        android:id="@+id/busqueda_results_familia"
+        android:id="@+id/encyclopedia_row_familia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/busqueda_results_nombre_cientifico"
-        android:layout_alignStart="@id/busqueda_results_nombre_cientifico"
-        android:layout_below="@id/busqueda_results_nombre_cientifico"
+        android:layout_alignLeft="@id/encyclopedia_row_nombre_cientifico"
+        android:layout_alignStart="@id/encyclopedia_row_nombre_cientifico"
+        android:layout_below="@id/encyclopedia_row_nombre_cientifico"
         android:maxLines="3"
         android:text="level3 familia"
         android:textStyle="italic" />
 
-    <ImageView
-        android:id="@+id/imageView"
-
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/layout_icons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/busqueda_results_familia"
-        android:layout_alignStart="@id/busqueda_results_familia"
+        android:layout_alignLeft="@id/encyclopedia_row_familia"
+        android:layout_alignStart="@id/encyclopedia_row_familia"
+        android:layout_below="@id/encyclopedia_row_familia"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
 
-        android:layout_below="@+id/busqueda_results_familia"
-        android:layout_marginTop="7dp"
-        android:src="@drawable/ic_photos_24dp" />
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/encyclopedia_row_fv_1"
 
-    <TextView
-        android:id="@+id/busqueda_results_cant_fotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_width="240dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView"
-        android:layout_marginLeft="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_toEndOf="@+id/imageView"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_fv_aquatic_tiny"
+            app:riv_border_color="@color/primary_text"
+            app:riv_border_width="1dip"
 
-        android:layout_toRightOf="@+id/imageView"
-        android:text="0"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+            app:riv_corner_radius="5dip"
+            app:riv_mutate_background="true"
+            app:riv_oval="false"
+            app:riv_tile_mode="clamp" />
 
-    <ImageView
-        android:id="@+id/busqueda_results_fv_1"
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/encyclopedia_row_fv_2"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_fv_shrub_tiny"
+            app:riv_border_color="@color/primary_text"
+            app:riv_border_width="1dip"
+            app:riv_corner_radius="5dip"
 
-        android:layout_alignTop="@+id/busqueda_results_nombre_cientifico"
-        android:layout_marginEnd="3dp"
-        android:layout_marginRight="3dp"
-        android:src="@drawable/ic_fv_aquatic_tiny" />
+            app:riv_mutate_background="true"
+            app:riv_oval="false"
+            app:riv_tile_mode="clamp" />
 
-    <ImageView
-        android:id="@+id/busqueda_results_fv_2"
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/encyclopedia_row_cl_1"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_toLeftOf="@+id/busqueda_results_fv_1"
-        android:layout_toStartOf="@+id/busqueda_results_fv_1"
-        android:src="@drawable/ic_fv_shrub_tiny" />
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_cl_red_tiny"
 
-    <ImageView
-        android:id="@+id/busqueda_results_cl_1"
+            app:riv_mutate_background="true"
+            app:riv_oval="false"
+            app:riv_tile_mode="clamp" />
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/encyclopedia_row_cl_2"
 
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/busqueda_results_fv_1"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:layout_marginRight="5dp"
+            android:src="@drawable/ic_cl_blue_tiny"
 
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_cl_red_tiny" />
+            app:riv_mutate_background="true"
 
-    <ImageView
-        android:id="@+id/busqueda_results_cl_2"
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignTop="@id/busqueda_results_cl_1"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-
-        android:layout_marginStart="5dp"
-
-        android:layout_toLeftOf="@+id/busqueda_results_cl_1"
-        android:layout_toStartOf="@id/busqueda_results_cl_1"
-        android:src="@drawable/ic_cl_blue_tiny" />
-
+            app:riv_oval="false"
+            app:riv_tile_mode="clamp" />
+    </LinearLayout>
 </RelativeLayout>
