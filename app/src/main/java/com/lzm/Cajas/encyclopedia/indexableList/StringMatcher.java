@@ -16,7 +16,7 @@
  * https://github.com/woozzu/IndexableListView
  */
 
-package com.lzm.Cajas.indexableList;
+package com.lzm.Cajas.encyclopedia.indexableList;
 
 public class StringMatcher {
 

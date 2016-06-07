@@ -1,4 +1,4 @@
-package com.lzm.Cajas.indexableList;
+package com.lzm.Cajas.encyclopedia.indexableList;
 
 /**
  * https://github.com/woozzu/IndexableListView

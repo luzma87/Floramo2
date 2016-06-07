@@ -1,4 +1,4 @@
-package com.lzm.Cajas.adapters;
+package com.lzm.Cajas.encyclopedia;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -16,7 +16,7 @@ import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
-import com.lzm.Cajas.indexableList.StringMatcher;
+import com.lzm.Cajas.encyclopedia.indexableList.StringMatcher;
 
 import java.io.IOException;
 import java.util.List;

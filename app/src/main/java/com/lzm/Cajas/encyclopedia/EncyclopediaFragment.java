@@ -1,4 +1,4 @@
-package com.lzm.Cajas;
+package com.lzm.Cajas.encyclopedia;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
-import com.lzm.Cajas.adapters.EncyclopediaListAdapter;
+import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
-import com.lzm.Cajas.indexableList.IndexableListView;
+import com.lzm.Cajas.encyclopedia.indexableList.IndexableListView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 public class EncyclopediaFragment extends Fragment {
@@ -23,7 +22,6 @@ public class EncyclopediaFragment extends Fragment {
     private MainActivity context;
     private String sort = "n";
     private String order = "a";
-    private LinkedHashMap<String, Integer> mapIndex;
     private EncyclopediaListAdapter adapter;
     private IndexableListView listView;
 
