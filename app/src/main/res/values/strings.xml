@@ -15,4 +15,12 @@
     <string name="drawer_close">Close navigation menu</string>
     <string name="search_btn_label">Search</string>
     <string name="app_name_drawer">Flóramo</string>
+
+    <string name="detail_title">Flóramo</string>
+
+    <string name="detail_family">Family</string>
+    <string name="detail_genus">Genus</string>
+    <string name="detail_species">Species</string>
+    <string name="detail_color">Color</string>
+    <string name="detail_life_form">Life form</string>
 </resources>

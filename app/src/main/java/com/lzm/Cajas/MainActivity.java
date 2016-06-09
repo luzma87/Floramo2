@@ -1,8 +1,6 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -103,13 +101,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPlantSelected(Long speciesId) {
         Fragment newFragment = DetailFragment.newInstance(speciesId);
-
-        FragmentHelper.openFragment(this, newFragment, "Details....");
-//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//
-//        transaction.replace(R.id.fragment_container, newFragment);
-//        transaction.addToBackStack(null);
-//
-//        transaction.commit();
+        FragmentHelper.openFragment(this, newFragment, getString(R.string.detail_title));
     }
 }

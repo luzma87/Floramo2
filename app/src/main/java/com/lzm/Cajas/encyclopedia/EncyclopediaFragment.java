@@ -20,11 +20,6 @@ import java.util.List;
 public class EncyclopediaFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private List<Especie> especies;
-    private MainActivity context;
-    private String sort = "n";
-    private String order = "a";
-    private EncyclopediaListAdapter adapter;
-    private IndexableListView listView;
 
     public EncyclopediaFragment() {
         // Required empty public constructor
@@ -41,13 +36,15 @@ public class EncyclopediaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        context = (MainActivity) getActivity();
+        MainActivity context = (MainActivity) getActivity();
         View view = inflater.inflate(R.layout.fragment_encyclopedia, container, false);
 
+        String sort = "n";
+        String order = "a";
         especies = Especie.sortedList(context, sort, order);
 
-        listView = (IndexableListView) view.findViewById(R.id.listview);
-        adapter = new EncyclopediaListAdapter(context, especies, sort);
+        IndexableListView listView = (IndexableListView) view.findViewById(R.id.listview);
+        EncyclopediaListAdapter adapter = new EncyclopediaListAdapter(context, especies, sort);
 
         listView.setAdapter(adapter);
         listView.setFastScrollEnabled(true);

@@ -34,9 +34,6 @@ public class DetailFragment extends Fragment {
     }
 
     public static DetailFragment newInstance(Long speciesId) {
-        System.out.println("..............................");
-        System.out.println("NEW INSTANCE");
-        System.out.println(speciesId);
         DetailFragment fragment = new DetailFragment();
         Bundle args = new Bundle();
         args.putLong(SPECIES_ID, speciesId);
@@ -58,17 +55,24 @@ public class DetailFragment extends Fragment {
         especie = Especie.getDatos(context, especieId);
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
 
-        TextView textView = (TextView) view.findViewById(R.id.detail_description);
-        TextView textView2 = (TextView) view.findViewById(R.id.detail_description2);
-        ImageView imageView = (ImageView) view.findViewById(R.id.detail_image);
-
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
+
+        TextView detailFamily = (TextView) view.findViewById(R.id.detail_family);
+        TextView detailGenus = (TextView) view.findViewById(R.id.detail_genus);
+        TextView detailSpecies = (TextView) view.findViewById(R.id.detail_species);
+        TextView detailDescription = (TextView) view.findViewById(R.id.detail_description);
+
+        ImageView detailColor1 = (ImageView) view.findViewById(R.id.detail_color1);
+        ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2);
+        ImageView detailLifeForm1 = (ImageView) view.findViewById(R.id.detail_life_form1);
+        ImageView detailLifeForm2 = (ImageView) view.findViewById(R.id.detail_life_form2);
+        ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
+
         collapsingToolbar.setTitle(especie.genero + " " + especie.nombre.toLowerCase());
         collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
-
 
         String language = Locale.getDefault().getLanguage();
         String description;
@@ -88,20 +92,45 @@ public class DetailFragment extends Fragment {
             String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
             try {
                 Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
-                imageView.setImageBitmap(bitmap);
+                detailImage.setImageBitmap(bitmap);
             } catch (IOException e) {
                 System.out.println("*********************************************************");
                 e.printStackTrace();
                 System.out.println("*********************************************************");
             }
-
-//            path = "th_" + path;
-//            itemFoto.setImageResource(ResourcesHelper.getImageResourceByName(context, path));
         }
-        String str = "Under the bed hiss at vacuum cleaner. Chase ball of string kitty loves pigs yet pee in the shoe. Sleep on dog bed, force dog to sleep on floor shove bum in owner's face like camera lens for stretch, and mew lie on your belly and purr when you are asleep Gate keepers of hell. Lick arm hair inspect anything brought into the house, or cough furball for hunt by meowing loudly at 5am next to human slave food dispenser. Lick arm hair. Give attitude swat turds around the house and unwrap toilet paper chase ball of string refuse to leave cardboard box so russian blue. If it fits, i sits use lap as chair, or lick arm hair. ";
-//        str += "\n\n";
-        textView.setText(str);
-        textView2.setText(description);
+
+        if (especie.color1 != null && !especie.color1.equals("none")) {
+            detailColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
+            detailColor1.setVisibility(View.VISIBLE);
+        } else {
+            detailColor1.setVisibility(View.GONE);
+        }
+        if (especie.color2 != null && !especie.color2.equals("none")) {
+            detailColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
+            detailColor2.setVisibility(View.VISIBLE);
+        } else {
+            detailColor2.setVisibility(View.GONE);
+        }
+
+        if (especie.formaVida1 != null && !especie.formaVida1.equals("none")) {
+            detailLifeForm1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.formaVida1 + "_tiny"));
+            detailLifeForm1.setVisibility(View.VISIBLE);
+        } else {
+            detailLifeForm1.setVisibility(View.GONE);
+        }
+        if (especie.formaVida2 != null && !especie.formaVida2.equals("none")) {
+            detailLifeForm2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv _" + especie.formaVida2 + "_tiny"));
+            detailLifeForm2.setVisibility(View.VISIBLE);
+        } else {
+            detailLifeForm2.setVisibility(View.GONE);
+        }
+
+        detailDescription.setText(description);
+//        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
+        detailFamily.setText(especie.familia);
+        detailGenus.setText(especie.genero);
+        detailSpecies.setText(especie.nombre);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

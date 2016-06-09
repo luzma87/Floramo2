@@ -28,23 +28,23 @@
 
     <TextView
         android:id="@+id/encyclopedia_row_nombre_cientifico"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/encyclopedia_row_image"
 
         android:layout_toRightOf="@id/encyclopedia_row_image"
-        android:text="level3 nombre cientifico"
+        android:text="nombre cientifico"
         android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/encyclopedia_row_familia"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/encyclopedia_row_nombre_cientifico"
         android:layout_alignStart="@id/encyclopedia_row_nombre_cientifico"
         android:layout_below="@id/encyclopedia_row_nombre_cientifico"
         android:maxLines="3"
-        android:text="level3 familia"
+        android:text="familia"
         android:textStyle="italic" />
 
     <LinearLayout

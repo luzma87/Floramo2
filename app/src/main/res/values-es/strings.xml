@@ -11,4 +11,11 @@
     <string name="drawer_close">Cerrar menú de navegación</string>
     <string name="search_btn_label">Búsqueda</string>
     <string name="app_name_drawer">Flóramo</string>
+
+    <string name="detail_title">Flóramo</string>
+    <string name="detail_family">Familia</string>
+    <string name="detail_genus">Género</string>
+    <string name="detail_species">Especie</string>
+    <string name="detail_color">Color</string>
+    <string name="detail_life_form">Forma de vida</string>
 </resources>
