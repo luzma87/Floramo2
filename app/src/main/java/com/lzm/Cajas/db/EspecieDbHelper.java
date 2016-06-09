@@ -71,13 +71,13 @@ public class EspecieDbHelper extends DbHelper {
                 + KEY_ID + " = " + especie_id;
 
         Cursor c = db.rawQuery(selectQuery, null);
-        Especie es = null;
+        Especie especie = null;
         if (c.getCount() > 0) {
             c.moveToFirst();
-            es = setDatos(c);
+            especie = setDatos(c);
         }
         db.close();
-        return es;
+        return especie;
     }
 
     public Especie getDatosEspecie(long especie_id) {

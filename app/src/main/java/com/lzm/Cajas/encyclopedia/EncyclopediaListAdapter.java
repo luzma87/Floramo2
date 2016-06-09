@@ -76,11 +76,8 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
             foto = fotos.get(0);
         }
 
-        int cantFotos = Foto.countByEspecie(context, especie);
-
         String labelNombreCientifico = especie.genero + " " + especie.nombre;
         String labelNombreFamilia = especie.familia;
-        String labelCantFotos = "" + cantFotos;
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

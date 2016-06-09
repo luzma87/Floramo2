@@ -12,7 +12,6 @@ import java.util.List;
 public class Especie {
     public long id = 0;
     public String fecha;
-    //    public Genero genero;
     public Long genero_id;
     public String nombre;
     public String nombreNorm;
