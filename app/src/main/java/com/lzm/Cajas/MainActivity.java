@@ -20,6 +20,12 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         EncyclopediaFragment.OnFragmentInteractionListener {
 
+    public static final int FRAGMENT_ENCYCLOPEDIA = 1;
+    public static final int FRAGMENT_DETAILS = 2;
+
+    int activeFragment = FRAGMENT_ENCYCLOPEDIA;
+    private EncyclopediaFragment encyclopediaFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +50,8 @@ public class MainActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
         }
 
-        Fragment encyclopediaFragment = EncyclopediaFragment.newInstance();
-        FragmentHelper.openFragment(this, encyclopediaFragment, "Encyclopedia", false);
+        encyclopediaFragment = EncyclopediaFragment.newInstance();
+        FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_encyclopedia), false);
     }
 
     @Override
@@ -64,21 +70,33 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        MenuItem itemSortFamily = menu.findItem(R.id.action_sort_family);
+        MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
+        if (itemSortName != null) {
+            if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
+                itemSortName.setVisible(true);
+                itemSortFamily.setVisible(true);
+            } else {
+                itemSortName.setVisible(false);
+                itemSortFamily.setVisible(false);
+            }
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-
+        switch (id) {
+            case R.id.action_sort_name:
+                encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_NAME);
+                break;
+            case R.id.action_sort_family:
+                encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_FAMILY);
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -88,8 +106,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_encyclopedia) {
-            Fragment encyclopediaFragment = EncyclopediaFragment.newInstance();
-            FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.detail_title));
+            FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,6 +119,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPlantSelected(Long speciesId) {
         Fragment newFragment = DetailFragment.newInstance(speciesId);
-        FragmentHelper.openFragment(this, newFragment, getString(R.string.detail_title));
+        FragmentHelper.openFragment(this, newFragment, getString(R.string.title_detail));
+    }
+
+    public void setActiveFragment(int activeFragment) {
+        this.activeFragment = activeFragment;
+        invalidateOptionsMenu();
     }
 }

@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="comlzm.Cajas.MainActivity">
+    <item
+        android:id="@+id/action_sort_name"
+        android:icon="@drawable/ic_sort_name_24px"
+        android:orderInCategory="100"
+        android:title="@string/action_sort_name"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_sort_family"
+        android:icon="@drawable/ic_sort_family_24px"
+        android:orderInCategory="100"
+        android:title="@string/action_sort_family"
+        android:visible="false"
+        app:showAsAction="never" />
 </menu>

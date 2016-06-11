@@ -2,9 +2,7 @@ package com.lzm.Cajas.encyclopedia;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +18,23 @@ import java.util.List;
 public class EncyclopediaFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private List<Especie> especies;
+    private MainActivity context;
+
+    public static final String SORT_BY_NAME = "n";
+    public static final String SORT_BY_FAMILY = "f";
+    public static final String SORT_ASCENDING = "a";
+
+    private String sort = SORT_BY_NAME;
+    private EncyclopediaListAdapter adapter;
+    private IndexableListView listView;
 
     public EncyclopediaFragment() {
         // Required empty public constructor
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+        loadData();
     }
 
     public static EncyclopediaFragment newInstance() {
@@ -36,18 +48,13 @@ public class EncyclopediaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MainActivity context = (MainActivity) getActivity();
+        context = (MainActivity) getActivity();
+        context.setActiveFragment(MainActivity.FRAGMENT_ENCYCLOPEDIA);
+
         View view = inflater.inflate(R.layout.fragment_encyclopedia, container, false);
+        listView = (IndexableListView) view.findViewById(R.id.listview);
 
-        String sort = "n";
-        String order = "a";
-        especies = Especie.sortedList(context, sort, order);
-
-        IndexableListView listView = (IndexableListView) view.findViewById(R.id.listview);
-        EncyclopediaListAdapter adapter = new EncyclopediaListAdapter(context, especies, sort);
-
-        listView.setAdapter(adapter);
-        listView.setFastScrollEnabled(true);
+        loadData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,6 +67,17 @@ public class EncyclopediaFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void loadData() {
+        String order = SORT_ASCENDING;
+        especies = Especie.sortedList(context, sort, order);
+
+        listView.setAdapter(null);
+
+        adapter = new EncyclopediaListAdapter(context, especies, sort);
+        listView.setAdapter(adapter);
+        listView.setFastScrollEnabled(true);
     }
 
     @Override
@@ -79,18 +97,7 @@ public class EncyclopediaFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onPlantSelected(Long speciesId);
     }
 }

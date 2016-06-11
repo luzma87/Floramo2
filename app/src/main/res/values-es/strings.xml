@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Flóramo</string>
 
-    <string name="action_settings">Configuración</string>
+    <string name="action_sort_name">Ordenar por nombre</string>
+    <string name="action_sort_family">Ordenar por familia</string>
+
     <string name="menu_title">Navegación</string>
     <string name="navigation_drawer_open">Abrir</string>
     <string name="navigation_drawer_close">Cerrar</string>
@@ -12,7 +14,7 @@
     <string name="search_btn_label">Búsqueda</string>
     <string name="app_name_drawer">Flóramo</string>
 
-    <string name="detail_title">Flóramo</string>
+    <string name="title_detail">Flóramo</string>
     <string name="detail_family">Familia</string>
     <string name="detail_genus">Género</string>
     <string name="detail_species">Especie</string>

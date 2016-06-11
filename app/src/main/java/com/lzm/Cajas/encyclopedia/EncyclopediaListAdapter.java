@@ -18,7 +18,9 @@ import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.encyclopedia.indexableList.StringMatcher;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by luz on 6/5/16.
@@ -29,42 +31,14 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
     MainActivity context;
     List<Especie> especies;
 
-    private String indexSections = "ABCDEFGHIJLMNOPRSVWX";
+    private String indexSections = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public EncyclopediaListAdapter(MainActivity context, List<Especie> especies, String sort) {
         super(context, R.layout.encyclopedia_row, especies);
         this.context = context;
         this.especies = especies;
         this.sort = sort;
-//        getIndexList();
     }
-
-//    private void getIndexList() {
-//        LinkedHashMap<String, Integer> mapIndex = new LinkedHashMap<>();
-//
-//        for (int i = 0; i < especies.size(); i++) {
-//            String nombre;
-//            if (sort.equalsIgnoreCase("f")) {
-//                nombre = especies.get(i).familia;
-//            } else if (sort.equalsIgnoreCase("n")) {
-//                nombre = especies.get(i).genero;
-//            } else {
-//                nombre = especies.get(i).nombre;
-//            }
-//            String index = nombre.substring(0, 1);
-//
-//            if (mapIndex.get(index) == null) {
-//                mapIndex.put(index, i);
-//            }
-//        }
-//        System.out.println("----------------------------------------------------");
-//        for (Map.Entry<String, Integer> entry : mapIndex.entrySet()) {
-//            String key = entry.getKey();
-//            Integer value = entry.getValue();
-//            System.out.println("key: " + key + "   val: " + value);
-//        }
-//        System.out.println("----------------------------------------------------");
-//    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
