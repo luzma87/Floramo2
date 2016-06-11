@@ -14,6 +14,7 @@
     <string name="search_btn_label">Búsqueda</string>
     <string name="app_name_drawer">Flóramo</string>
 
+    <string name="title_encyclopedia">Enciclopedia</string>
     <string name="title_detail">Flóramo</string>
     <string name="detail_family">Familia</string>
     <string name="detail_genus">Género</string>
