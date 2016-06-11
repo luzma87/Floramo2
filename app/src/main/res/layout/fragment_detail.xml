@@ -69,22 +69,19 @@
                         android:layout_marginBottom="3dp">
 
                         <TextView
+                            style="@style/detail_info_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/detail_family"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:text="@string/detail_family" />
 
                         <TextView
                             android:id="@+id/detail_family"
+                            style="@style/detail_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
-                            android:paddingLeft="10dp"
-                            android:paddingStart="10dp"
-                            android:text="familia"
-                            android:textSize="16sp" />
+                            android:text="familia" />
                     </TableRow>
 
                     <TableRow
@@ -93,22 +90,19 @@
                         android:layout_marginBottom="3dp">
 
                         <TextView
+                            style="@style/detail_info_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/detail_genus"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:text="@string/detail_genus" />
 
                         <TextView
                             android:id="@+id/detail_genus"
+                            style="@style/detail_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
-                            android:paddingLeft="10dp"
-                            android:paddingStart="10dp"
-                            android:text="genero"
-                            android:textSize="16sp" />
+                            android:text="genero" />
                     </TableRow>
 
                     <TableRow
@@ -117,22 +111,19 @@
                         android:layout_marginBottom="3dp">
 
                         <TextView
+                            style="@style/detail_info_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/detail_species"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:text="@string/detail_species" />
 
                         <TextView
                             android:id="@+id/detail_species"
+                            style="@style/detail_info"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="2"
-                            android:paddingLeft="10dp"
-                            android:paddingStart="10dp"
-                            android:text="especie"
-                            android:textSize="16sp" />
+                            android:text="especie" />
                     </TableRow>
 
                     <TableRow
@@ -141,12 +132,11 @@
                         android:layout_marginBottom="3dp">
 
                         <TextView
+                            style="@style/detail_info_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/detail_color"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:text="@string/detail_color" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -154,7 +144,7 @@
                             android:orientation="horizontal">
 
                             <ImageView
-                                android:id="@+id/detail_color1"
+                                android:id="@+id/detail_color1_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
@@ -163,7 +153,7 @@
                                 android:src="@drawable/ic_cl_red_tiny" />
 
                             <ImageView
-                                android:id="@+id/detail_color2"
+                                android:id="@+id/detail_color2_image"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
 
@@ -178,57 +168,36 @@
                         android:layout_height="fill_parent">
 
                         <TextView
+                            style="@style/detail_info_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
-                            android:text="@string/detail_life_form"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            android:text="@string/detail_life_form" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                                android:id="@+id/detail_life_form1"
-
+                            <TextView
+                                android:id="@+id/detail_life_form1_compund"
+                                style="@style/detail_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableLeft="@drawable/ic_fv_liana_tiny"
+                                android:gravity="center"
+                                android:text="forma vida 1" />
 
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginRight="5dp"
-                                android:paddingLeft="10dp"
-                                android:paddingStart="10dp"
-                                android:src="@drawable/ic_fv_aquatic_tiny"
-
-
-                                app:riv_border_color="@color/primary_text"
-                                app:riv_border_width="1dip"
-                                app:riv_corner_radius="5dip"
-                                app:riv_mutate_background="true"
-                                app:riv_oval="false"
-                                app:riv_tile_mode="clamp" />
-
-                            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                                android:id="@+id/detail_life_form2"
-
+                            <TextView
+                                android:id="@+id/detail_life_form2_compund"
+                                style="@style/detail_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
-                                android:layout_marginEnd="5dp"
-                                android:layout_marginRight="5dp"
-                                android:paddingLeft="10dp"
-                                android:paddingStart="10dp"
-                                android:src="@drawable/ic_fv_cushion_tiny"
+                                android:drawableLeft="@drawable/ic_fv_grass_tiny"
+                                android:gravity="center"
+                                android:text="forma vida 2" />
 
 
-                                app:riv_border_color="@color/primary_text"
-                                app:riv_border_width="1dip"
-                                app:riv_corner_radius="5dip"
-                                app:riv_mutate_background="true"
-                                app:riv_oval="false"
-                                app:riv_tile_mode="clamp" />
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>
@@ -259,7 +228,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:src="@drawable/ic_photos_24dp"
+        android:src="@drawable/ic_tropicos"
         app:layout_anchor="@id/detail_appbar"
         app:layout_anchorGravity="bottom|right|end" />
 </android.support.design.widget.CoordinatorLayout>

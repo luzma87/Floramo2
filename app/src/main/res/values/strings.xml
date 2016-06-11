@@ -23,4 +23,14 @@
     <string name="detail_species">Species</string>
     <string name="detail_color">Color</string>
     <string name="detail_life_form">Life form</string>
+
+    <string name="fv_none">-None-</string>
+    <string name="fv_cushion">Cushion</string>
+    <string name="fv_shrub">Shrub</string>
+    <string name="fv_herb">Herb</string>
+    <string name="fv_grass">Grass</string>
+    <string name="fv_rosette">Rosette</string>
+    <string name="fv_aquatic">Aquatic</string>
+    <string name="fv_liana">Liana</string>
+    <string name="fv_tree">Tree</string>
 </resources>

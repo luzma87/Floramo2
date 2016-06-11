@@ -18,4 +18,14 @@
     <string name="detail_species">Especie</string>
     <string name="detail_color">Color</string>
     <string name="detail_life_form">Forma de vida</string>
+
+    <string name="fv_none">-Ninguna-</string>
+    <string name="fv_cushion">Almohadilla</string>
+    <string name="fv_shrub">Arbusto</string>
+    <string name="fv_herb">Hierba</string>
+    <string name="fv_grass">Pasto</string>
+    <string name="fv_rosette">Roseta</string>
+    <string name="fv_aquatic">Acuática</string>
+    <string name="fv_liana">Bejuco</string>
+    <string name="fv_tree">Árbol</string>
 </resources>

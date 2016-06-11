@@ -62,10 +62,11 @@ public class DetailFragment extends Fragment {
         TextView detailSpecies = (TextView) view.findViewById(R.id.detail_species);
         TextView detailDescription = (TextView) view.findViewById(R.id.detail_description);
 
-        ImageView detailColor1 = (ImageView) view.findViewById(R.id.detail_color1);
-        ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2);
-        ImageView detailLifeForm1 = (ImageView) view.findViewById(R.id.detail_life_form1);
-        ImageView detailLifeForm2 = (ImageView) view.findViewById(R.id.detail_life_form2);
+        TextView detailLifeForm1 = (TextView) view.findViewById(R.id.detail_life_form1_compund);
+        TextView detailLifeForm2 = (TextView) view.findViewById(R.id.detail_life_form2_compund);
+
+        ImageView detailColor1 = (ImageView) view.findViewById(R.id.detail_color1_image);
+        ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2_image);
         ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
 
         collapsingToolbar.setTitle(especie.genero + " " + especie.nombre.toLowerCase());
@@ -100,31 +101,10 @@ public class DetailFragment extends Fragment {
             }
         }
 
-        if (especie.color1 != null && !especie.color1.equals("none")) {
-            detailColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
-            detailColor1.setVisibility(View.VISIBLE);
-        } else {
-            detailColor1.setVisibility(View.GONE);
-        }
-        if (especie.color2 != null && !especie.color2.equals("none")) {
-            detailColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
-            detailColor2.setVisibility(View.VISIBLE);
-        } else {
-            detailColor2.setVisibility(View.GONE);
-        }
-
-        if (especie.formaVida1 != null && !especie.formaVida1.equals("none")) {
-            detailLifeForm1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.formaVida1 + "_tiny"));
-            detailLifeForm1.setVisibility(View.VISIBLE);
-        } else {
-            detailLifeForm1.setVisibility(View.GONE);
-        }
-        if (especie.formaVida2 != null && !especie.formaVida2.equals("none")) {
-            detailLifeForm2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv _" + especie.formaVida2 + "_tiny"));
-            detailLifeForm2.setVisibility(View.VISIBLE);
-        } else {
-            detailLifeForm2.setVisibility(View.GONE);
-        }
+        setColor(especie.color1, detailColor1);
+        setColor(especie.color2, detailColor2);
+        setFormaVida(especie.formaVida1, detailLifeForm1);
+        setFormaVida(especie.formaVida2, detailLifeForm2);
 
         detailDescription.setText(description);
 //        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
@@ -142,6 +122,32 @@ public class DetailFragment extends Fragment {
 
         return view;
     }
+
+    private void setColor(String color, ImageView colorImage) {
+        if (color != null && !color.equals("none")) {
+            String resourceName = "ic_cl_" + color + "_tiny";
+            int imageResource = ResourcesHelper.getImageResourceByName(context, resourceName);
+            colorImage.setImageResource(imageResource);
+            colorImage.setVisibility(View.VISIBLE);
+        } else {
+            colorImage.setVisibility(View.GONE);
+        }
+    }
+
+    private void setFormaVida(String formaVida, TextView formaVidaCompound) {
+        if (formaVida != null && !formaVida.equals("none")) {
+            formaVida = "fv_" + formaVida;
+            String resourceName = "ic_" + formaVida + "_tiny";
+            String formaVidaName = ResourcesHelper.getStringResourceByName(context, formaVida);
+            int imageResource = ResourcesHelper.getImageResourceByName(context, resourceName);
+            formaVidaCompound.setCompoundDrawablesWithIntrinsicBounds(imageResource, 0, 0, 0);
+            formaVidaCompound.setText(formaVidaName);
+            formaVidaCompound.setVisibility(View.VISIBLE);
+        } else {
+            formaVidaCompound.setVisibility(View.GONE);
+        }
+    }
+
 
     @Override
     public void onDetach() {
