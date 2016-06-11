@@ -37,6 +37,10 @@ public class EncyclopediaFragment extends Fragment {
         loadData();
     }
 
+    public String getSort() {
+        return sort;
+    }
+
     public static EncyclopediaFragment newInstance() {
         return new EncyclopediaFragment();
     }

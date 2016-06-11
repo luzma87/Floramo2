@@ -75,8 +75,14 @@ public class MainActivity extends AppCompatActivity
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
         if (itemSortName != null) {
             if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
-                itemSortName.setVisible(true);
-                itemSortFamily.setVisible(true);
+                String encyclopediaSort = encyclopediaFragment.getSort();
+                if (encyclopediaSort.equals(EncyclopediaFragment.SORT_BY_FAMILY)) {
+                    itemSortName.setVisible(true);
+                    itemSortFamily.setVisible(false);
+                } else {
+                    itemSortName.setVisible(false);
+                    itemSortFamily.setVisible(true);
+                }
             } else {
                 itemSortName.setVisible(false);
                 itemSortFamily.setVisible(false);
@@ -97,6 +103,7 @@ public class MainActivity extends AppCompatActivity
                 encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_FAMILY);
                 break;
         }
+        invalidateOptionsMenu();
         return super.onOptionsItemSelected(item);
     }
 
