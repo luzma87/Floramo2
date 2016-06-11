@@ -1,7 +1,9 @@
 package com.lzm.Cajas.detail;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -115,8 +117,10 @@ public class DetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Abre tropicos", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String baseUrl = context.getString(R.string.tropicosBase);
+                String url = baseUrl + especie.idTropicos;
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(myIntent);
             }
         });
 

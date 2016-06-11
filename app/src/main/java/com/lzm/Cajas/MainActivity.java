@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_encyclopedia) {
-            // Handle the camera action
+            Fragment encyclopediaFragment = EncyclopediaFragment.newInstance();
+            FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.detail_title));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
