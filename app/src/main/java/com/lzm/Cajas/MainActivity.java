@@ -1,6 +1,8 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,10 +12,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
+import com.lzm.Cajas.help.HelpFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 
 public class MainActivity extends AppCompatActivity
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final int FRAGMENT_ENCYCLOPEDIA = 1;
     public static final int FRAGMENT_DETAILS = 2;
+    public static final int FRAGMENT_HELP = 3;
 
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
@@ -112,8 +117,14 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_encyclopedia) {
-            FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
+        switch (id) {
+            case R.id.nav_encyclopedia:
+                FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
+                break;
+            case R.id.nav_help:
+                HelpFragment helpFragment = HelpFragment.newInstance();
+                FragmentHelper.openFragment(this, helpFragment, getString(R.string.title_help));
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

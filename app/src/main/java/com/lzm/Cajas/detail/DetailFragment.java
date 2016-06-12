@@ -118,7 +118,7 @@ public class DetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String baseUrl = context.getString(R.string.tropicosBase);
+                String baseUrl = context.getString(R.string.tropicos_base_url);
                 String url = baseUrl + especie.idTropicos;
                 Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(myIntent);

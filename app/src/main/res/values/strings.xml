@@ -1,9 +1,12 @@
 <resources>
     <string name="app_name">Flóramo</string>
+    <string name="app_version">App version %1$s</string>
+    <string name="android_version">Android version %1$s, SDK %2$s</string>
 
     <string name="floraBase" translatable="false">http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=</string>
-    <string name="tropicosBase" translatable="false">http://www.tropicos.org/Name/</string>
+    <string name="tropicos_base_url" translatable="false">http://www.tropicos.org/Name/</string>
     <string name="folder_name" translatable="false">Floramo</string>
+    <string name="contact_mail" translatable="false">nth.development@gmail.com</string>
 
     <string name="action_sort_name">Sort by name</string>
     <string name="action_sort_family">Sort by family</string>
@@ -35,5 +38,15 @@
     <string name="fv_aquatic">Aquatic</string>
     <string name="fv_liana">Liana</string>
     <string name="fv_tree">Tree</string>
+
     <string name="title_encyclopedia">Encyclopedia</string>
+    <string name="menu_about">About this app</string>
+    <string name="menu_help">Help, Feedback, Bug reports</string>
+
+    <string name="title_help">Help, Feedback, Bug reports</string>
+    <string name="help_comments">Comments, suggestions, feedback, bugs</string>
+    <string name="help_subject">Comments, suggestions, feedback, bugs</string>
+    <string name="help_comments_error">Please enter some text</string>
+    <string name="help_card_title">App, Android and device information</string>
+
 </resources>

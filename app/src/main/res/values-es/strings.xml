@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Flóramo</string>
+    <string name="app_version">App versión %1$s</string>
+    <string name="android_version">Android versión %1$s, SDK %2$s</string>
 
     <string name="action_sort_name">Ordenar por nombre</string>
     <string name="action_sort_family">Ordenar por familia</string>
@@ -31,4 +33,11 @@
     <string name="fv_aquatic">Acuática</string>
     <string name="fv_liana">Bejuco</string>
     <string name="fv_tree">Árbol</string>
+    <string name="menu_about">Acerca de esta app</string>
+    <string name="menu_help">Ayuda, Comentarios, Reportar errores</string>
+    <string name="title_help">Comentarios, sugerencias, errores</string>
+    <string name="help_comments">Comentarios, sugerencias, errores</string>
+    <string name="help_comments_error">Por favor ingrese un texto</string>
+    <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
+    <string name="help_subject">Comentarios, sugerencias, errores</string>
 </resources>
