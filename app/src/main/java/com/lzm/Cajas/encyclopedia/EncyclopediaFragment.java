@@ -1,7 +1,9 @@
 package com.lzm.Cajas.encyclopedia;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,6 +89,19 @@ public class EncyclopediaFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        onAttachAction(context);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            onAttachAction(activity);
+        }
+    }
+
+    private void onAttachAction(Context context) {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
