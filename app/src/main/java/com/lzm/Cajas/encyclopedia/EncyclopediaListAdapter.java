@@ -97,9 +97,6 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
                 e.printStackTrace();
                 System.out.println("*********************************************************");
             }
-
-//            path = "th_" + path;
-//            itemFoto.setImageResource(ResourcesHelper.getImageResourceByName(context, path));
         }
 
         return convertView;

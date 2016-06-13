@@ -21,7 +21,6 @@ import com.lzm.Cajas.helpers.ResourcesHelper;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Locale;
 
 public class DetailFragment extends Fragment {
     public static final String SPECIES_ID = "especieId";
@@ -72,19 +71,9 @@ public class DetailFragment extends Fragment {
         ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2_image);
         ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
 
-        collapsingToolbar.setTitle(especie.genero + " " + especie.nombre.toLowerCase());
-        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
-        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+        setBarTitle(collapsingToolbar);
 
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
-
-        String language = Locale.getDefault().getLanguage();
-        String description;
-        if (language.equals("en")) {
-            description = especie.descripcionEn;
-        } else {
-            description = especie.descripcionEs;
-        }
 
         List<Foto> fotos = Foto.findAllByEspecie(context, especie);
         Foto foto = null;
@@ -98,9 +87,7 @@ public class DetailFragment extends Fragment {
                 Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
                 detailImage.setImageBitmap(bitmap);
             } catch (IOException e) {
-                System.out.println("*********************************************************");
                 e.printStackTrace();
-                System.out.println("*********************************************************");
             }
         }
 
@@ -109,7 +96,7 @@ public class DetailFragment extends Fragment {
         setFormaVida(especie.formaVida1, detailLifeForm1);
         setFormaVida(especie.formaVida2, detailLifeForm2);
 
-        detailDescription.setText(description);
+        detailDescription.setText(especie.getDescripcion());
 //        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
         detailFamily.setText(especie.familia);
         detailGenus.setText(especie.genero);
@@ -124,13 +111,19 @@ public class DetailFragment extends Fragment {
                 startActivity(myIntent);
             }
         });
-
         return view;
+    }
+
+    private void setBarTitle(CollapsingToolbarLayout collapsingToolbar) {
+        collapsingToolbar.setTitle(especie.genero + " " + especie.nombre.toLowerCase());
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }
 
     private void setColor(String color, ImageView colorImage) {
         if (color != null && !color.equals("none")) {
-            String resourceName = "ic_cl_" + color + "_tiny";
+            color = "cl_" + color;
+            String resourceName = "ic_" + color + "_tiny";
             int imageResource = ResourcesHelper.getImageResourceByName(context, resourceName);
             colorImage.setImageResource(imageResource);
             colorImage.setVisibility(View.VISIBLE);

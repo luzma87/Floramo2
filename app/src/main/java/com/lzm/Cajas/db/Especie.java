@@ -5,6 +5,7 @@ import android.content.Context;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by DELL on 26/07/2014.
@@ -192,6 +193,17 @@ public class Especie {
 
     public String getDescripcionEs() {
         return descripcionEs;
+    }
+
+    public String getDescripcion() {
+        String language = Locale.getDefault().getLanguage();
+        String description;
+        if (language.equals("en")) {
+            description = descripcionEn;
+        } else {
+            description = descripcionEs;
+        }
+        return description;
     }
 
     public void setDescripcionEs(String descripcionEs) {
