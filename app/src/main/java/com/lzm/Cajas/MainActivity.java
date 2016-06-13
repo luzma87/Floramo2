@@ -1,8 +1,6 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.detail.DetailFragment;
@@ -34,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();

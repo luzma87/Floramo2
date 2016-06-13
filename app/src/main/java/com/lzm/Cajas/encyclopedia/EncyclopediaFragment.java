@@ -57,7 +57,7 @@ public class EncyclopediaFragment extends Fragment {
         context = (MainActivity) getActivity();
         context.setActiveFragment(MainActivity.FRAGMENT_ENCYCLOPEDIA);
 
-        View view = inflater.inflate(R.layout.fragment_encyclopedia, container, false);
+        View view = inflater.inflate(R.layout.encyclopedia_fragment, container, false);
         listView = (IndexableListView) view.findViewById(R.id.listview);
 
         loadData();

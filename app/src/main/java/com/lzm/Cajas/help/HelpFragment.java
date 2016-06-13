@@ -42,7 +42,7 @@ public class HelpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
         context.setActiveFragment(MainActivity.FRAGMENT_HELP);
-        View view = inflater.inflate(R.layout.fragment_help, container, false);
+        View view = inflater.inflate(R.layout.help_fragment, container, false);
 
         TextView appVersionLbl = (TextView) view.findViewById(R.id.app_version);
         TextView androidVersionLbl = (TextView) view.findViewById(R.id.android_version);

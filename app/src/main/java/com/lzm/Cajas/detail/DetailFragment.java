@@ -55,7 +55,7 @@ public class DetailFragment extends Fragment {
         context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
 
         especie = Especie.getDatos(context, especieId);
-        View view = inflater.inflate(R.layout.fragment_detail, container, false);
+        View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
 
