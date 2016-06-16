@@ -48,5 +48,6 @@
     <string name="help_subject">Comments, suggestions, feedback, bugs</string>
     <string name="help_comments_error">Please enter some text</string>
     <string name="help_card_title">App, Android and device information</string>
+    <string name="global_close">Close</string>
 
 </resources>

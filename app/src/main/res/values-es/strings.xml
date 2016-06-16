@@ -40,4 +40,5 @@
     <string name="help_comments_error">Por favor ingrese un texto</string>
     <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
     <string name="help_subject">Comentarios, sugerencias, errores</string>
+    <string name="global_close">Cerrar</string>
 </resources>

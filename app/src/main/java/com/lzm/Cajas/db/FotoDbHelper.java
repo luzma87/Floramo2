@@ -146,15 +146,15 @@ public class FotoDbHelper extends DbHelper {
     }
 
     public List<Foto> getAllFotosByEspecie(Especie especie) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Foto> fotos = new ArrayList<Foto>();
+        return getAllFotosByEspecieId(especie.id);
+    }
 
-//        String selectQuery = "SELECT * FROM " + TABLE_FOTO + " tf, " + TABLE_ESPECIE + " te " +
-//                "WHERE tf." + KEY_ESPECIE_ID + "=te." + KEY_ID +
-//                " AND te." + KEY_ID + "='" + especie.id + "' ";
+    public List<Foto> getAllFotosByEspecieId(Long especieId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Foto> fotos = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + TABLE_FOTO +
-                " WHERE " + KEY_ESPECIE_ID + " = " + especie.id;
+                " WHERE " + KEY_ESPECIE_ID + " = " + especieId;
 
         Cursor c = db.rawQuery(selectQuery, null);
 

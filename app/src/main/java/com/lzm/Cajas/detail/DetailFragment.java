@@ -7,10 +7,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
@@ -20,7 +23,7 @@ import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 public class DetailFragment extends Fragment {
     public static final String SPECIES_ID = "especieId";
@@ -28,6 +31,10 @@ public class DetailFragment extends Fragment {
 
     private Especie especie;
     private Long especieId;
+    private GridView gridView;
+    private ArrayList<Foto> fotos;
+    private int columnWidth = 400;
+    private int gridPadding;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -55,6 +62,7 @@ public class DetailFragment extends Fragment {
         context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
 
         especie = Especie.getDatos(context, especieId);
+        fotos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
@@ -71,23 +79,35 @@ public class DetailFragment extends Fragment {
         ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2_image);
         ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
 
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.detail_linear_layout);
+
+        gridView = (GridView) view.findViewById(R.id.detail_grid_view);
+
+        initializeGridView();
+        DetailGridViewAdapter adapter = new DetailGridViewAdapter(context, fotos, columnWidth);
+        gridView.setAdapter(adapter);
+
+        float padding = getPadding();
+        int cantPhotos = fotos.size();
+        int photosWidth = columnWidth * cantPhotos;
+        int paddingWidth = (int) padding * cantPhotos;
+
+        linearLayout.getLayoutParams().width = photosWidth + paddingWidth;
+        linearLayout.requestLayout();
+
         setBarTitle(collapsingToolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
-
-        List<Foto> fotos = Foto.findAllByEspecie(context, especie);
-        Foto foto = null;
         if (fotos.size() > 0) {
-            foto = fotos.get(0);
-        }
-
-        if (foto != null) {
-            String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
-            try {
-                Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
-                detailImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+            Foto foto = fotos.get(0);
+            if (foto != null) {
+                String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
+                try {
+                    Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
+                    detailImage.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -112,6 +132,22 @@ public class DetailFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private float getPadding() {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                gridPadding, context.getResources().getDisplayMetrics());
+    }
+
+    private void initializeGridView() {
+        gridPadding = 8;
+        float padding = getPadding();
+        gridView.setNumColumns(fotos.size());
+        gridView.setColumnWidth(columnWidth);
+        gridView.setStretchMode(GridView.NO_STRETCH);
+        gridView.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
+        gridView.setHorizontalSpacing((int) padding);
+        gridView.setVerticalSpacing((int) padding);
     }
 
     private void setBarTitle(CollapsingToolbarLayout collapsingToolbar) {

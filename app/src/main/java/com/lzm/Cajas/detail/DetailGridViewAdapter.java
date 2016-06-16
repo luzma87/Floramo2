@@ -1,0 +1,89 @@
+package com.lzm.Cajas.detail;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+
+import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.helpers.ResourcesHelper;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+/**
+ * Created by luz on 6/12/16.
+ */
+public class DetailGridViewAdapter extends BaseAdapter {
+    private MainActivity context;
+    private ArrayList<Foto> photos = new ArrayList<>();
+    private int imageWidth;
+
+    public DetailGridViewAdapter(MainActivity activity, ArrayList<Foto> photos, int imageWidth) {
+        this.context = activity;
+        this.photos = photos;
+        this.imageWidth = imageWidth;
+    }
+
+    @Override
+    public int getCount() {
+        return this.photos.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return this.photos.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView;
+        if (convertView == null) {
+            imageView = new ImageView(context);
+        } else {
+            imageView = (ImageView) convertView;
+        }
+
+        Foto foto = photos.get(position);
+        String path = "new/" + foto.path.replaceAll("-", "_").toLowerCase();
+        try {
+            Bitmap image = ResourcesHelper.getAssetByName(context, path);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
+            imageView.setImageBitmap(image);
+
+            imageView.setOnClickListener(new OnImageClickListener(position));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imageView;
+    }
+
+    class OnImageClickListener implements View.OnClickListener {
+        int position;
+
+        public OnImageClickListener(int position) {
+            this.position = position;
+        }
+
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(context, FullScreenViewActivity.class);
+            Long fotoId = photos.get(position).id;
+            i.putExtra("position", position);
+            i.putExtra("photoId", fotoId);
+            System.out.println("On click: " + position + " id:" + fotoId);
+            context.startActivity(i);
+        }
+
+    }
+}
