@@ -1,4 +1,4 @@
-package com.lzm.Cajas.detail;
+package com.lzm.Cajas.customComponents;
 
 /**
  * https://github.com/bieliaievays/ViewPagerIndicatorCircles

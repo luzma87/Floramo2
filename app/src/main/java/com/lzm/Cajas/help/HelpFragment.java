@@ -107,7 +107,7 @@ public class HelpFragment extends Fragment {
         return "";
     }
 
-    public String getDeviceName() {
+    private String getDeviceName() {
         String manufacturer = Build.MANUFACTURER;
         String model = Build.MODEL;
         String product = Build.PRODUCT;

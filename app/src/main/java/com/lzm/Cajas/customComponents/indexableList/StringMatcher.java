@@ -16,8 +16,11 @@
  * https://github.com/woozzu/IndexableListView
  */
 
-package com.lzm.Cajas.encyclopedia.indexableList;
+package com.lzm.Cajas.customComponents.indexableList;
 
+/**
+ * https://github.com/woozzu/IndexableListView
+ */
 public class StringMatcher {
 
     public static boolean match(String value, String keyword) {

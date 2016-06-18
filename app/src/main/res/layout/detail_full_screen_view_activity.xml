@@ -39,7 +39,7 @@
         android:layout_above="@+id/detail_full_screen_circle_view"
         android:layout_below="@id/detail_full_screen_linear_layout" />
 
-    <com.lzm.Cajas.detail.CircleView
+    <com.lzm.Cajas.customComponents.CircleView
         android:id="@+id/detail_full_screen_circle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,8 +1,4 @@
-package com.lzm.Cajas.encyclopedia.indexableList;
-
-/**
- * https://github.com/woozzu/IndexableListView
- */
+package com.lzm.Cajas.customComponents.indexableList;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -11,6 +7,10 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+/**
+ * https://github.com/woozzu/IndexableListView
+ */
 
 public class IndexableListView extends ListView {
 

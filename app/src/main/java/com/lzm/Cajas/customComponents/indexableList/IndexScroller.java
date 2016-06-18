@@ -1,8 +1,4 @@
-package com.lzm.Cajas.encyclopedia.indexableList;
-
-/**
- * https://github.com/woozzu/IndexableListView
- */
+package com.lzm.Cajas.customComponents.indexableList;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -20,6 +16,9 @@ import android.widget.SectionIndexer;
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 
+/**
+ * https://github.com/woozzu/IndexableListView
+ */
 public class IndexScroller {
 
     private float mIndexbarWidth;

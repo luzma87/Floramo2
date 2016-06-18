@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
-import com.lzm.Cajas.encyclopedia.indexableList.IndexableListView;
+import com.lzm.Cajas.customComponents.indexableList.IndexableListView;
 
 import java.util.List;
 
@@ -27,7 +27,6 @@ public class EncyclopediaFragment extends Fragment {
     public static final String SORT_ASCENDING = "a";
 
     private String sort = SORT_BY_NAME;
-    private EncyclopediaListAdapter adapter;
     private IndexableListView listView;
 
     public EncyclopediaFragment() {
@@ -81,7 +80,7 @@ public class EncyclopediaFragment extends Fragment {
 
         listView.setAdapter(null);
 
-        adapter = new EncyclopediaListAdapter(context, especies, sort);
+        EncyclopediaListAdapter adapter = new EncyclopediaListAdapter(context, especies, sort);
         listView.setAdapter(adapter);
         listView.setFastScrollEnabled(true);
     }
@@ -106,7 +105,7 @@ public class EncyclopediaFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnSearchFragmentInteractionListener");
         }
     }
 

@@ -15,12 +15,10 @@ import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
-import com.lzm.Cajas.encyclopedia.indexableList.StringMatcher;
+import com.lzm.Cajas.customComponents.indexableList.StringMatcher;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by luz on 6/5/16.

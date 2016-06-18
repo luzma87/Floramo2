@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.customComponents.TouchImageView;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by luz on 6/12/16.
+ * http://www.androidhive.info/2013/09/android-fullscreen-image-slider-with-swipe-and-pinch-zoom-gestures/
  */
 public class FullScreenImageAdapter extends PagerAdapter {
 

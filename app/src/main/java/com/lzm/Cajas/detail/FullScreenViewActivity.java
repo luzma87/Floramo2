@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.customComponents.CircleView;
 import com.lzm.Cajas.db.Foto;
 
 import java.util.ArrayList;
 
+/**
+ * http://www.androidhive.info/2013/09/android-fullscreen-image-slider-with-swipe-and-pinch-zoom-gestures/
+ */
 public class FullScreenViewActivity extends AppCompatActivity {
 
     @Override

@@ -4,14 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="comlzm.Cajas.MainActivity">
     <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_sort_name"
-        android:icon="@drawable/ic_sort_name_24px"
+        android:icon="@drawable/ic_sort_name_24dp"
         android:orderInCategory="100"
         android:title="@string/action_sort_name"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_sort_family"
-        android:icon="@drawable/ic_sort_family_24px"
+        android:icon="@drawable/ic_sort_family_24dp"
         android:orderInCategory="100"
         android:title="@string/action_sort_family"
         android:visible="false"

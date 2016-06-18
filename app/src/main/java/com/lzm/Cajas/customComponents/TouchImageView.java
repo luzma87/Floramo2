@@ -1,4 +1,4 @@
-package com.lzm.Cajas.detail;
+package com.lzm.Cajas.customComponents;
 
 import android.content.Context;
 import android.graphics.Matrix;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /**
- * Created by luz on 6/12/16.
+ * http://www.androidhive.info/2013/09/android-fullscreen-image-slider-with-swipe-and-pinch-zoom-gestures/
  */
 public class TouchImageView extends ImageView {
     Matrix matrix;

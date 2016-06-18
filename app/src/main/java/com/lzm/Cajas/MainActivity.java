@@ -1,8 +1,12 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,6 +20,7 @@ import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.help.HelpFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
+import com.lzm.Cajas.search.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAGMENT_ENCYCLOPEDIA = 1;
     public static final int FRAGMENT_DETAILS = 2;
     public static final int FRAGMENT_HELP = 3;
+    public static final int FRAGMENT_SEARCH = 4;
 
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
@@ -73,6 +79,12 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
+        MenuItem itemSearch = menu.findItem(R.id.action_search);
+        Drawable searchIcon = DrawableCompat.wrap(itemSearch.getIcon());
+        ColorStateList colorSelector = ContextCompat.getColorStateList(this, R.color.white);
+        DrawableCompat.setTintList(searchIcon, colorSelector);
+        itemSearch.setIcon(searchIcon);
+
         MenuItem itemSortFamily = menu.findItem(R.id.action_sort_family);
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
         if (itemSortName != null) {
@@ -103,6 +115,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.action_sort_family:
                 encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_FAMILY);
+                break;
+            case R.id.action_search:
+                SearchFragment searchFragment = SearchFragment.newInstance();
+                FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
                 break;
         }
         invalidateOptionsMenu();

@@ -39,6 +39,18 @@
     <string name="fv_liana">Liana</string>
     <string name="fv_tree">Tree</string>
 
+    <string name="cl_none">-None-</string>
+    <string name="cl_blue">Blue</string>
+    <string name="cl_brown">Brown</string>
+    <string name="cl_green">Green</string>
+    <string name="cl_orange">Orange</string>
+    <string name="cl_pink">Pink</string>
+    <string name="cl_purple">Purple</string>
+    <string name="cl_red">Red</string>
+    <string name="cl_white">White</string>
+    <string name="cl_yellow">Yellow</string>
+    <string name="cl_cone">Fern/Other</string>
+
     <string name="title_encyclopedia">Encyclopedia</string>
     <string name="menu_about">About this app</string>
     <string name="menu_help">Help, Feedback, Bug reports</string>
@@ -49,5 +61,8 @@
     <string name="help_comments_error">Please enter some text</string>
     <string name="help_card_title">App, Android and device information</string>
     <string name="global_close">Close</string>
+
+    <string name="action_search">Search</string>
+    <string name="title_search">Search</string>
 
 </resources>
