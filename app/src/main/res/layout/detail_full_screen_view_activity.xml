@@ -7,7 +7,7 @@
     tools:context="com.lzm.Cajas.detail.FullScreenViewActivity">
 
     <LinearLayout
-        android:id="@+id/ll1"
+        android:id="@+id/detail_full_screen_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -19,7 +19,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btnClose"
+            android:id="@+id/detail_full_screen_btn_close"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,17 +33,17 @@
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
+        android:id="@+id/detail_full_screen_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tv2"
-        android:layout_below="@id/ll1" />
+        android:layout_above="@+id/detail_full_screen_circle_view"
+        android:layout_below="@id/detail_full_screen_linear_layout" />
 
-    <TextView
-        android:id="@+id/tv2"
+    <com.lzm.Cajas.detail.CircleView
+        android:id="@+id/detail_full_screen_circle_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="" />
-
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
 </RelativeLayout>

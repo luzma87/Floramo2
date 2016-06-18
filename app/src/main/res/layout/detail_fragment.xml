@@ -242,7 +242,6 @@
                                 android:id="@+id/detail_grid_view"
                                 android:layout_width="fill_parent"
                                 android:layout_height="fill_parent"
-                                android:background="@color/primary_dark"
                                 android:gravity="center"
                                 android:numColumns="auto_fit"
                                 android:scrollbarAlwaysDrawHorizontalTrack="true"
