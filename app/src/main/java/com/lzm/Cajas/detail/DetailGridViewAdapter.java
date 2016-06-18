@@ -41,7 +41,7 @@ public class DetailGridViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return this.photos.get(position).getId();
     }
 
     @Override
@@ -60,30 +60,9 @@ public class DetailGridViewAdapter extends BaseAdapter {
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
             imageView.setImageBitmap(image);
-
-            imageView.setOnClickListener(new OnImageClickListener(position));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return imageView;
-    }
-
-    class OnImageClickListener implements View.OnClickListener {
-        int position;
-
-        public OnImageClickListener(int position) {
-            this.position = position;
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent i = new Intent(context, FullScreenViewActivity.class);
-            Long fotoId = photos.get(position).id;
-            i.putExtra("position", position);
-            i.putExtra("photoId", fotoId);
-            System.out.println("On click: " + position + " id:" + fotoId);
-            context.startActivity(i);
-        }
-
     }
 }

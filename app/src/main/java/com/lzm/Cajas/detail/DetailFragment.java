@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,7 +33,7 @@ public class DetailFragment extends Fragment {
     private Especie especie;
     private Long especieId;
     private GridView gridView;
-    private ArrayList<Foto> fotos;
+    private ArrayList<Foto> photos;
     private int columnWidth = 400;
     private int gridPadding;
 
@@ -62,7 +63,7 @@ public class DetailFragment extends Fragment {
         context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
 
         especie = Especie.getDatos(context, especieId);
-        fotos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
+        photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
@@ -85,11 +86,21 @@ public class DetailFragment extends Fragment {
         gridView = (GridView) view.findViewById(R.id.detail_grid_view);
 
         initializeGridView();
-        DetailGridViewAdapter adapter = new DetailGridViewAdapter(context, fotos, columnWidth);
+        DetailGridViewAdapter adapter = new DetailGridViewAdapter(context, photos, columnWidth);
         gridView.setAdapter(adapter);
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                Intent i = new Intent(context, FullScreenViewActivity.class);
+                Long fotoId = photos.get(position).id;
+                i.putExtra("position", position);
+                i.putExtra("photoId", fotoId);
+                context.startActivity(i);
+            }
+        });
+
         float padding = getPadding();
-        int cantPhotos = fotos.size();
+        int cantPhotos = photos.size();
         int photosWidth = columnWidth * cantPhotos;
         int paddingWidth = (int) padding * cantPhotos;
 
@@ -98,8 +109,8 @@ public class DetailFragment extends Fragment {
 
         setBarTitle(collapsingToolbar);
 
-        if (fotos.size() > 0) {
-            Foto foto = fotos.get(0);
+        if (photos.size() > 0) {
+            Foto foto = photos.get(0);
             if (foto != null) {
                 String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
                 try {
@@ -142,7 +153,7 @@ public class DetailFragment extends Fragment {
     private void initializeGridView() {
         gridPadding = 8;
         float padding = getPadding();
-        gridView.setNumColumns(fotos.size());
+        gridView.setNumColumns(photos.size());
         gridView.setColumnWidth(columnWidth);
         gridView.setStretchMode(GridView.NO_STRETCH);
         gridView.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
