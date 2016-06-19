@@ -24,7 +24,6 @@ import com.lzm.Cajas.customComponents.CustomToggleButton;
 import com.lzm.Cajas.customComponents.FlowLayout;
 import com.lzm.Cajas.db.Color;
 import com.lzm.Cajas.db.FormaVida;
-import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
 
@@ -104,13 +103,13 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    buttonClick();
+                    buttonSearchClick();
                 }
             }
         });
     }
 
-    public void buttonClick() {
+    public void buttonSearchClick() {
         String textSearch = searchByText.getText().toString().trim();
         String conditionalSearch = "AND";
         if (radioOr.isChecked()) {

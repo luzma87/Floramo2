@@ -47,8 +47,8 @@
     <string name="cl_cone">Helecho/Otro</string>
 
     <string name="menu_about">Acerca de esta app</string>
-    <string name="menu_help">Ayuda, Comentarios, Reportar errores</string>
-    <string name="title_help">Comentarios, sugerencias, errores</string>
+    <string name="menu_help">Reportar errores, sugerencias</string>
+    <string name="title_help">Errores, sugerencias</string>
     <string name="help_comments">Comentarios, sugerencias, errores</string>
     <string name="help_comments_error">Por favor ingrese un texto</string>
     <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
@@ -67,4 +67,5 @@
     <string name="search_color_info">Especies con color %1$s</string>
     <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
     <string name="search_no_results">No se encontraron resultados para su búsqueda</string>
+    <string name="menu_search">Búsqueda</string>
 </resources>

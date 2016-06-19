@@ -25,7 +25,6 @@ import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -65,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+        searchFragment = SearchFragment.newInstance();
 
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
@@ -127,9 +127,8 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.action_search:
                 if (activeFragment == FRAGMENT_SEARCH) {
-                    searchFragment.buttonClick();
+                    searchFragment.buttonSearchClick();
                 } else {
-                    searchFragment = SearchFragment.newInstance();
                     FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
                 }
                 break;
@@ -148,6 +147,9 @@ public class MainActivity extends AppCompatActivity
                 searchResults = new SearchResults(this);
                 FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
                 encyclopediaFragment.loadData();
+                break;
+            case R.id.nav_search:
+                FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
                 break;
             case R.id.nav_help:
                 HelpFragment helpFragment = HelpFragment.newInstance();
