@@ -104,15 +104,19 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    String textSearch = searchByText.getText().toString().trim();
-                    String conditionalSearch = "AND";
-                    if (radioOr.isChecked()) {
-                        conditionalSearch = "OR";
-                    }
-                    mListener.onSearchPerformed(colorSearch, lifeFormSearch, textSearch, conditionalSearch);
+                    buttonClick();
                 }
             }
         });
+    }
+
+    public void buttonClick() {
+        String textSearch = searchByText.getText().toString().trim();
+        String conditionalSearch = "AND";
+        if (radioOr.isChecked()) {
+            conditionalSearch = "OR";
+        }
+        mListener.onSearchPerformed(colorSearch, lifeFormSearch, textSearch, conditionalSearch);
     }
 
     private void setTextListener(EditText searchByText) {

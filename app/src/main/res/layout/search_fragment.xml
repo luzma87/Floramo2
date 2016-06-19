@@ -47,7 +47,7 @@
 
                 <RadioButton
                     android:id="@+id/search_radio_and"
-
+                    style="@style/search_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
@@ -55,7 +55,7 @@
 
                 <RadioButton
                     android:id="@+id/search_radio_or"
-
+                    style="@style/search_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/search_radio_or" />
@@ -63,6 +63,7 @@
 
             <TextView
                 android:id="@+id/search_conditional_info"
+                style="@style/search_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/search_conditional_info_and" />
@@ -74,6 +75,7 @@
 
                 <TextView
                     android:id="@+id/search_color_info"
+                    style="@style/search_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/search_color_info"
@@ -81,6 +83,7 @@
 
                 <TextView
                     android:id="@+id/search_life_form_info"
+                    style="@style/search_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/search_life_form_info"
@@ -88,6 +91,7 @@
 
                 <TextView
                     android:id="@+id/search_text_info"
+                    style="@style/search_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/search_text_info"

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
+    private SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,8 +126,12 @@ public class MainActivity extends AppCompatActivity
                 encyclopediaFragment.setSort(SearchResults.SORT_BY_FAMILY);
                 break;
             case R.id.action_search:
-                SearchFragment searchFragment = SearchFragment.newInstance();
-                FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
+                if (activeFragment == FRAGMENT_SEARCH) {
+                    searchFragment.buttonClick();
+                } else {
+                    searchFragment = SearchFragment.newInstance();
+                    FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
+                }
                 break;
         }
         invalidateOptionsMenu();
