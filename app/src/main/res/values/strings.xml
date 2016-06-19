@@ -64,5 +64,14 @@
 
     <string name="action_search">Search</string>
     <string name="title_search">Search</string>
+    <string name="search_txt_hint">Family, genus or species</string>
+    <string name="search_radio_and">AND search</string>
+    <string name="search_radio_or">OR search</string>
+    <string name="search">Search</string>
 
+    <string name="search_conditional_info_and">Search species matching ALL of the next criteria:</string>
+    <string name="search_conditional_info_or">Search species matching ANY of the next criteria:</string>
+    <string name="search_life_form_info">Species with life form %1$s</string>
+    <string name="search_color_info">Species with color %1$s</string>
+    <string name="search_text_info">Species with family, genus or name containing %1$s</string>
 </resources>

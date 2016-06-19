@@ -56,4 +56,14 @@
     <string name="global_close">Cerrar</string>
     <string name="action_search">Buscar</string>
     <string name="title_search">Buscar</string>
+    <string name="search_txt_hint">Familia, género o especie</string>
+    <string name="search_radio_and">Búsqueda AND</string>
+    <string name="search_radio_or">Búsqueda OR</string>
+    <string name="search">Buscar</string>
+
+    <string name="search_conditional_info_and">Búsqueda que concuerde con TODOS los siguientes parámetros:</string>
+    <string name="search_conditional_info_or">Búsqueda que concuerde con AL MENOS UNO de los siguientes parámetros:</string>
+    <string name="search_life_form_info">Especies con forma de vida %1$s</string>
+    <string name="search_color_info">Especies con color %1$s</string>
+    <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
 </resources>

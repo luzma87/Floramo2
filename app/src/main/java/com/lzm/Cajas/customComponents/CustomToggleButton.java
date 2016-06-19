@@ -2,12 +2,15 @@ package com.lzm.Cajas.customComponents;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.helpers.Utils;
 
 /**
  * Created by luz on 6/18/16.
@@ -17,39 +20,57 @@ public class CustomToggleButton extends ToggleButton implements CompoundButton.O
     private int primaryColor;
     private int secondaryColor;
     private String label;
+    private Long id;
 
     public CustomToggleButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context, null, null);
+        init(context, null, null, null);
     }
 
     public CustomToggleButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, null, null);
+        init(context, null, null, null);
     }
 
-    public CustomToggleButton(Context context, String label, Drawable icon) {
+    public CustomToggleButton(Context context, Long id, String label, Drawable icon) {
         super(context);
-        init(context, label, icon);
+        init(context, id, label, icon);
     }
 
-    private void init(Context context, String label, Drawable icon) {
+    public Long getComponentId() {
+        return this.id;
+    }
+
+    public String getComponentLabel() {
+        return this.label;
+    }
+
+    private void init(Context context, Long id, String label, Drawable icon) {
         this.context = context;
+        this.id = id;
         this.label = label;
         primaryColor = R.color.primary;
-        secondaryColor = R.color.primary_light;
+        secondaryColor = R.color.white;
 
+        int textSp = 14;
+        int paddingDp = 5;
+        int paddingPx = Utils.dp2px(context, paddingDp);
+
+        setTextStyle(textSp);
+        setPadding(paddingPx, paddingPx, paddingPx, paddingPx);
         setUncheckedColors();
-        setTextStyle();
+
         this.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
         super.setOnCheckedChangeListener(this);
     }
 
-    private void setTextStyle() {
-        this.setTextSize(14);
+    private void setTextStyle(int textSp) {
+        this.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSp);
         this.setText(label);
         this.setTextOn(label);
         this.setTextOff(label);
+        this.setAllCaps(false);
+        this.setTransformationMethod(null);
     }
 
     @Override
