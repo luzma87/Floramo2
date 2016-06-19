@@ -55,7 +55,7 @@ public class Genero {
     }
 
     public void setFamilia(Familia familia) {
-        this.familia_id = familia.id;
+        this.familia_id = familia.getId();
     }
 
     public void setFamilia_id(Long familia_id) {

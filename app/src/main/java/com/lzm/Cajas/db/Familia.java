@@ -9,10 +9,10 @@ import java.util.List;
  * Created by DELL on 28/07/2014.
  */
 public class Familia {
-    public long id = 0;
-    public String fecha;
-    public String nombre;
-    public String nombreNorm;
+    private long id = 0;
+    private String fecha;
+    private String nombre;
+    private String nombreNorm;
 
     public FamiliaDbHelper familiaDbHelper;
 
@@ -20,13 +20,6 @@ public class Familia {
         familiaDbHelper = new FamiliaDbHelper(context);
     }
 
-    public Familia(Context context, String nombre) {
-        this.nombre = nombre;
-
-        familiaDbHelper = new FamiliaDbHelper(context);
-    }
-
-    //getters
     public long getId() {
         return id;
     }
@@ -35,11 +28,14 @@ public class Familia {
         return nombre;
     }
 
+    public String getNombreNorm() {
+        return nombreNorm;
+    }
+
     public String getFecha() {
         return fecha;
     }
 
-    //setters
     public void setId(long id) {
         this.id = id;
     }
@@ -53,32 +49,9 @@ public class Familia {
         this.fecha = fecha;
     }
 
-    public void save() {
-        if (this.id == 0) {
-            this.id = this.familiaDbHelper.createFamilia(this);
-        } else {
-            this.familiaDbHelper.updateFamilia(this);
-        }
-    }
-
     public static Familia get(Context context, long id) {
         FamiliaDbHelper e = new FamiliaDbHelper(context);
         return e.getFamilia(id);
-    }
-
-    public static Familia getByNombreOrCreate(Context context, String nombreFamilia) {
-        Familia familia;
-        List<Familia> listFamilias = findAllByNombre(context, nombreFamilia);
-        if (listFamilias.size() == 0) {
-            familia = new Familia(context);
-            familia.setNombre(nombreFamilia);
-            familia.save();
-        } else if (listFamilias.size() == 1) {
-            familia = listFamilias.get(0);
-        } else {
-            familia = listFamilias.get(0);
-        }
-        return familia;
     }
 
     public static int count(Context context) {
@@ -86,33 +59,8 @@ public class Familia {
         return e.countAllFamilias();
     }
 
-    public static int countByNombre(Context context, String familia) {
-        FamiliaDbHelper e = new FamiliaDbHelper(context);
-        return e.countFamiliasByNombre(familia);
-    }
-
     public static List<Familia> list(Context context) {
         FamiliaDbHelper e = new FamiliaDbHelper(context);
         return e.getAllFamilias();
-    }
-
-    public static List<Familia> findAllByNombre(Context context, String familia) {
-        FamiliaDbHelper e = new FamiliaDbHelper(context);
-        return e.getAllFamiliasByNombre(familia);
-    }
-
-    public static List<Familia> findAllByNombreLike(Context context, String familia) {
-        FamiliaDbHelper e = new FamiliaDbHelper(context);
-        return e.getAllFamiliasByNombreLike(familia);
-    }
-
-    public static List<Familia> findAllByTieneEspecies(Context context) {
-        FamiliaDbHelper e = new FamiliaDbHelper(context);
-        return e.getAllFamiliasByTieneEspecies();
-    }
-
-    public static void empty(Context context) {
-        FamiliaDbHelper e = new FamiliaDbHelper(context);
-        e.deleteAllFamilias();
     }
 }

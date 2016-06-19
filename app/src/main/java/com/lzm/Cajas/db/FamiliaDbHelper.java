@@ -1,6 +1,5 @@
 package com.lzm.Cajas.db;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,8 +11,6 @@ import java.util.List;
  * Created by DELL on 28/07/2014.
  */
 public class FamiliaDbHelper extends DbHelper {
-
-    private static final String LOG = "FamiliaDbHelper";
 
     public static final String KEY_NOMBRE = "nombre";
     public static final String KEY_NOMBRE_NORM = "nombre_norm";
@@ -37,16 +34,6 @@ public class FamiliaDbHelper extends DbHelper {
         onCreate(db);
     }
 
-    public long createFamilia(Familia familia) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = setValues(familia, true);
-
-        // insert row
-        long res = db.insert(TABLE_FAMILIA, null, values);
-        db.close();
-        return res;
-    }
-
     public Familia getFamilia(long familia_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA + " WHERE "
@@ -64,74 +51,9 @@ public class FamiliaDbHelper extends DbHelper {
 
     public List<Familia> getAllFamilias() {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Familia> familias = new ArrayList<Familia>();
+        List<Familia> familias = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
                 " ORDER BY " + KEY_NOMBRE;
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Familia fm = setDatos(c);
-
-                // adding to tags list
-                familias.add(fm);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return familias;
-    }
-
-    public List<Familia> getAllFamiliasByNombre(String familia) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Familia> familias = new ArrayList<Familia>();
-        String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
-                " WHERE " + KEY_NOMBRE + " = '" + familia + "'";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Familia fm = setDatos(c);
-
-                // adding to tags list
-                familias.add(fm);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return familias;
-    }
-
-    public List<Familia> getAllFamiliasByNombreLike(String familia) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Familia> familias = new ArrayList<Familia>();
-        String selectQuery = "SELECT  * FROM " + TABLE_FAMILIA +
-                " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + familia.toLowerCase() + "%'";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Familia fm = setDatos(c);
-
-                // adding to tags list
-                familias.add(fm);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return familias;
-    }
-
-    public List<Familia> getAllFamiliasByTieneEspecies() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Familia> familias = new ArrayList<Familia>();
-        String selectQuery = "SELECT  distinct(f.id), f.nombre, f.fecha FROM " + TABLE_FAMILIA + " f" +
-                " INNER JOIN generos g ON g.familia_id = f.id" +
-                " INNER JOIN especies e on e.genero_id = g.id" +
-                " ORDER BY f.nombre";
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -161,64 +83,11 @@ public class FamiliaDbHelper extends DbHelper {
         return 0;
     }
 
-    public int countFamiliasByNombre(String familia) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  count(*) count FROM " + TABLE_FAMILIA +
-                " WHERE " + KEY_NOMBRE + " = '" + familia + "'";
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            int count = c.getInt(c.getColumnIndex("count"));
-            db.close();
-            return count;
-        }
-        db.close();
-        return 0;
-    }
-
-    public int updateFamilia(Familia familia) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = setValues(familia);
-
-        // updating row
-        int res = db.update(TABLE_FAMILIA, values, KEY_ID + " = ?",
-                new String[]{String.valueOf(familia.getId())});
-        db.close();
-        return res;
-    }
-
-    public void deleteFamilia(Familia familia) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_FAMILIA, KEY_ID + " = ?",
-                new String[]{String.valueOf(familia.id)});
-        db.close();
-    }
-
-    public void deleteAllFamilias() {
-        String sql = "DELETE FROM " + TABLE_FAMILIA;
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(sql);
-        db.close();
-    }
-
     private Familia setDatos(Cursor c) {
         Familia fm = new Familia(this.context);
         fm.setId(c.getLong((c.getColumnIndex(KEY_ID))));
         fm.setFecha(c.getString(c.getColumnIndex(KEY_FECHA)));
         fm.setNombre(c.getString(c.getColumnIndex(KEY_NOMBRE)));
         return fm;
-    }
-
-    private ContentValues setValues(Familia familia, boolean fecha) {
-        ContentValues values = new ContentValues();
-        if (fecha) {
-            values.put(KEY_FECHA, getDateTime());
-        }
-        values.put(KEY_NOMBRE, familia.nombre);
-        values.put(KEY_NOMBRE_NORM, familia.nombreNorm);
-        return values;
-    }
-
-    private ContentValues setValues(Familia familia) {
-        return setValues(familia, false);
     }
 }
