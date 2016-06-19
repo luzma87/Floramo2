@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/help_card_info"
+            android:id="@+id/feedback_card_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -64,7 +64,7 @@
         </android.support.v7.widget.CardView>
 
         <EditText
-            android:id="@+id/help_comments"
+            android:id="@+id/feedback_comments"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
@@ -74,13 +74,13 @@
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/help_send"
+        android:id="@+id/feedback_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:clickable="true"
         android:src="@drawable/ic_send_24dp"
-        app:layout_anchor="@id/help_card_info"
+        app:layout_anchor="@id/feedback_card_info"
         app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>

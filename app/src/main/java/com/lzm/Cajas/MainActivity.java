@@ -19,7 +19,7 @@ import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
-import com.lzm.Cajas.help.HelpFragment;
+import com.lzm.Cajas.feedback.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     public static final int FRAGMENT_ENCYCLOPEDIA = 1;
     public static final int FRAGMENT_DETAILS = 2;
-    public static final int FRAGMENT_HELP = 3;
+    public static final int FRAGMENT_FEEDBACK = 3;
     public static final int FRAGMENT_SEARCH = 4;
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity
                 fragment = DetailFragment.newInstance(detailSpeciesId);
                 titleRes = R.string.title_detail;
                 break;
-            case FRAGMENT_HELP:
-                fragment = HelpFragment.newInstance();
+            case FRAGMENT_FEEDBACK:
+                fragment = FeedbackFragment.newInstance();
                 titleRes = R.string.title_help;
                 break;
             case FRAGMENT_SEARCH:
@@ -197,8 +197,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_search:
                 openFragment(FRAGMENT_SEARCH);
                 break;
-            case R.id.nav_help:
-                openFragment(FRAGMENT_HELP);
+            case R.id.nav_feedback:
+                openFragment(FRAGMENT_FEEDBACK);
                 break;
         }
 

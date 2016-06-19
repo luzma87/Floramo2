@@ -1,4 +1,4 @@
-package com.lzm.Cajas.help;
+package com.lzm.Cajas.feedback;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -20,17 +20,17 @@ import com.lzm.Cajas.MainActivity;
 
 import org.apache.commons.lang.WordUtils;
 
-public class HelpFragment extends Fragment {
+public class FeedbackFragment extends Fragment {
 
     private MainActivity context;
     private EditText userInputTxt;
 
-    public HelpFragment() {
+    public FeedbackFragment() {
         // Required empty public constructor
     }
 
-    public static HelpFragment newInstance() {
-        return new HelpFragment();
+    public static FeedbackFragment newInstance() {
+        return new FeedbackFragment();
     }
 
     @Override
@@ -41,19 +41,19 @@ public class HelpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(MainActivity.FRAGMENT_HELP);
-        View view = inflater.inflate(R.layout.help_fragment, container, false);
+        context.setActiveFragment(MainActivity.FRAGMENT_FEEDBACK);
+        View view = inflater.inflate(R.layout.feedback_fragment, container, false);
 
         TextView appVersionLbl = (TextView) view.findViewById(R.id.app_version);
         TextView androidVersionLbl = (TextView) view.findViewById(R.id.android_version);
         TextView deviceInfoLbl = (TextView) view.findViewById(R.id.device_info);
-        userInputTxt = (EditText) view.findViewById(R.id.help_comments);
+        userInputTxt = (EditText) view.findViewById(R.id.feedback_comments);
 
         appVersionLbl.setText(getAppVersion());
         androidVersionLbl.setText(getAndroidVersion());
         deviceInfoLbl.setText(getDeviceName());
 
-        FloatingActionButton sendHelp = (FloatingActionButton) view.findViewById(R.id.help_send);
+        FloatingActionButton sendHelp = (FloatingActionButton) view.findViewById(R.id.feedback_send);
         sendHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
