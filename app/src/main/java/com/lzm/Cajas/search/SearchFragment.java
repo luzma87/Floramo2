@@ -169,8 +169,8 @@ public class SearchFragment extends Fragment {
         FlowLayout lifeFormsLayout = (FlowLayout) view.findViewById(R.id.search_life_forms_layout);
         ArrayList<FormaVida> lifeForms = FormaVida.list(context);
         for (FormaVida lifeForm : lifeForms) {
-            Long lifeFormId = lifeForm.id;
-            String lifeFormString = "fv_" + lifeForm.nombre;
+            Long lifeFormId = lifeForm.getId();
+            String lifeFormString = "fv_" + lifeForm.getNombre();
             CustomToggleButton lifeFormToggle = initToggleButton(lifeFormsLayout, lifeFormId, lifeFormString);
             lifeFormButtons.add(lifeFormToggle);
             lifeFormToggle.setOnClickListener(new View.OnClickListener() {

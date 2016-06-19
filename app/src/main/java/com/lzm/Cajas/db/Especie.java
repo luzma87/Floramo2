@@ -277,11 +277,11 @@ public class Especie {
     }
 
     public void setFormaVida1(FormaVida formaVida1) {
-        this.formaVida1_id = formaVida1.id;
+        this.formaVida1_id = formaVida1.getId();
     }
 
     public void setFormaVida2(FormaVida formaVida2) {
-        this.formaVida2_id = formaVida2.id;
+        this.formaVida2_id = formaVida2.getId();
     }
 
     public void save() {
