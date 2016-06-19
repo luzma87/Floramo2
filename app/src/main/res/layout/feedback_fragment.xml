@@ -4,74 +4,79 @@
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/feedback_card_info"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="8dp">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
+                android:id="@+id/feedback_card_info"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/primary_light"
-                    android:padding="@dimen/activity_horizontal_margin">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/help_card_title" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/app_version"
-                        style="@style/detail_info"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="App version" />
+                        android:background="@color/primary_light"
+                        android:padding="@dimen/activity_horizontal_margin">
 
-                    <TextView
-                        android:id="@+id/android_version"
-                        style="@style/detail_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Android version" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/help_card_title" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/device_info"
-                        style="@style/detail_info"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Make and model" />
+                        android:layout_margin="@dimen/activity_horizontal_margin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/app_version"
+                            style="@style/detail_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="App version" />
+
+                        <TextView
+                            android:id="@+id/android_version"
+                            style="@style/detail_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Android version" />
+
+                        <TextView
+                            android:id="@+id/device_info"
+                            style="@style/detail_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Make and model" />
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>
 
-        <EditText
-            android:id="@+id/feedback_comments"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:ems="10"
-            android:gravity="top"
-            android:inputType="textMultiLine" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/feedback_comments"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:ems="10"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+    </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/feedback_send"

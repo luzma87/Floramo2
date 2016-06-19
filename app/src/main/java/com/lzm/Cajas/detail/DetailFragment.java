@@ -22,6 +22,7 @@ import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
+import com.lzm.Cajas.helpers.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -156,7 +157,8 @@ public class DetailFragment extends Fragment {
 
     private void initImageGallery(View view) {
         int padding = (int) getPadding();
-        int columnWidth = 400;
+        int columnWidthDp = 150;
+        int columnWidth = Utils.dp2px(context, columnWidthDp);
 
         setLinearLayoutProperties(view, padding, columnWidth);
 
