@@ -92,7 +92,7 @@ public class FotoDbHelper extends DbHelper {
     }
 
     public List<Foto> getAllFotosByEspecie(Especie especie) {
-        return getAllFotosByEspecieId(especie.id);
+        return getAllFotosByEspecieId(especie.getId());
     }
 
     public List<Foto> getAllFotosByEspecieId(Long especieId) {

@@ -48,8 +48,8 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
             foto = fotos.get(0);
         }
 
-        String labelNombreCientifico = especie.genero + " " + especie.nombre;
-        String labelNombreFamilia = especie.familia;
+        String labelNombreCientifico = especie.getGenero() + " " + especie.getNombre();
+        String labelNombreFamilia = especie.getFamilia();
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -69,17 +69,17 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         itemNombreCientifico.setText(labelNombreCientifico);
         itemNombreFamilia.setText(labelNombreFamilia);
 
-        itemColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color1 + "_tiny"));
-        if (especie.color2 != null && !especie.color2.equals("none")) {
-            itemColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.color2 + "_tiny"));
+        itemColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor1() + "_tiny"));
+        if (especie.getColor2() != null && !especie.getColor2().equals("none")) {
+            itemColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor2() + "_tiny"));
             itemColor2.setVisibility(View.VISIBLE);
         } else {
             itemColor2.setVisibility(View.GONE);
         }
 
-        itemFormaVida1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.formaVida1 + "_tiny"));
-        if (especie.formaVida2 != null && !especie.formaVida2.equals("none")) {
-            itemFormaVida2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.formaVida2 + "_tiny"));
+        itemFormaVida1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida1() + "_tiny"));
+        if (especie.getFormaVida2() != null && !especie.getFormaVida2().equals("none")) {
+            itemFormaVida2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida2() + "_tiny"));
             itemFormaVida2.setVisibility(View.VISIBLE);
         } else {
             itemFormaVida2.setVisibility(View.GONE);
@@ -115,11 +115,11 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
             for (int j = 0; j < getCount(); j++) {
                 String nombre;
                 if (sort.equalsIgnoreCase("f")) {
-                    nombre = getItem(j).familia;
+                    nombre = getItem(j).getFamilia();
                 } else if (sort.equalsIgnoreCase("n")) {
-                    nombre = getItem(j).genero;
+                    nombre = getItem(j).getGenero();
                 } else {
-                    nombre = getItem(j).genero;
+                    nombre = getItem(j).getGenero();
                 }
                 String index = String.valueOf(nombre.charAt(0));
                 String keyword = String.valueOf(indexSections.charAt(i));

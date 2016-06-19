@@ -60,7 +60,7 @@ public class Foto {
     }
 
     public void setEspecie(Especie especie) {
-        this.especie_id = especie.id;
+        this.especie_id = especie.getId();
     }
 
     public void setEspecie_id(Long especie_id) {

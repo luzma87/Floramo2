@@ -122,22 +122,22 @@ public class DetailFragment extends Fragment {
             }
         }
 
-        setColor(especie.color1, detailColor1);
-        setColor(especie.color2, detailColor2);
-        setFormaVida(especie.formaVida1, detailLifeForm1);
-        setFormaVida(especie.formaVida2, detailLifeForm2);
+        setColor(especie.getColor1(), detailColor1);
+        setColor(especie.getColor2(), detailColor2);
+        setFormaVida(especie.getFormaVida1(), detailLifeForm1);
+        setFormaVida(especie.getFormaVida2(), detailLifeForm2);
 
         detailDescription.setText(especie.getDescripcion());
 //        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
-        detailFamily.setText(especie.familia);
-        detailGenus.setText(especie.genero);
-        detailSpecies.setText(especie.nombre);
+        detailFamily.setText(especie.getFamilia());
+        detailGenus.setText(especie.getGenero());
+        detailSpecies.setText(especie.getNombre());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String baseUrl = context.getString(R.string.tropicos_base_url);
-                String url = baseUrl + especie.idTropicos;
+                String url = baseUrl + especie.getIdTropicos();
                 Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(myIntent);
             }
@@ -162,7 +162,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void setBarTitle(CollapsingToolbarLayout collapsingToolbar) {
-        collapsingToolbar.setTitle(especie.genero + " " + especie.nombre.toLowerCase());
+        collapsingToolbar.setTitle(especie.getGenero() + " " + especie.getNombre().toLowerCase());
         collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }

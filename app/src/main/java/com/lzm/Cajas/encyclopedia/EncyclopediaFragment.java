@@ -65,7 +65,7 @@ public class EncyclopediaFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Especie selected = especies.get(position);
-                Long selectedId = selected.id;
+                Long selectedId = selected.getId();
                 if (mListener != null) {
                     mListener.onPlantSelected(selectedId);
                 }
