@@ -117,14 +117,46 @@ public class EspecieDbHelper extends DbHelper {
         return todos;
     }
 
-    public List<Especie> getAllSortedEspecies(String sort, String order) {
+    public int countAllEspecies() {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Especie> todos = new ArrayList<>();
+        String selectQuery = "SELECT  count(*) count FROM " + TABLE_ESPECIE;
+        Cursor c = db.rawQuery(selectQuery, null);
+        if (c.moveToFirst()) {
+            int count = c.getInt(c.getColumnIndex("count"));
+            db.close();
+            return count;
+        }
+        db.close();
+        return 0;
+    }
+
+    public List<Especie> getBusqueda(List<Long> formasVida, List<Long> colores, String nombre, String andOr, String sort, String order) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Especie> especies = new ArrayList<>();
+        String sql;
+
+        String select = "SELECT " +
+                "    e.id id," +
+                "    e.nombre especie," +
+                "    e.id_tropicos tropicos," +
+                "    e.descripcion_es desc_es," +
+                "    e.descripcion_en desc_en," +
+                "    e.autor autor," +
+                "    g.nombre genero," +
+                "    f.nombre familia," +
+                "    c1.nombre color1," +
+                "    c2.nombre color2," +
+                "    f1.nombre forma_vida1," +
+                "    f2.nombre forma_vida2";
+        String from = " FROM " + TABLE_ESPECIE + " e";
+        String joins = "";
+        String where = "";
+        String groupBy = " GROUP BY e." + KEY_ID;
 
         String colSort = "";
         String colOrder = "";
 
-        String sqlSort = "";
+        String orderBy = "";
 
         if (order.equalsIgnoreCase("a")) { //asc
             colOrder = "ASC";
@@ -139,67 +171,8 @@ public class EspecieDbHelper extends DbHelper {
         }
 
         if (!colSort.equals("")) {
-            sqlSort = " ORDER BY " + colSort + " " + colOrder;
+            orderBy = " ORDER BY " + colSort + " " + colOrder;
         }
-
-        String selectQuery = "SELECT " +
-                "    e.id id," +
-                "    e.nombre especie," +
-                "    e.id_tropicos tropicos," +
-                "    e.descripcion_es desc_es," +
-                "    e.descripcion_en desc_en," +
-                "    e.autor autor," +
-                "    g.nombre genero," +
-                "    f.nombre familia," +
-                "    c1.nombre color1," +
-                "    c2.nombre color2," +
-                "    f1.nombre forma_vida1," +
-                "    f2.nombre forma_vida2" +
-                " FROM especies e" +
-                " INNER JOIN generos g on e.genero_id = g.id" +
-                " INNER JOIN familias f on g.familia_id = f.id" +
-                " INNER JOIN colores c1 on e.color1_id = c1.id" +
-                " OUTER LEFT JOIN colores c2 on e.color2_id = c2.id" +
-                " INNER JOIN formas_vida f1 on e.forma_vida1_id = f1.id" +
-                " OUTER LEFT JOIN formas_vida f2 on e.forma_vida2_id = f2.id" + sqlSort;
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Especie es = setDatos2(c);
-                // adding to especie list
-                todos.add(es);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return todos;
-    }
-
-    public int countAllEspecies() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  count(*) count FROM " + TABLE_ESPECIE;
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            int count = c.getInt(c.getColumnIndex("count"));
-            db.close();
-            return count;
-        }
-        db.close();
-        return 0;
-    }
-
-    public List<Especie> getBusqueda(List<String> formasVida, List<String> colores, String nombre, String andOr) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Especie> todos = new ArrayList<>();
-        String sql;
-
-        String select = "SELECT  e.* ";
-        String from = " FROM " + TABLE_ESPECIE + " e";
-        String joins = "";
-        String where = "";
-        String groupBy = " GROUP BY e." + KEY_ID;
 
         if (colores.size() > 0) {
             joins += " LEFT JOIN " + TABLE_COLOR + " c1 ON e." + KEY_COLOR1_ID + " = c1." + KEY_ID;
@@ -211,14 +184,17 @@ public class EspecieDbHelper extends DbHelper {
                 where += " " + andOr + " ";
             }
             String whereColor = "";
-            for (String color : colores) {
+            for (Long color : colores) {
                 if (!whereColor.equals("")) {
                     whereColor += " " + andOr + " ";
                 }
-                whereColor += " (c1." + ColorDbHelper.KEY_NOMBRE + " = '" + color + "'";
-                whereColor += " OR c2." + ColorDbHelper.KEY_NOMBRE + " = '" + color + "')";
+                whereColor += " (c1." + ColorDbHelper.KEY_ID + " = '" + color + "'";
+                whereColor += " OR c2." + ColorDbHelper.KEY_ID + " = '" + color + "')";
             }
             where += whereColor;
+        } else {
+            joins += " INNER JOIN colores c1 on e.color1_id = c1.id" +
+                    " OUTER LEFT JOIN colores c2 on e.color2_id = c2.id";
         }
         if (formasVida.size() > 0) {
             joins += " LEFT JOIN " + TABLE_FORMA_VIDA + " f1 ON e." + KEY_FORMA_VIDA1_ID + " = f1." + KEY_ID;
@@ -230,20 +206,23 @@ public class EspecieDbHelper extends DbHelper {
                 where += " " + andOr + " ";
             }
             String whereFv = "";
-            for (String formaVida : formasVida) {
+            for (Long formaVida : formasVida) {
                 if (!whereFv.equals("")) {
                     whereFv += " " + andOr + " ";
                 }
-                whereFv += " (f1." + FormaVidaDbHelper.KEY_NOMBRE + " = '" + formaVida + "'";
-                whereFv += " OR f2." + FormaVidaDbHelper.KEY_NOMBRE + " = '" + formaVida + "')";
+                whereFv += " (f1." + FormaVidaDbHelper.KEY_ID + " = '" + formaVida + "'";
+                whereFv += " OR f2." + FormaVidaDbHelper.KEY_ID + " = '" + formaVida + "')";
             }
             where += whereFv;
+        } else {
+            joins += " INNER JOIN formas_vida f1 on e.forma_vida1_id = f1.id" +
+                    " OUTER LEFT JOIN formas_vida f2 on e.forma_vida2_id = f2.id";
         }
 
-        if (!nombre.equals("")) {
-            joins += " LEFT JOIN " + TABLE_GENERO + " g ON e." + KEY_GENERO_ID + " = g." + KEY_ID;
-            joins += " LEFT JOIN " + TABLE_FAMILIA + " a ON g." + GeneroDbHelper.KEY_FAMILIA_ID + " = a." + KEY_ID;
+        joins += " LEFT JOIN " + TABLE_GENERO + " g ON e." + KEY_GENERO_ID + " = g." + KEY_ID;
+        joins += " LEFT JOIN " + TABLE_FAMILIA + " f ON g." + GeneroDbHelper.KEY_FAMILIA_ID + " = f." + KEY_ID;
 
+        if (!nombre.equals("")) {
             if (where.equals("")) {
                 where += " WHERE ";
             } else {
@@ -254,25 +233,25 @@ public class EspecieDbHelper extends DbHelper {
             where += " OR ";
             where += "LOWER(g." + GeneroDbHelper.KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
             where += " OR ";
-            where += "LOWER(a." + FamiliaDbHelper.KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
+            where += "LOWER(f." + FamiliaDbHelper.KEY_NOMBRE_NORM + ") LIKE '%" + Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "").toLowerCase() + "%' ";
             where += ")";
         }
 
-        sql = select + from + joins + where + groupBy;
+        sql = select + from + joins + where + groupBy + orderBy;
 
-        //System.out.println(sql);
+//        System.out.println(sql);
 
         Cursor c = db.rawQuery(sql, null);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                Especie es = setDatos(c);
-                todos.add(es);
+                Especie es = setDatos2(c);
+                especies.add(es);
             } while (c.moveToNext());
         }
         db.close();
-        return todos;
+        return especies;
     }
 
     private Especie setDatos(Cursor c) {

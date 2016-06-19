@@ -14,6 +14,7 @@ import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.customComponents.indexableList.IndexableListView;
+import com.lzm.Cajas.search.SearchResults;
 
 import java.util.List;
 
@@ -22,12 +23,10 @@ public class EncyclopediaFragment extends Fragment {
     private List<Especie> especies;
     private MainActivity context;
 
-    public static final String SORT_BY_NAME = "n";
-    public static final String SORT_BY_FAMILY = "f";
-    public static final String SORT_ASCENDING = "a";
-
-    private String sort = SORT_BY_NAME;
     private IndexableListView listView;
+
+    private String sort = SearchResults.SORT_BY_NAME;
+    private String order = SearchResults.ORDER_ASCENDING;
 
     public EncyclopediaFragment() {
         // Required empty public constructor
@@ -36,10 +35,6 @@ public class EncyclopediaFragment extends Fragment {
     public void setSort(String sort) {
         this.sort = sort;
         loadData();
-    }
-
-    public String getSort() {
-        return sort;
     }
 
     public static EncyclopediaFragment newInstance() {
@@ -75,9 +70,7 @@ public class EncyclopediaFragment extends Fragment {
     }
 
     private void loadData() {
-        String order = SORT_ASCENDING;
-        especies = Especie.sortedList(context, sort, order);
-
+        especies = context.getEspeciesBusqueda(sort, order);
         listView.setAdapter(null);
 
         EncyclopediaListAdapter adapter = new EncyclopediaListAdapter(context, especies, sort);
@@ -113,6 +106,10 @@ public class EncyclopediaFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public String getSort() {
+        return sort;
     }
 
     public interface OnFragmentInteractionListener {

@@ -3,6 +3,7 @@ package com.lzm.Cajas.db;
 import android.content.Context;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -191,11 +192,6 @@ public class Especie {
         return e.getEspecie(id);
     }
 
-    public static List<Especie> sortedList(Context context, String sort, String order) {
-        EspecieDbHelper e = new EspecieDbHelper(context);
-        return e.getAllSortedEspecies(sort, order);
-    }
-
     public static List<Especie> list(Context context) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.getAllEspecies();
@@ -204,5 +200,10 @@ public class Especie {
     public static int count(Context context) {
         EspecieDbHelper e = new EspecieDbHelper(context);
         return e.countAllEspecies();
+    }
+
+    public static List<Especie> busqueda(Context context, ArrayList<Long> formaVida, ArrayList<Long> color, String nombre, String andOr, String sort, String order) {
+        EspecieDbHelper e = new EspecieDbHelper(context);
+        return e.getBusqueda(formaVida, color, nombre, andOr, sort, order);
     }
 }

@@ -1,7 +1,10 @@
 package com.lzm.Cajas.search;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
@@ -21,12 +24,14 @@ import com.lzm.Cajas.customComponents.CustomToggleButton;
 import com.lzm.Cajas.customComponents.FlowLayout;
 import com.lzm.Cajas.db.Color;
 import com.lzm.Cajas.db.FormaVida;
+import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
 
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
+    private OnFragmentInteractionListener mListener;
 
     private ArrayList<CustomToggleButton> colorButtons;
     private ArrayList<CustomToggleButton> lifeFormButtons;
@@ -41,6 +46,9 @@ public class SearchFragment extends Fragment {
 
     private ArrayList<Long> lifeFormSearch;
     private ArrayList<Long> colorSearch;
+    private EditText searchByText;
+    private RadioButton radioAnd;
+    private RadioButton radioOr;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -58,6 +66,8 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) this.getActivity();
+        context.setActiveFragment(MainActivity.FRAGMENT_SEARCH);
+
         colorButtons = new ArrayList<>();
         lifeFormButtons = new ArrayList<>();
         lifeFormSearch = new ArrayList<>();
@@ -74,9 +84,9 @@ public class SearchFragment extends Fragment {
     }
 
     private void getViews(View view) {
-        EditText searchByText = (EditText) view.findViewById(R.id.search_by_text);
-        RadioButton radioAnd = (RadioButton) view.findViewById(R.id.search_radio_and);
-        RadioButton radioOr = (RadioButton) view.findViewById(R.id.search_radio_or);
+        searchByText = (EditText) view.findViewById(R.id.search_by_text);
+        radioAnd = (RadioButton) view.findViewById(R.id.search_radio_and);
+        radioOr = (RadioButton) view.findViewById(R.id.search_radio_or);
         conditionalInfo = (TextView) view.findViewById(R.id.search_conditional_info);
         colorInfo = (TextView) view.findViewById(R.id.search_color_info);
         lifeFormInfo = (TextView) view.findViewById(R.id.search_life_form_info);
@@ -86,6 +96,23 @@ public class SearchFragment extends Fragment {
         setRadioListener(radioAnd, R.string.search_conditional_info_and);
         setRadioListener(radioOr, R.string.search_conditional_info_or);
         setTextListener(searchByText);
+        setButtonListener();
+    }
+
+    private void setButtonListener() {
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    String textSearch = searchByText.getText().toString().trim();
+                    String conditionalSearch = "AND";
+                    if (radioOr.isChecked()) {
+                        conditionalSearch = "OR";
+                    }
+                    mListener.onSearchPerformed(colorSearch, lifeFormSearch, textSearch, conditionalSearch);
+                }
+            }
+        });
     }
 
     private void setTextListener(EditText searchByText) {
@@ -209,7 +236,36 @@ public class SearchFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onAttachAction(context);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            onAttachAction(activity);
+        }
+    }
+
+    private void onAttachAction(Context context) {
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnSearchFragmentInteractionListener");
+        }
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional);
     }
 }

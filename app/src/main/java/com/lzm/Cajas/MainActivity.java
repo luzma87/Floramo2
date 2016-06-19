@@ -16,15 +16,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.lzm.Cajas.db.DbHelper;
+import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.help.HelpFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
+import com.lzm.Cajas.search.SearchResults;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        EncyclopediaFragment.OnFragmentInteractionListener {
+        EncyclopediaFragment.OnFragmentInteractionListener,
+        SearchFragment.OnFragmentInteractionListener {
 
     public static final int FRAGMENT_ENCYCLOPEDIA = 1;
     public static final int FRAGMENT_DETAILS = 2;
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity
 
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
+    private SearchResults searchResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,8 @@ public class MainActivity extends AppCompatActivity
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
+
+        searchResults = new SearchResults(this);
 
         encyclopediaFragment = EncyclopediaFragment.newInstance();
         FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_encyclopedia), false);
@@ -90,7 +99,7 @@ public class MainActivity extends AppCompatActivity
         if (itemSortName != null) {
             if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
                 String encyclopediaSort = encyclopediaFragment.getSort();
-                if (encyclopediaSort.equals(EncyclopediaFragment.SORT_BY_FAMILY)) {
+                if (encyclopediaSort.equals(SearchResults.SORT_BY_FAMILY)) {
                     itemSortName.setVisible(true);
                     itemSortFamily.setVisible(false);
                 } else {
@@ -111,10 +120,10 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.action_sort_name:
-                encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_NAME);
+                encyclopediaFragment.setSort(SearchResults.SORT_BY_NAME);
                 break;
             case R.id.action_sort_family:
-                encyclopediaFragment.setSort(EncyclopediaFragment.SORT_BY_FAMILY);
+                encyclopediaFragment.setSort(SearchResults.SORT_BY_FAMILY);
                 break;
             case R.id.action_search:
                 SearchFragment searchFragment = SearchFragment.newInstance();
@@ -147,14 +156,27 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void setActiveFragment(int activeFragment) {
+        this.activeFragment = activeFragment;
+        invalidateOptionsMenu();
+    }
+
+    public ArrayList<Especie> getEspeciesBusqueda(String sort, String order) {
+        searchResults.setSort(sort);
+        searchResults.setOrder(order);
+        return searchResults.getResults();
+    }
+
     @Override
     public void onPlantSelected(Long speciesId) {
         Fragment newFragment = DetailFragment.newInstance(speciesId);
         FragmentHelper.openFragment(this, newFragment, getString(R.string.title_detail));
     }
 
-    public void setActiveFragment(int activeFragment) {
-        this.activeFragment = activeFragment;
-        invalidateOptionsMenu();
+    @Override
+    public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
+        searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
+        encyclopediaFragment = EncyclopediaFragment.newInstance();
+        FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
     }
 }
