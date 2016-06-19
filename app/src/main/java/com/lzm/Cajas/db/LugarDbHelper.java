@@ -146,7 +146,7 @@ public class LugarDbHelper extends DbHelper {
     public void deleteLugar(Lugar lugar) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_LUGAR, KEY_ID + " = ?",
-                new String[]{String.valueOf(lugar.id)});
+                new String[]{String.valueOf(lugar.getId())});
         db.close();
     }
 
@@ -171,9 +171,9 @@ public class LugarDbHelper extends DbHelper {
         if (fecha) {
             values.put(KEY_FECHA, getDateTime());
         }
-        values.put(KEY_NOMBRE, lugar.nombre);
-        values.put(KEY_NOMBRE_NORM, lugar.nombreNorm);
-        values.put(KEY_PATH, lugar.path);
+        values.put(KEY_NOMBRE, lugar.getNombre());
+        values.put(KEY_NOMBRE_NORM, lugar.getNombreNorm());
+        values.put(KEY_PATH, lugar.getPath());
         return values;
     }
 

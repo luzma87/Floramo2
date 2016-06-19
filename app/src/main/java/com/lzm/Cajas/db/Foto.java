@@ -148,7 +148,7 @@ public class Foto {
     }
 
     public void setLugar(Lugar lugar) {
-        this.lugar_id = lugar.id;
+        this.lugar_id = lugar.getId();
     }
 
     public void setLugar_id(Long lugar_id) {

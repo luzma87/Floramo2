@@ -10,11 +10,11 @@ import java.util.List;
  * Created by DELL on 27/07/2014.
  */
 public class Lugar {
-    public long id = 0;
-    public String fecha;
-    public String nombre;
-    public String nombreNorm;
-    public String path;
+    private long id = 0;
+    private String fecha;
+    private String nombre;
+    private String nombreNorm;
+    private String path;
 
     LugarDbHelper lugarDbHelper;
 
@@ -22,27 +22,16 @@ public class Lugar {
         lugarDbHelper = new LugarDbHelper(context);
     }
 
-    public Lugar(Context context, String nombre) {
-        this.nombre = nombre;
-        this.nombreNorm = Normalizer.normalize(nombre, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
-
-        lugarDbHelper = new LugarDbHelper(context);
-    }
-
-    public Lugar(Context context, long id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-
-        lugarDbHelper = new LugarDbHelper(context);
-    }
-
-    //getters
     public long getId() {
         return id;
     }
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getNombreNorm() {
+        return nombreNorm;
     }
 
     public String getFecha() {
