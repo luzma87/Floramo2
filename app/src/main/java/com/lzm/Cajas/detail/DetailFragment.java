@@ -32,10 +32,7 @@ public class DetailFragment extends Fragment {
 
     private Especie especie;
     private Long especieId;
-    private GridView gridView;
     private ArrayList<Foto> photos;
-    private int columnWidth = 400;
-    private int gridPadding;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -62,53 +59,68 @@ public class DetailFragment extends Fragment {
         context = (MainActivity) getActivity();
         context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
 
+        System.out.println(".................................................");
+        System.out.println(savedInstanceState);
+        System.out.println(".................................................");
+
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
-
-        TextView detailFamily = (TextView) view.findViewById(R.id.detail_family);
-        TextView detailGenus = (TextView) view.findViewById(R.id.detail_genus);
-        TextView detailSpecies = (TextView) view.findViewById(R.id.detail_species);
-        TextView detailDescription = (TextView) view.findViewById(R.id.detail_description);
-
-        TextView detailLifeForm1 = (TextView) view.findViewById(R.id.detail_life_form1_compund);
-        TextView detailLifeForm2 = (TextView) view.findViewById(R.id.detail_life_form2_compund);
-
-        ImageView detailColor1 = (ImageView) view.findViewById(R.id.detail_color1_image);
-        ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2_image);
-        ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
-
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
-        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.detail_linear_layout);
-
-        gridView = (GridView) view.findViewById(R.id.detail_grid_view);
-
-        initializeGridView();
-        DetailGridViewAdapter adapter = new DetailGridViewAdapter(context, photos, columnWidth);
-        gridView.setAdapter(adapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                Intent i = new Intent(context, FullScreenViewActivity.class);
-                Long fotoId = photos.get(position).getId();
-                i.putExtra("position", position);
-                i.putExtra("photoId", fotoId);
-                context.startActivity(i);
-            }
-        });
-
-        float padding = getPadding();
-        int cantPhotos = photos.size();
-        int photosWidth = columnWidth * cantPhotos;
-        int paddingWidth = (int) padding * cantPhotos;
-
-        linearLayout.getLayoutParams().width = photosWidth + paddingWidth;
-        linearLayout.requestLayout();
-
         setBarTitle(collapsingToolbar);
 
+        setDetailImage(view);
+        setTropicosClick(view);
+        setFamily(view);
+        setGenus(view);
+        setSpecies(view);
+        setColors(view);
+        setLifeForms(view);
+        setDescription(view);
+
+        initImageGallery(view);
+
+        return view;
+    }
+
+    private void setSpecies(View view) {
+        setTextView(view, R.id.detail_species, especie.getNombre());
+    }
+
+    private void setGenus(View view) {
+        setTextView(view, R.id.detail_genus, especie.getGenero());
+    }
+
+    private void setFamily(View view) {
+        setTextView(view, R.id.detail_family, especie.getFamilia());
+    }
+
+    private void setDescription(View view) {
+        setTextView(view, R.id.detail_description, especie.getDescripcion());
+    }
+
+    private void setTextView(View view, int textViewId, String text) {
+        TextView detailSpecies = (TextView) view.findViewById(textViewId);
+        detailSpecies.setText(text);
+    }
+
+    private void setColors(View view) {
+        ImageView detailColor1 = (ImageView) view.findViewById(R.id.detail_color1_image);
+        ImageView detailColor2 = (ImageView) view.findViewById(R.id.detail_color2_image);
+        setColor(especie.getColor1(), detailColor1);
+        setColor(especie.getColor2(), detailColor2);
+    }
+
+    private void setLifeForms(View view) {
+        TextView detailLifeForm1 = (TextView) view.findViewById(R.id.detail_life_form1_compund);
+        TextView detailLifeForm2 = (TextView) view.findViewById(R.id.detail_life_form2_compund);
+        setFormaVida(especie.getFormaVida1(), detailLifeForm1);
+        setFormaVida(especie.getFormaVida2(), detailLifeForm2);
+    }
+
+    private void setDetailImage(View view) {
+        ImageView detailImage = (ImageView) view.findViewById(R.id.detail_image);
         if (photos.size() > 0) {
             Foto foto = photos.get(0);
             if (foto != null) {
@@ -121,18 +133,10 @@ public class DetailFragment extends Fragment {
                 }
             }
         }
+    }
 
-        setColor(especie.getColor1(), detailColor1);
-        setColor(especie.getColor2(), detailColor2);
-        setFormaVida(especie.getFormaVida1(), detailLifeForm1);
-        setFormaVida(especie.getFormaVida2(), detailLifeForm2);
-
-        detailDescription.setText(especie.getDescripcion());
-//        txtEspecieInfoNombreCientifico.setText(especie.genero + " " + especie.nombre.toLowerCase());
-        detailFamily.setText(especie.getFamilia());
-        detailGenus.setText(especie.getGenero());
-        detailSpecies.setText(especie.getNombre());
-
+    private void setTropicosClick(View view) {
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.detail_fab_tropicos);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,23 +146,58 @@ public class DetailFragment extends Fragment {
                 startActivity(myIntent);
             }
         });
-        return view;
     }
 
     private float getPadding() {
+        int gridPadding = 8;
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 gridPadding, context.getResources().getDisplayMetrics());
     }
 
-    private void initializeGridView() {
-        gridPadding = 8;
-        float padding = getPadding();
+    private void initImageGallery(View view) {
+        int padding = (int) getPadding();
+        int columnWidth = 400;
+
+        setLinearLayoutProperties(view, padding, columnWidth);
+
+        GridView gridView = (GridView) view.findViewById(R.id.detail_grid_view);
+        setGridViewProperties(padding, columnWidth, gridView);
+
+        DetailGridViewAdapter adapter = new DetailGridViewAdapter(context, photos, columnWidth);
+        gridView.setAdapter(adapter);
+
+        setGridViewItemClick(gridView);
+    }
+
+    private void setLinearLayoutProperties(View view, int padding, int columnWidth) {
+        LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.detail_linear_layout);
+
+        int cantPhotos = photos.size();
+        int photosWidth = columnWidth * cantPhotos;
+        int paddingWidth = padding * cantPhotos;
+        linearLayout.getLayoutParams().width = photosWidth + paddingWidth;
+        linearLayout.requestLayout();
+    }
+
+    private void setGridViewItemClick(GridView gridView) {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+                Intent i = new Intent(context, FullScreenViewActivity.class);
+                Long fotoId = photos.get(position).getId();
+                i.putExtra("position", position);
+                i.putExtra("photoId", fotoId);
+                context.startActivity(i);
+            }
+        });
+    }
+
+    private void setGridViewProperties(int padding, int columnWidth, GridView gridView) {
         gridView.setNumColumns(photos.size());
         gridView.setColumnWidth(columnWidth);
         gridView.setStretchMode(GridView.NO_STRETCH);
-        gridView.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
-        gridView.setHorizontalSpacing((int) padding);
-        gridView.setVerticalSpacing((int) padding);
+        gridView.setPadding(padding, padding, padding, padding);
+        gridView.setHorizontalSpacing(padding);
+        gridView.setVerticalSpacing(padding);
     }
 
     private void setBarTitle(CollapsingToolbarLayout collapsingToolbar) {

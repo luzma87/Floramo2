@@ -35,11 +35,15 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAGMENT_DETAILS = 2;
     public static final int FRAGMENT_HELP = 3;
     public static final int FRAGMENT_SEARCH = 4;
+    public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
+    private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
+    private static final String SAVED_SEARCH_RESULTS = "searchResults";
 
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
     private SearchFragment searchFragment;
+    private Long detailSpeciesId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,51 @@ public class MainActivity extends AppCompatActivity
 
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
-        FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_encyclopedia), false);
+
+        openFragment(FRAGMENT_ENCYCLOPEDIA);
+    }
+
+    public void setActiveFragment(int activeFragment) {
+        this.activeFragment = activeFragment;
+        invalidateOptionsMenu();
+    }
+
+    public ArrayList<Especie> getEspeciesBusqueda(String sort, String order) {
+        searchResults.setSort(sort);
+        searchResults.setOrder(order);
+        return searchResults.getResults();
+    }
+
+    private void openFragment(int fragmentToOpen) {
+        openFragment(fragmentToOpen, true);
+    }
+
+    private void openFragment(int fragmentToOpen, boolean resetSearch) {
+        Fragment fragment = encyclopediaFragment;
+        int titleRes = R.string.title_encyclopedia;
+        switch (fragmentToOpen) {
+            case FRAGMENT_ENCYCLOPEDIA:
+                if (resetSearch) {
+                    searchResults = new SearchResults(this);
+                }
+                encyclopediaFragment = EncyclopediaFragment.newInstance();
+                fragment = encyclopediaFragment;
+                titleRes = R.string.title_encyclopedia;
+                break;
+            case FRAGMENT_DETAILS:
+                fragment = DetailFragment.newInstance(detailSpeciesId);
+                titleRes = R.string.title_detail;
+                break;
+            case FRAGMENT_HELP:
+                fragment = HelpFragment.newInstance();
+                titleRes = R.string.title_help;
+                break;
+            case FRAGMENT_SEARCH:
+                fragment = searchFragment;
+                titleRes = R.string.title_search;
+                break;
+        }
+        FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
     }
 
     @Override
@@ -129,7 +177,7 @@ public class MainActivity extends AppCompatActivity
                 if (activeFragment == FRAGMENT_SEARCH) {
                     searchFragment.buttonSearchClick();
                 } else {
-                    FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
+                    openFragment(FRAGMENT_SEARCH);
                 }
                 break;
         }
@@ -144,16 +192,13 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_encyclopedia:
-                searchResults = new SearchResults(this);
-                FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
-                encyclopediaFragment.loadData();
+                openFragment(FRAGMENT_ENCYCLOPEDIA);
                 break;
             case R.id.nav_search:
-                FragmentHelper.openFragment(this, searchFragment, getString(R.string.title_search));
+                openFragment(FRAGMENT_SEARCH);
                 break;
             case R.id.nav_help:
-                HelpFragment helpFragment = HelpFragment.newInstance();
-                FragmentHelper.openFragment(this, helpFragment, getString(R.string.title_help));
+                openFragment(FRAGMENT_HELP);
                 break;
         }
 
@@ -164,27 +209,43 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void setActiveFragment(int activeFragment) {
-        this.activeFragment = activeFragment;
-        invalidateOptionsMenu();
-    }
-
-    public ArrayList<Especie> getEspeciesBusqueda(String sort, String order) {
-        searchResults.setSort(sort);
-        searchResults.setOrder(order);
-        return searchResults.getResults();
-    }
-
     @Override
     public void onPlantSelected(Long speciesId) {
-        Fragment newFragment = DetailFragment.newInstance(speciesId);
-        FragmentHelper.openFragment(this, newFragment, getString(R.string.title_detail));
+        detailSpeciesId = speciesId;
+        openFragment(FRAGMENT_DETAILS);
     }
 
     @Override
     public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
         searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
-        encyclopediaFragment = EncyclopediaFragment.newInstance();
-        FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
+        openFragment(FRAGMENT_ENCYCLOPEDIA, false);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putSerializable(SAVED_ACTIVE_FRAGMENT, activeFragment);
+        savedInstanceState.putParcelable(SAVED_SEARCH_RESULTS, searchResults);
+        if (activeFragment == FRAGMENT_DETAILS) {
+            savedInstanceState.putSerializable(SAVED_DETAIL_SPECIES_ID, detailSpeciesId);
+        }
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        activeFragment = Integer.parseInt(savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT).toString());
+        if (activeFragment == FRAGMENT_DETAILS) {
+            detailSpeciesId = Long.parseLong(savedInstanceState.getSerializable(SAVED_DETAIL_SPECIES_ID).toString());
+        }
+        if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
+            searchResults = savedInstanceState.getParcelable(SAVED_SEARCH_RESULTS);
+        }
+        openFragment(activeFragment, false);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }
