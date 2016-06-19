@@ -65,7 +65,7 @@ public class Especie {
     public Especie(Context context, String nombreComun, Genero genero, String nombre, String comentarios) {
         this.nombre = nombre;
         this.nombreComun = nombreComun;
-        this.genero_id = genero.id;
+        this.genero_id = genero.getId();
         this.comentarios = comentarios;
         this.context = context;
         especieDbHelper = new EspecieDbHelper(context);
@@ -73,7 +73,7 @@ public class Especie {
 
     public Especie(Context context, Genero genero, String nombre, String comentarios) {
         this.nombre = nombre;
-        this.genero_id = genero.id;
+        this.genero_id = genero.getId();
         this.comentarios = comentarios;
         this.context = context;
         especieDbHelper = new EspecieDbHelper(context);
@@ -81,7 +81,7 @@ public class Especie {
 
     public Especie(Context context, Genero genero, String nombre) {
         this.nombre = nombre;
-        this.genero_id = genero.id;
+        this.genero_id = genero.getId();
         this.context = context;
         especieDbHelper = new EspecieDbHelper(context);
     }
@@ -116,7 +116,7 @@ public class Especie {
     }
 
     public String getNombreCientifico() {
-        return getGenero(context).nombre + " " + nombre;
+        return getGenero(context).getNombre() + " " + nombre;
     }
 
     public Color getColor1(Context context) {
@@ -235,7 +235,7 @@ public class Especie {
     }
 
     public void setGenero(Genero genero) {
-        this.genero_id = genero.id;
+        this.genero_id = genero.getId();
     }
 
     public void setNombre(String nombre) {

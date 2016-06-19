@@ -264,7 +264,7 @@ public class EspecieDbHelper extends DbHelper {
                 " OUTER LEFT JOIN colores c2 on e.color2_id = c2.id" +
                 " INNER JOIN formas_vida f1 on e.forma_vida1_id = f1.id" +
                 " OUTER LEFT JOIN formas_vida f2 on e.forma_vida2_id = f2.id" +
-                " WHERE e.genero_id = " + genero.id + sqlSort;
+                " WHERE e.genero_id = " + genero.getId() + sqlSort;
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -378,7 +378,7 @@ public class EspecieDbHelper extends DbHelper {
         List<Especie> todos = new ArrayList<Especie>();
         String selectQuery = "SELECT  * FROM " + TABLE_ESPECIE +
                 " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + especie.toLowerCase() + "%'" +
-                " AND " + KEY_GENERO_ID + " = " + genero.id;
+                " AND " + KEY_GENERO_ID + " = " + genero.getId();
 
         Cursor c = db.rawQuery(selectQuery, null);
 
@@ -410,7 +410,7 @@ public class EspecieDbHelper extends DbHelper {
     public int countEspeciesByGenero(Genero genero) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  count(*) count FROM " + TABLE_ESPECIE +
-                " WHERE " + KEY_GENERO_ID + " = '" + genero.id + "'";
+                " WHERE " + KEY_GENERO_ID + " = '" + genero.getId() + "'";
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             int count = c.getInt(c.getColumnIndex("count"));

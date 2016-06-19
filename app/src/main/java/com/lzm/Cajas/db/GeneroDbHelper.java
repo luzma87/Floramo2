@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class GeneroDbHelper extends DbHelper {
 
-    private static final String LOG = "GeneroDbHelper";
-
     public static final String KEY_NOMBRE = "nombre";
     public static final String KEY_NOMBRE_NORM = "nombre_norm";
     public static final String KEY_FAMILIA_ID = "familia_id";
@@ -65,7 +63,7 @@ public class GeneroDbHelper extends DbHelper {
 
     public List<Genero> getAllGeneros() {
         SQLiteDatabase db = this.getReadableDatabase();
-        List<Genero> generos = new ArrayList<Genero>();
+        List<Genero> generos = new ArrayList<>();
         String selectQuery = "SELECT  * FROM " + TABLE_GENERO;
 
         Cursor c = db.rawQuery(selectQuery, null);
@@ -83,123 +81,9 @@ public class GeneroDbHelper extends DbHelper {
         return generos;
     }
 
-    public List<Genero> getAllGenerosByNombre(String genero) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Genero> generos = new ArrayList<Genero>();
-        String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
-                " WHERE " + KEY_NOMBRE + " = '" + genero + "'";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Genero gn = setDatos(c);
-
-                // adding to tags list
-                generos.add(gn);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return generos;
-    }
-
-    public List<Genero> getAllGenerosByNombreLike(String genero) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Genero> generos = new ArrayList<Genero>();
-        String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
-                " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + genero.toLowerCase() + "%'";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Genero gn = setDatos(c);
-
-                // adding to tags list
-                generos.add(gn);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return generos;
-    }
-
-    public List<Genero> getAllGenerosByFamilia(Familia familia) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Genero> generos = new ArrayList<Genero>();
-        String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
-                " WHERE " + KEY_FAMILIA_ID + " = '" + familia.id + "'";
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Genero gn = setDatos(c);
-
-                // adding to tags list
-                generos.add(gn);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return generos;
-    }
-
-    public List<Genero> getAllGenerosByFamiliaAndNombreLike(Familia familia, String genero) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        List<Genero> generos = new ArrayList<Genero>();
-        String selectQuery = "SELECT  * FROM " + TABLE_GENERO +
-                " WHERE LOWER(" + KEY_NOMBRE_NORM + ") LIKE '%" + genero.toLowerCase() + "%'" +
-                " AND " + KEY_FAMILIA_ID + " = " + familia.id;
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (c.moveToFirst()) {
-            do {
-                Genero gn = setDatos(c);
-
-                // adding to tags list
-                generos.add(gn);
-            } while (c.moveToNext());
-        }
-        db.close();
-        return generos;
-    }
-
-
     public int countAllGeneros() {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  count(*) count FROM " + TABLE_GENERO;
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            int count = c.getInt(c.getColumnIndex("count"));
-            db.close();
-            return count;
-        }
-        db.close();
-        return 0;
-    }
-
-    public int countGenerosByNombre(String genero) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  count(*) count FROM " + TABLE_GENERO +
-                " WHERE " + KEY_NOMBRE + " = '" + genero + "'";
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            int count = c.getInt(c.getColumnIndex("count"));
-            db.close();
-            return count;
-        }
-        db.close();
-        return 0;
-    }
-
-    public int countGenerosByFamilia(Familia familia) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  count(*) count FROM " + TABLE_GENERO +
-                " WHERE " + KEY_FAMILIA_ID + " = '" + familia.id + "'";
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             int count = c.getInt(c.getColumnIndex("count"));
@@ -221,20 +105,6 @@ public class GeneroDbHelper extends DbHelper {
         return res;
     }
 
-    public void deleteGenero(Genero genero) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_GENERO, KEY_ID + " = ?",
-                new String[]{String.valueOf(genero.id)});
-        db.close();
-    }
-
-    public void deleteAllGeneros() {
-        String sql = "DELETE FROM " + TABLE_GENERO;
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL(sql);
-        db.close();
-    }
-
     private Genero setDatos(Cursor c) {
         Genero gn = new Genero(this.context);
         gn.setId(c.getLong((c.getColumnIndex(KEY_ID))));
@@ -249,10 +119,10 @@ public class GeneroDbHelper extends DbHelper {
         if (fecha) {
             values.put(KEY_FECHA, getDateTime());
         }
-        values.put(KEY_NOMBRE, genero.nombre);
-        values.put(KEY_NOMBRE_NORM, genero.nombreNorm);
-        if (genero.familia_id != null) {
-            values.put(KEY_FAMILIA_ID, genero.familia_id);
+        values.put(KEY_NOMBRE, genero.getNombre());
+        values.put(KEY_NOMBRE_NORM, genero.getNombreNorm());
+        if (genero.getFamilia_id() != null) {
+            values.put(KEY_FAMILIA_ID, genero.getFamilia_id());
         }
         return values;
     }

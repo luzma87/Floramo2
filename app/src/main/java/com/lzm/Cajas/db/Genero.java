@@ -9,11 +9,11 @@ import java.util.List;
  * Created by DELL on 28/07/2014.
  */
 public class Genero {
-    public long id = 0;
-    public String fecha;
-    public Long familia_id;
-    public String nombre;
-    public String nombreNorm;
+    private long id = 0;
+    private String fecha;
+    private Long familia_id;
+    private String nombre;
+    private String nombreNorm;
 
     public GeneroDbHelper generoDbHelper;
 
@@ -24,30 +24,9 @@ public class Genero {
         this.context = context;
     }
 
-    public Genero(Context context, String nombre) {
-        this.nombre = nombre;
-        this.context = context;
-        generoDbHelper = new GeneroDbHelper(context);
-    }
-
-    public Genero(Context context, Familia familia, String nombre) {
-        this.familia_id = familia.id;
-        this.nombre = nombre;
-        this.context = context;
-        generoDbHelper = new GeneroDbHelper(context);
-    }
-
     //getters
     public long getId() {
         return id;
-    }
-
-    public Familia getFamilia(Context context) {
-        if (familia_id != null) {
-            return Familia.get(context, familia_id);
-        } else {
-            return null;
-        }
     }
 
     public Long getFamilia_id() {
@@ -58,11 +37,14 @@ public class Genero {
         return nombre;
     }
 
+    public String getNombreNorm() {
+        return nombreNorm;
+    }
+
     public String getFecha() {
         return fecha;
     }
 
-    //setters
     public void setId(long id) {
         this.id = id;
     }
@@ -97,63 +79,13 @@ public class Genero {
         return e.getGenero(id);
     }
 
-    public static Genero getByNombreOrCreate(Context context, String nombreGenero) {
-        Genero genero;
-        List<Genero> listGeneros = findAllByNombre(context, nombreGenero);
-        if (listGeneros.size() == 0) {
-            genero = new Genero(context);
-            genero.setNombre(nombreGenero);
-            genero.save();
-        } else if (listGeneros.size() == 1) {
-            genero = listGeneros.get(0);
-        } else {
-            genero = listGeneros.get(0);
-        }
-        return genero;
-    }
-
     public static int count(Context context) {
         GeneroDbHelper e = new GeneroDbHelper(context);
         return e.countAllGeneros();
     }
 
-    public static int countByNombre(Context context, String familia) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.countGenerosByNombre(familia);
-    }
-
-    public static int countByFamilia(Context context, Familia familia) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.countGenerosByFamilia(familia);
-    }
-
     public static List<Genero> list(Context context) {
         GeneroDbHelper e = new GeneroDbHelper(context);
         return e.getAllGeneros();
-    }
-
-    public static List<Genero> findAllByNombre(Context context, String genero) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.getAllGenerosByNombre(genero);
-    }
-
-    public static List<Genero> findAllByNombreLike(Context context, String genero) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.getAllGenerosByNombreLike(genero);
-    }
-
-    public static List<Genero> findAllByFamilia(Context context, Familia familia) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.getAllGenerosByFamilia(familia);
-    }
-
-    public static List<Genero> findAllByFamiliaAndNombreLike(Context context, Familia familia, String genero) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        return e.getAllGenerosByFamiliaAndNombreLike(familia, genero);
-    }
-
-    public static void empty(Context context) {
-        GeneroDbHelper e = new GeneroDbHelper(context);
-        e.deleteAllGeneros();
     }
 }
