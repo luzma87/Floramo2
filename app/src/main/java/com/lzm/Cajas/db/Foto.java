@@ -8,23 +8,20 @@ import java.util.List;
  * Created by DELL on 26/07/2014.
  */
 public class Foto {
-    public long id = 0;
-    public String fecha;
-    public String keywords;
+    private long id = 0;
+    private String fecha;
+    private String keywords;
 
-    public Long especie_id;
+    private Long especie_id;
 
-    public Long color1_id;
-    public Long color2_id;
+    private double latitud;
+    private double longitud;
+    private double altitud = 0;
+    private Long coordenada_id;
 
-    public double latitud;
-    public double longitud;
-    public double altitud = 0;
-    public Long coordenada_id;
+    private Long lugar_id;
 
-    public Long lugar_id;
-
-    public String path;
+    private String path;
 
     Context context;
 
@@ -34,56 +31,8 @@ public class Foto {
         fotoDbHelper = new FotoDbHelper(context);
     }
 
-    public Foto(Context context, Especie especie, String comentarios, String keywords) {
-        this.keywords = keywords;
-        this.especie_id = especie.id;
-        this.context = context;
-        fotoDbHelper = new FotoDbHelper(context);
-    }
-
-    public Foto(Context context, Especie especie, String comentarios) {
-        this.especie_id = especie.id;
-        this.context = context;
-        fotoDbHelper = new FotoDbHelper(context);
-    }
-
-    public Foto(Context context, Especie especie) {
-        this.especie_id = especie.id;
-        this.context = context;
-        fotoDbHelper = new FotoDbHelper(context);
-    }
-
-    //getters
-    public Especie getEspecie(Context context) {
-        if (especie_id != null) {
-            return Especie.get(context, especie_id);
-        } else {
-            return null;
-        }
-    }
-
-    public Lugar getLugar(Context context) {
-        if (lugar_id != null) {
-            return Lugar.get(context, lugar_id);
-        } else {
-            return null;
-        }
-    }
-
-    public Long getLugar_id() {
-        return lugar_id;
-    }
-
-    public Long getEspecie_id() {
-        return especie_id;
-    }
-
     public long getId() {
         return id;
-    }
-
-    public String getKeywords() {
-        return keywords;
     }
 
     public String getFecha() {
@@ -94,40 +43,12 @@ public class Foto {
         return path;
     }
 
-    public Long getCoordenada_id() {
-        return coordenada_id;
-    }
-
     public void setCoordenada_id(Long coordenada_id) {
         this.coordenada_id = coordenada_id;
     }
 
-    public Coordenada getCoordenada(Context context) {
-        if (especie_id != null) {
-            return Coordenada.get(context, coordenada_id);
-        } else {
-            return null;
-        }
-    }
-
-    public void setCoordenada(Coordenada coordenada) {
-        this.coordenada_id = coordenada.getId();
-    }
-
-    public double getLatitud() {
-        return latitud;
-    }
-
     public void setLatitud(double latitud) {
         this.latitud = latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public double getAltitud() {
-        return altitud;
     }
 
     public void setAltitud(double altitud) {
@@ -138,17 +59,12 @@ public class Foto {
         this.longitud = longitud;
     }
 
-    //setter
     public void setEspecie(Especie especie) {
         this.especie_id = especie.id;
     }
 
     public void setEspecie_id(Long especie_id) {
         this.especie_id = especie_id;
-    }
-
-    public void setLugar(Lugar lugar) {
-        this.lugar_id = lugar.getId();
     }
 
     public void setLugar_id(Long lugar_id) {
@@ -171,10 +87,6 @@ public class Foto {
         this.path = path;
     }
 
-    public void save() {
-        this.fotoDbHelper.updateFoto(this);
-    }
-
     public void delete() {
         this.fotoDbHelper.deleteFoto(this);
     }
@@ -194,16 +106,6 @@ public class Foto {
         return e.countAllFotos();
     }
 
-    public static int countByEspecie(Context context, Especie especie) {
-        FotoDbHelper e = new FotoDbHelper(context);
-        return e.countFotosByEspecie(especie);
-    }
-
-    public static Foto findByEspecie(Context context, Especie especie) {
-        FotoDbHelper e = new FotoDbHelper(context);
-        return e.getFotoByEspecie(especie);
-    }
-
     public static List<Foto> findAllByEspecie(Context context, Especie especie) {
         FotoDbHelper e = new FotoDbHelper(context);
         return e.getAllFotosByEspecie(especie);
@@ -212,15 +114,5 @@ public class Foto {
     public List<Foto> findAllSameEspecie(Context context) {
         FotoDbHelper e = new FotoDbHelper(context);
         return e.getAllFotosByEspecieId(especie_id);
-    }
-
-    public static List<Foto> findAllByKeyword(Context context, String keyword) {
-        FotoDbHelper e = new FotoDbHelper(context);
-        return e.getAllFotosByKeyword(keyword);
-    }
-
-    public static void empty(Context context) {
-        FotoDbHelper e = new FotoDbHelper(context);
-        e.deleteAllFotos();
     }
 }

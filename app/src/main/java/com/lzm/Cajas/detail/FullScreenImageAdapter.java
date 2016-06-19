@@ -49,7 +49,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
 
         Foto foto = photos.get(position);
         if (foto != null) {
-            String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
+            String path = "full_size/" + foto.getPath().replaceAll("-", "_").toLowerCase();
             try {
                 Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
                 imgDisplay.setImageBitmap(bitmap);

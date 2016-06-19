@@ -92,7 +92,7 @@ public class DetailFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
                 Intent i = new Intent(context, FullScreenViewActivity.class);
-                Long fotoId = photos.get(position).id;
+                Long fotoId = photos.get(position).getId();
                 i.putExtra("position", position);
                 i.putExtra("photoId", fotoId);
                 context.startActivity(i);
@@ -112,7 +112,7 @@ public class DetailFragment extends Fragment {
         if (photos.size() > 0) {
             Foto foto = photos.get(0);
             if (foto != null) {
-                String path = "full_size/" + foto.path.replaceAll("-", "_").toLowerCase();
+                String path = "full_size/" + foto.getPath().replaceAll("-", "_").toLowerCase();
                 try {
                     Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
                     detailImage.setImageBitmap(bitmap);

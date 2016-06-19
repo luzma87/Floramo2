@@ -86,7 +86,7 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         }
 
         if (foto != null) {
-            String path = "new/" + foto.path.replaceAll("-", "_").toLowerCase();
+            String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
             try {
                 Bitmap bitmap = ResourcesHelper.getAssetByName(context, path);
                 itemFoto.setImageBitmap(bitmap);

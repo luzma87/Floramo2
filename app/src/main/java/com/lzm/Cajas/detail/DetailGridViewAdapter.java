@@ -54,7 +54,7 @@ public class DetailGridViewAdapter extends BaseAdapter {
         }
 
         Foto foto = photos.get(position);
-        String path = "new/" + foto.path.replaceAll("-", "_").toLowerCase();
+        String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
         try {
             Bitmap image = ResourcesHelper.getAssetByName(context, path);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
