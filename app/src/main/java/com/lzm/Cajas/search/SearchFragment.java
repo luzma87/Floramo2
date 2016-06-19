@@ -186,8 +186,8 @@ public class SearchFragment extends Fragment {
         FlowLayout colorsLayout = (FlowLayout) view.findViewById(R.id.search_colors_layout);
         ArrayList<Color> colors = Color.list(context);
         for (Color color : colors) {
-            Long colorId = color.id;
-            String colorString = "cl_" + color.nombre;
+            Long colorId = color.getId();
+            String colorString = "cl_" + color.getNombre();
             CustomToggleButton colorToggle = initToggleButton(colorsLayout, colorId, colorString);
             colorButtons.add(colorToggle);
             colorToggle.setOnClickListener(new View.OnClickListener() {

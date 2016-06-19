@@ -9,9 +9,9 @@ import java.util.List;
  * Created by DELL on 27/07/2014.
  */
 public class Color {
-    public long id = 0;
-    public String fecha;
-    public String nombre;
+    private long id = 0;
+    private String fecha;
+    private String nombre;
 
     ColorDbHelper colorDbHelper;
 
@@ -19,20 +19,6 @@ public class Color {
         colorDbHelper = new ColorDbHelper(context);
     }
 
-    public Color(Context context, String nombre) {
-        this.nombre = nombre;
-
-        colorDbHelper = new ColorDbHelper(context);
-    }
-
-    public Color(Context context, long id, String nombre) {
-        this.id = id;
-        this.nombre = nombre;
-
-        colorDbHelper = new ColorDbHelper(context);
-    }
-
-    //getters
     public long getId() {
         return id;
     }
@@ -45,7 +31,6 @@ public class Color {
         return fecha;
     }
 
-    //setters
     public void setId(long id) {
         this.id = id;
     }
@@ -62,14 +47,6 @@ public class Color {
         return "**" + nombre;
     }
 
-    public void save() {
-        if (this.id == 0) {
-            this.id = this.colorDbHelper.createColor(this);
-        } else {
-            this.colorDbHelper.updateColor(this);
-        }
-    }
-
     public static Color get(Context context, long id) {
         ColorDbHelper e = new ColorDbHelper(context);
         return e.getColor(id);
@@ -80,28 +57,8 @@ public class Color {
         return e.countAllColores();
     }
 
-    public static int countByNombre(Context context, String color) {
-        ColorDbHelper e = new ColorDbHelper(context);
-        return e.countColoresByNombre(color);
-    }
-
     public static ArrayList<Color> list(Context context) {
         ColorDbHelper e = new ColorDbHelper(context);
         return e.getAllColores();
-    }
-
-    public static ArrayList<Color> listColores(Context context) {
-        ColorDbHelper e = new ColorDbHelper(context);
-        return e.getOnlyColores();
-    }
-
-    public static List<Color> findAllByNombre(Context context, String color) {
-        ColorDbHelper e = new ColorDbHelper(context);
-        return e.getAllColoresByNombre(color);
-    }
-
-    public static void empty(Context context) {
-        ColorDbHelper e = new ColorDbHelper(context);
-        e.deleteAllColores();
     }
 }

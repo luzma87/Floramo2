@@ -453,8 +453,8 @@ public class EspecieDbHelper extends DbHelper {
     public int countFotosByColor(Color color) {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT  count(*) count FROM " + TABLE_ESPECIE +
-                " WHERE " + KEY_COLOR1_ID + " = '" + color.id + "'" +
-                " OR " + KEY_COLOR2_ID + " = '" + color.id + "'";
+                " WHERE " + KEY_COLOR1_ID + " = '" + color.getId() + "'" +
+                " OR " + KEY_COLOR2_ID + " = '" + color.getId() + "'";
         Cursor c = db.rawQuery(selectQuery, null);
         if (c.moveToFirst()) {
             int count = c.getInt(c.getColumnIndex("count"));
@@ -469,8 +469,8 @@ public class EspecieDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Especie> todos = new ArrayList<Especie>();
         String selectQuery = "SELECT  * FROM " + TABLE_ESPECIE +
-                " WHERE " + KEY_COLOR1_ID + " = " + color.id +
-                " OR " + KEY_COLOR2_ID + " = " + color.id;
+                " WHERE " + KEY_COLOR1_ID + " = " + color.getId() +
+                " OR " + KEY_COLOR2_ID + " = " + color.getId();
 
         Cursor c = db.rawQuery(selectQuery, null);
 

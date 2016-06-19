@@ -261,11 +261,11 @@ public class Especie {
     }
 
     public void setColor1(Color color1) {
-        this.color1_id = color1.id;
+        this.color1_id = color1.getId();
     }
 
     public void setColor2(Color color2) {
-        this.color2_id = color2.id;
+        this.color2_id = color2.getId();
     }
 
     public void setFormaVida1_id(long formaVida1_id) {
