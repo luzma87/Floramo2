@@ -66,4 +66,5 @@
     <string name="search_life_form_info">Especies con forma de vida %1$s</string>
     <string name="search_color_info">Especies con color %1$s</string>
     <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
+    <string name="search_no_results">No se encontraron resultados para su búsqueda</string>
 </resources>

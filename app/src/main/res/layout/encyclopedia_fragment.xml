@@ -3,11 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="?attr/actionBarSize"
+    android:orientation="vertical"
     tools:context=".encyclopedia.EncyclopediaFragment">
 
     <com.lzm.Cajas.customComponents.indexableList.IndexableListView
         android:id="@+id/listview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+
+    <TextView
+        android:id="@+id/empty"
+        style="@style/search_no_results"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text="@string/search_no_results" />
 
 </LinearLayout>

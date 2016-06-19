@@ -57,6 +57,12 @@
         <item name="android:textColor">@color/primary_text</item>
     </style>
 
+    <style name="search_no_results" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
     <style name="detail_description" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/secondary_text</item>

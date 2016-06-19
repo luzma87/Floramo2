@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         searchResults = new SearchResults(this);
-
         encyclopediaFragment = EncyclopediaFragment.newInstance();
         FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_encyclopedia), false);
     }
@@ -141,7 +140,9 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_encyclopedia:
+                searchResults = new SearchResults(this);
                 FragmentHelper.openFragment(this, encyclopediaFragment, getString(R.string.title_detail));
+                encyclopediaFragment.loadData();
                 break;
             case R.id.nav_help:
                 HelpFragment helpFragment = HelpFragment.newInstance();

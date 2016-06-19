@@ -74,4 +74,5 @@
     <string name="search_life_form_info">Species with life form %1$s</string>
     <string name="search_color_info">Species with color %1$s</string>
     <string name="search_text_info">Species with family, genus or name containing %1$s</string>
+    <string name="search_no_results">No results match your search</string>
 </resources>

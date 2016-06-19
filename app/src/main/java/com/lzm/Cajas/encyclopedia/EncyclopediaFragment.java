@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
@@ -69,13 +71,15 @@ public class EncyclopediaFragment extends Fragment {
         return view;
     }
 
-    private void loadData() {
+    public void loadData() {
         especies = context.getEspeciesBusqueda(sort, order);
         listView.setAdapter(null);
 
         EncyclopediaListAdapter adapter = new EncyclopediaListAdapter(context, especies, sort);
         listView.setAdapter(adapter);
         listView.setFastScrollEnabled(true);
+
+        listView.setVisibility((adapter.isEmpty()) ? View.GONE : View.VISIBLE);
     }
 
     @Override
