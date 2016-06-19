@@ -111,7 +111,7 @@ public class Foto {
     }
 
     public void setCoordenada(Coordenada coordenada) {
-        this.coordenada_id = coordenada.id;
+        this.coordenada_id = coordenada.getId();
     }
 
     public double getLatitud() {
