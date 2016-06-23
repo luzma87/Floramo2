@@ -37,7 +37,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="@string/search_txt_hint" />
+                android:hint="@string/search_txt_hint"
+                android:singleLine="true" />
 
             <RadioGroup
                 android:id="@+id/busqueda_radiogroup"
