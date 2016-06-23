@@ -23,6 +23,7 @@ import com.lzm.Cajas.feedback.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
+import com.lzm.Cajas.tropicos.TropicosFragment;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAGMENT_DETAILS = 2;
     public static final int FRAGMENT_FEEDBACK = 3;
     public static final int FRAGMENT_SEARCH = 4;
+    public static final int FRAGMENT_TROPICOS = 5;
+
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
     private static final String SAVED_SEARCH_RESULTS = "searchResults";
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     private SearchResults searchResults;
     private SearchFragment searchFragment;
     private Long detailSpeciesId;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         }
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
@@ -115,7 +119,11 @@ public class MainActivity extends AppCompatActivity
                 fragment = searchFragment;
                 titleRes = R.string.title_search;
                 break;
+            case FRAGMENT_TROPICOS:
+                fragment = TropicosFragment.newInstance();
+                titleRes = R.string.title_tropicos;
         }
+//        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
     }
 
@@ -196,6 +204,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_search:
                 openFragment(FRAGMENT_SEARCH);
+                break;
+            case R.id.nav_tropicos:
+                openFragment(FRAGMENT_TROPICOS);
                 break;
             case R.id.nav_feedback:
                 openFragment(FRAGMENT_FEEDBACK);

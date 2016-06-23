@@ -76,4 +76,12 @@
     <string name="search_text_info">Species with family, genus or name containing %1$s</string>
     <string name="search_no_results">No results match your search</string>
     <string name="menu_search">Search</string>
+
+    <string name="title_tropicos">Tropicos® Search</string>
+    <string name="menu_tropicos">Tropicos® Search</string>
+    <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database</string>
+    <string name="tropicos_name">Name</string>
+    <string name="tropicos_common_name">Common name</string>
+    <string name="tropicos_family">Family</string>
+    <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
 </resources>

@@ -68,4 +68,12 @@
     <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
     <string name="search_no_results">No se encontraron resultados para su búsqueda</string>
     <string name="menu_search">Búsqueda</string>
+
+    <string name="title_tropicos">Búsqueda Tropicos®</string>
+    <string name="menu_tropicos">Búsqueda Tropicos®</string>
+    <string name="tropicos_info">Ingrese al menos uno de los siguientes criterios para buscar en la base de datos de Tropicos®</string>
+    <string name="tropicos_name">Name</string>
+    <string name="tropicos_common_name">Common name</string>
+    <string name="tropicos_family">Family</string>
+    <string name="tropicos_search_warning">Ingrese al menos un criterio para buscar</string>
 </resources>
