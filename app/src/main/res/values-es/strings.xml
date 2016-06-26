@@ -76,4 +76,5 @@
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
     <string name="tropicos_search_warning">Ingrese al menos un criterio para buscar</string>
+    <string name="tropicos_info_warning">Esta búsqueda se conectará al internet</string>
 </resources>

@@ -1,9 +1,12 @@
 package com.lzm.Cajas;
 
 import android.app.Fragment;
+import android.app.ProgressDialog;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
@@ -14,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
@@ -23,6 +27,8 @@ import com.lzm.Cajas.feedback.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
+import com.lzm.Cajas.tropicos.TropicosSearchResult;
+import com.lzm.Cajas.tropicos.TropicosSearchResultFragment;
 import com.lzm.Cajas.tropicos.TropicosFragment;
 
 import java.util.ArrayList;
@@ -30,13 +36,15 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         EncyclopediaFragment.OnFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener {
+        SearchFragment.OnFragmentInteractionListener,
+        TropicosSearchResultFragment.OnTropicosSearchResultFragmentInteractionListener {
 
     public static final int FRAGMENT_ENCYCLOPEDIA = 1;
     public static final int FRAGMENT_DETAILS = 2;
     public static final int FRAGMENT_FEEDBACK = 3;
     public static final int FRAGMENT_SEARCH = 4;
     public static final int FRAGMENT_TROPICOS = 5;
+    public static final int FRAGMENT_TROPICOS_RESULTS = 6;
 
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
@@ -47,7 +55,6 @@ public class MainActivity extends AppCompatActivity
     private SearchResults searchResults;
     private SearchFragment searchFragment;
     private Long detailSpeciesId;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         }
         toggle.syncState();
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             navigationView.setNavigationItemSelectedListener(this);
         }
@@ -230,6 +237,29 @@ public class MainActivity extends AppCompatActivity
     public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
         searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
         openFragment(FRAGMENT_ENCYCLOPEDIA, false);
+    }
+
+    public void onTropicosSearchPerformed(final String response, final ProgressDialog dialog) {
+        final MainActivity activity = this;
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                dialog.dismiss();
+                Fragment fragment = TropicosSearchResultFragment.newInstance(response);
+                FragmentHelper.openFragment(activity, fragment, getString(R.string.title_tropicos));
+            }
+        });
+    }
+
+    public void noTropicosSearchResults(ProgressDialog dialog) {
+        dialog.dismiss();
+        Toast.makeText(this, getString(R.string.list_no_results), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTropicosItemClicked(TropicosSearchResult item) {
+
     }
 
     @Override

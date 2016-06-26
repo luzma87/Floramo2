@@ -13,33 +13,11 @@ import android.widget.EditText;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.helpers.Utils;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * <p/>
- * Here is your API key:
- * 34a6225b-552c-4e0b-9937-fe12a2541176
- * Best wishes,
- * Heather
- * Missouri Botanical Garden
- * <p/>
- * Help is here:
- * http://services.tropicos.org/help
- * Example calls (using your api key):
- * name search:
- * http://services.tropicos.org/Name/Search?name=poa+annua&type=wildcard&apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- * <p/>
- * name detail:
- * http://services.tropicos.org/Name/25509881?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- * <p/>
- * synonyms:
- * http://services.tropicos.org/Name/25509881/Synonyms?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- * <p/>
- * accepted names:
- * http://services.tropicos.org/Name/25503923/AcceptedNames?apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
- */
 public class TropicosFragment extends Fragment {
 
     private MainActivity context;
@@ -75,13 +53,15 @@ public class TropicosFragment extends Fragment {
                 String common = getEditTextString(view, R.id.tropicos_common_name);
                 String family = getEditTextString(view, R.id.tropicos_family);
 
+                Utils.hideSoftKeyboard(context);
+
                 if (name.length() == 0 && common.length() == 0 && family.length() == 0) {
                     Snackbar.make(v, R.string.tropicos_search_warning, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
                     ProgressDialog dialog = ProgressDialog.show(context, "loading1", "loding2", true);
                     ExecutorService queue = Executors.newSingleThreadExecutor();
-                    queue.execute(new BusquedaLoader(context, name, "", family, common, dialog));
+                    queue.execute(new TropicosSearchLoader(context, name, "", family, common, dialog));
                 }
             }
         });

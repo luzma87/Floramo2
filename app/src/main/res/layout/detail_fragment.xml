@@ -183,6 +183,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_fv_liana_tiny"
+                                android:drawableStart="@drawable/ic_fv_liana_tiny"
                                 android:gravity="center"
                                 android:text="forma vida 1" />
 
@@ -192,10 +193,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:drawableLeft="@drawable/ic_fv_grass_tiny"
+                                android:drawableStart="@drawable/ic_fv_grass_tiny"
                                 android:gravity="center"
                                 android:text="forma vida 2" />
-
-
                         </LinearLayout>
                     </TableRow>
                 </TableLayout>

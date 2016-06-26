@@ -8,6 +8,10 @@
     <string name="folder_name" translatable="false">Floramo</string>
     <string name="contact_mail" translatable="false">nth.development@gmail.com</string>
 
+    <string name="tropicos_url" translatable="false">http://services.tropicos.org/Name/Search</string>
+    <string name="tropicos_api_key" translatable="false">34a6225b-552c-4e0b-9937-fe12a2541176</string>
+    <string name="tropicos_max_results" translatable="false">10</string>
+
     <string name="action_sort_name">Sort by name</string>
     <string name="action_sort_family">Sort by family</string>
 
@@ -80,8 +84,12 @@
     <string name="title_tropicos">Tropicos® Search</string>
     <string name="menu_tropicos">Tropicos® Search</string>
     <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database</string>
+
     <string name="tropicos_name">Name</string>
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
     <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
+    <string name="tropicos_info_warning">This search will connect to the internet</string>
+    <string name="tropicos_search_result_author">Author:</string>
+    <string name="list_no_results">We didn\'t find any results to your query</string>
 </resources>

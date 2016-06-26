@@ -60,10 +60,6 @@ public class DetailFragment extends Fragment {
         context = (MainActivity) getActivity();
         context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
 
-        System.out.println(".................................................");
-        System.out.println(savedInstanceState);
-        System.out.println(".................................................");
-
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
         View view = inflater.inflate(R.layout.detail_fragment, container, false);

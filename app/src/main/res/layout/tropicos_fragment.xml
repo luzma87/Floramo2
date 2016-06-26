@@ -24,6 +24,16 @@
                 style="@style/search_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_warning_24dp"
+                android:drawableStart="@drawable/ic_warning_24dp"
+                android:gravity="left"
+                android:text="@string/tropicos_info_warning"
+                android:textStyle="bold|italic" />
+
+            <TextView
+                style="@style/search_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/tropicos_info" />
 
             <TextView
