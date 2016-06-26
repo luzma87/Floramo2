@@ -5,15 +5,10 @@ import android.app.ProgressDialog;
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * <p/>
