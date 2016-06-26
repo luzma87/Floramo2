@@ -22,12 +22,8 @@ import java.util.List;
 public class TropicosSearchResultFragment extends Fragment {
 
     private static final String JSON_RESPONSE = "json_response";
-
     private OnTropicosSearchResultFragmentInteractionListener mListener;
-
     private String jsonResponse;
-
-    private TextView emptyView;
 
     public TropicosSearchResultFragment() {
     }

@@ -268,7 +268,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onTropicosItemClicked(TropicosSearchResult item) {
-
+        String baseUrl = getString(R.string.tropicos_base_url);
+        url = baseUrl + item.getNameId();
+        openFragment(FRAGMENT_WEB_VIEW, false);
     }
 
     @Override
