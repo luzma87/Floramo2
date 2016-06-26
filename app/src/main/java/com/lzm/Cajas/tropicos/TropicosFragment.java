@@ -59,7 +59,9 @@ public class TropicosFragment extends Fragment {
                     Snackbar.make(v, R.string.tropicos_search_warning, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    ProgressDialog dialog = ProgressDialog.show(context, "loading1", "loding2", true);
+                    String loadingTitle = context.getString(R.string.loading_title);
+                    String loadingMessage = context.getString(R.string.loading_message);
+                    ProgressDialog dialog = ProgressDialog.show(context, loadingTitle, loadingMessage, true);
                     ExecutorService queue = Executors.newSingleThreadExecutor();
                     queue.execute(new TropicosSearchLoader(context, name, "", family, common, dialog));
                 }

@@ -91,5 +91,6 @@
     <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
     <string name="tropicos_info_warning">This search will connect to the internet</string>
     <string name="tropicos_search_result_author">Author:</string>
-    <string name="list_no_results">We didn\'t find any results to your query</string>
+    <string name="loading_title">Loading</string>
+    <string name="loading_message">Please wait while we search</string>
 </resources>

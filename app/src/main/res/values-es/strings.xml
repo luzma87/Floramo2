@@ -77,4 +77,7 @@
     <string name="tropicos_family">Family</string>
     <string name="tropicos_search_warning">Ingrese al menos un criterio para buscar</string>
     <string name="tropicos_info_warning">Esta búsqueda se conectará al internet</string>
+    <string name="loading_message">Por favor espere mientras buscamos</string>
+    <string name="loading_title">Espere</string>
+    <string name="tropicos_search_result_author">Autor</string>
 </resources>
