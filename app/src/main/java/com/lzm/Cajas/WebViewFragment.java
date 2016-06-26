@@ -18,6 +18,7 @@ public class WebViewFragment extends Fragment {
     private static final String URL = "url";
 
     private String url;
+    private MainActivity context;
 
     public WebViewFragment() {
         // Required empty public constructor
@@ -41,7 +42,7 @@ public class WebViewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MainActivity context = (MainActivity) this.getActivity();
+        context = (MainActivity) this.getActivity();
         context.setActiveFragment(MainActivity.FRAGMENT_WEB_VIEW);
 
         View view = inflater.inflate(R.layout.web_view_fragment, container, false);
@@ -76,6 +77,12 @@ public class WebViewFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_WEBVIEW_TITLE);
     }
 
     @Override

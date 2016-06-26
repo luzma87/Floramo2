@@ -45,8 +45,14 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAGMENT_SEARCH = 4;
     public static final int FRAGMENT_TROPICOS = 5;
     public static final int FRAGMENT_TROPICOS_RESULTS = 6;
-
     public static final int FRAGMENT_WEB_VIEW = 100;
+
+    public static final int FRAGMENT_ENCYCLOPEDIA_TITLE = R.string.title_encyclopedia;
+    public static final int FRAGMENT_DETAILS_TITLE = R.string.title_detail;
+    public static final int FRAGMENT_FEEDBACK_TITLE = R.string.title_feedback;
+    public static final int FRAGMENT_SEARCH_TITLE = R.string.title_search;
+    public static final int FRAGMENT_TROPICOS_TITLE = R.string.title_tropicos;
+    public static final int FRAGMENT_WEBVIEW_TITLE = R.string.title_webview;
 
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
@@ -116,27 +122,27 @@ public class MainActivity extends AppCompatActivity
                 }
                 encyclopediaFragment = EncyclopediaFragment.newInstance();
                 fragment = encyclopediaFragment;
-                titleRes = R.string.title_encyclopedia;
+                titleRes = FRAGMENT_ENCYCLOPEDIA_TITLE;
                 break;
             case FRAGMENT_DETAILS:
                 fragment = DetailFragment.newInstance(detailSpeciesId);
-                titleRes = R.string.title_detail;
+                titleRes = FRAGMENT_DETAILS_TITLE;
                 break;
             case FRAGMENT_FEEDBACK:
                 fragment = FeedbackFragment.newInstance();
-                titleRes = R.string.title_help;
+                titleRes = FRAGMENT_FEEDBACK_TITLE;
                 break;
             case FRAGMENT_SEARCH:
                 fragment = searchFragment;
-                titleRes = R.string.title_search;
+                titleRes = FRAGMENT_SEARCH_TITLE;
                 break;
             case FRAGMENT_TROPICOS:
                 fragment = TropicosFragment.newInstance();
-                titleRes = R.string.title_tropicos;
+                titleRes = FRAGMENT_TROPICOS_TITLE;
                 break;
             case FRAGMENT_WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
-                titleRes = R.string.webview;
+                titleRes = FRAGMENT_WEBVIEW_TITLE;
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);

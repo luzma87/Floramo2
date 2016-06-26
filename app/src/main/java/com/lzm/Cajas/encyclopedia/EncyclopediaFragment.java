@@ -116,6 +116,12 @@ public class EncyclopediaFragment extends Fragment {
         return sort;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_ENCYCLOPEDIA_TITLE);
+    }
+
     public interface OnFragmentInteractionListener {
         void onPlantSelected(Long speciesId);
     }

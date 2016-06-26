@@ -266,6 +266,12 @@ public class DetailFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_DETAILS_TITLE);
+    }
+
     public interface OnFragmentInteractionListener {
         void onDetailTropicosClicked(String url);
     }

@@ -268,6 +268,12 @@ public class SearchFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_SEARCH_TITLE);
+    }
+
     public interface OnFragmentInteractionListener {
         void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional);
     }

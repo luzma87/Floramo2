@@ -80,7 +80,7 @@ public class FeedbackFragment extends Fragment {
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", address, null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT, contents);
-        startActivity(Intent.createChooser(emailIntent, getString(R.string.title_help)));
+        startActivity(Intent.createChooser(emailIntent, getString(R.string.title_feedback)));
     }
 
     private String getEmailContents(String userInput) {
@@ -117,5 +117,11 @@ public class FeedbackFragment extends Fragment {
         } else {
             return WordUtils.capitalizeFully(manufacturer) + " " + model + " (" + brand + " " + product + ")";
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_FEEDBACK_TITLE);
     }
 }

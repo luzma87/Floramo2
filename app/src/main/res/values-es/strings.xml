@@ -48,7 +48,7 @@
 
     <string name="menu_about">Acerca de esta app</string>
     <string name="menu_help">Reportar errores, sugerencias</string>
-    <string name="title_help">Errores, sugerencias</string>
+    <string name="title_feedback">Errores, sugerencias</string>
     <string name="help_comments">Comentarios, sugerencias, errores</string>
     <string name="help_comments_error">Por favor ingrese un texto</string>
     <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
@@ -80,5 +80,5 @@
     <string name="loading_message">Por favor espere mientras buscamos</string>
     <string name="loading_title">Espere</string>
     <string name="tropicos_search_result_author">Autor</string>
-    <string name="webview">Vista web</string>
+    <string name="title_webview">Vista web</string>
 </resources>

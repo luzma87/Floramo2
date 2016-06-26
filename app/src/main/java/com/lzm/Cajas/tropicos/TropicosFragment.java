@@ -74,6 +74,12 @@ public class TropicosFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        context.setTitle(MainActivity.FRAGMENT_TROPICOS_TITLE);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
     }
