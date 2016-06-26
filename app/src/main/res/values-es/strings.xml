@@ -1,84 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name">Flóramo</string>
-    <string name="app_version">App versión %1$s</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_sort_family">Ordenar por familia</string>
+    <string name="action_sort_name">Ordenar por nombre</string>
+
     <string name="android_version">Android versión %1$s, SDK %2$s</string>
 
-    <string name="action_sort_name">Ordenar por nombre</string>
-    <string name="action_sort_family">Ordenar por familia</string>
-
-    <string name="menu_title">Navegación</string>
-    <string name="navigation_drawer_open">Abrir</string>
-    <string name="navigation_drawer_close">Cerrar</string>
-    <string name="menu_encyclopedia">Enciclopedia</string>
-
-    <string name="drawer_open">Abrir menú de navegación</string>
-    <string name="drawer_close">Cerrar menú de navegación</string>
-    <string name="search_btn_label">Búsqueda</string>
+    <string name="app_name">Flóramo</string>
     <string name="app_name_drawer">Flóramo</string>
+    <string name="app_version">App versión %1$s</string>
 
-    <string name="title_encyclopedia">Enciclopedia</string>
-    <string name="title_detail">Flóramo</string>
-    <string name="detail_family">Familia</string>
-    <string name="detail_genus">Género</string>
-    <string name="detail_species">Especie</string>
-    <string name="detail_color">Color</string>
-    <string name="detail_life_form">Forma de vida</string>
-
-    <string name="fv_none">-Ninguna-</string>
-    <string name="fv_cushion">Almohadilla</string>
-    <string name="fv_shrub">Arbusto</string>
-    <string name="fv_herb">Hierba</string>
-    <string name="fv_grass">Pasto</string>
-    <string name="fv_rosette">Roseta</string>
-    <string name="fv_aquatic">Acuática</string>
-    <string name="fv_liana">Bejuco</string>
-    <string name="fv_tree">Árbol</string>
-
-    <string name="cl_none">-Ninguno-</string>
     <string name="cl_blue">Azul</string>
     <string name="cl_brown">Café</string>
+    <string name="cl_cone">Helecho/Otro</string>
     <string name="cl_green">Verde</string>
+    <string name="cl_none">-Ninguno-</string>
     <string name="cl_orange">Naranja</string>
     <string name="cl_pink">Rosa</string>
     <string name="cl_purple">Violeta</string>
     <string name="cl_red">Rojo</string>
     <string name="cl_white">Blanco</string>
     <string name="cl_yellow">Amarillo</string>
-    <string name="cl_cone">Helecho/Otro</string>
 
-    <string name="menu_about">Acerca de esta app</string>
-    <string name="menu_help">Reportar errores, sugerencias</string>
-    <string name="title_feedback">Errores, sugerencias</string>
+    <string name="detail_color">Color</string>
+    <string name="detail_family">Familia</string>
+    <string name="detail_genus">Género</string>
+    <string name="detail_life_form">Forma de vida</string>
+    <string name="detail_species">Especie</string>
+
+    <string name="drawer_close">Cerrar menú de navegación</string>
+    <string name="drawer_open">Abrir menú de navegación</string>
+
+    <string name="fv_aquatic">Acuática</string>
+    <string name="fv_cushion">Almohadilla</string>
+    <string name="fv_grass">Pasto</string>
+    <string name="fv_herb">Hierba</string>
+    <string name="fv_liana">Bejuco</string>
+    <string name="fv_none">-Ninguna-</string>
+    <string name="fv_rosette">Roseta</string>
+    <string name="fv_shrub">Arbusto</string>
+    <string name="fv_tree">Árbol</string>
+
+    <string name="global_close">Cerrar</string>
+
+    <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
     <string name="help_comments">Comentarios, sugerencias, errores</string>
     <string name="help_comments_error">Por favor ingrese un texto</string>
-    <string name="help_card_title">Informción de la app, de Android y del dispositivo</string>
     <string name="help_subject">Comentarios, sugerencias, errores</string>
-    <string name="global_close">Cerrar</string>
-    <string name="action_search">Buscar</string>
-    <string name="title_search">Buscar</string>
-    <string name="search_txt_hint">Familia, género o especie</string>
-    <string name="search_radio_and">Búsqueda AND</string>
-    <string name="search_radio_or">Búsqueda OR</string>
-    <string name="search">Buscar</string>
 
+    <string name="loading_message">Por favor espere mientras buscamos</string>
+    <string name="loading_title">Espere</string>
+
+    <string name="menu_about">Acerca de esta app</string>
+    <string name="menu_about_cajas">Cajas</string>
+    <string name="menu_about_dmq">DMW</string>
+    <string name="menu_about_paramo">Páramo</string>
+    <string name="menu_about_this_app">Esta app</string>
+    <string name="menu_credits">Créditos</string>
+    <string name="menu_encyclopedia">Enciclopedia</string>
+    <string name="menu_group_about">Acerca de...</string>
+    <string name="menu_help">Reportar errores, sugerencias</string>
+    <string name="menu_search">Búsqueda</string>
+    <string name="menu_title">Navegación</string>
+    <string name="menu_tropicos">Búsqueda Tropicos®</string>
+
+    <string name="navigation_drawer_close">Cerrar</string>
+    <string name="navigation_drawer_open">Abrir</string>
+
+    <string name="search">Buscar</string>
+    <string name="search_btn_label">Búsqueda</string>
+    <string name="search_color_info">Especies con color %1$s</string>
     <string name="search_conditional_info_and">Búsqueda que concuerde con TODOS los siguientes parámetros:</string>
     <string name="search_conditional_info_or">Búsqueda que concuerde con AL MENOS UNO de los siguientes parámetros:</string>
     <string name="search_life_form_info">Especies con forma de vida %1$s</string>
-    <string name="search_color_info">Especies con color %1$s</string>
-    <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
     <string name="search_no_results">No se encontraron resultados para su búsqueda</string>
-    <string name="menu_search">Búsqueda</string>
+    <string name="search_radio_and">Búsqueda AND</string>
+    <string name="search_radio_or">Búsqueda OR</string>
+    <string name="search_text_info">Especies con familia, género o especie que contenga %1$s</string>
+    <string name="search_txt_hint">Familia, género o especie</string>
 
+    <string name="title_detail">Flóramo</string>
+    <string name="title_encyclopedia">Enciclopedia</string>
+    <string name="title_feedback">Errores, sugerencias</string>
+    <string name="title_search">Buscar</string>
     <string name="title_tropicos">Búsqueda Tropicos®</string>
-    <string name="menu_tropicos">Búsqueda Tropicos®</string>
-    <string name="tropicos_info">Ingrese al menos uno de los siguientes criterios para buscar en la base de datos de Tropicos®</string>
-    <string name="tropicos_name">Name</string>
+    <string name="title_webview">Vista web</string>
+
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
-    <string name="tropicos_search_warning">Ingrese al menos un criterio para buscar</string>
+    <string name="tropicos_info">Ingrese al menos uno de los siguientes criterios para buscar en la base de datos de Tropicos®</string>
     <string name="tropicos_info_warning">Esta búsqueda se conectará al internet</string>
-    <string name="loading_message">Por favor espere mientras buscamos</string>
-    <string name="loading_title">Espere</string>
+    <string name="tropicos_name">Name</string>
     <string name="tropicos_search_result_author">Autor</string>
-    <string name="title_webview">Vista web</string>
+    <string name="tropicos_search_warning">Ingrese al menos un criterio para buscar</string>
 </resources>

@@ -142,7 +142,7 @@ public class DetailFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String baseUrl = context.getString(R.string.tropicos_base_url);
+                String baseUrl = context.getString(R.string.appInfo_tropicos_base_url);
                 String url = baseUrl + especie.getIdTropicos();
                 if (mListener != null) {
                     mListener.onDetailTropicosClicked(url);

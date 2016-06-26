@@ -56,8 +56,8 @@ public class TropicosSearchLoader implements Runnable {
 
     @Override
     public void run() {
-        String urlstr = context.getString(R.string.tropicos_url);
-        String key = context.getString(R.string.tropicos_api_key);
+        String urlstr = context.getString(R.string.appInfo_tropicos_url);
+        String key = context.getString(R.string.appInfo_tropicos_api_key);
 
         String parameters = "";
         if (!name.trim().equals("")) {
@@ -80,7 +80,7 @@ public class TropicosSearchLoader implements Runnable {
         }
         if (!parameters.equals(""))
             parameters += "&";
-        parameters += "apikey=" + key + "&format=json&pagesize=" + context.getString(R.string.tropicos_max_results);
+        parameters += "apikey=" + key + "&format=json&pagesize=" + context.getString(R.string.appInfo_tropicos_max_results);
         urlstr += "?" + parameters;
         String response = "";
         try {

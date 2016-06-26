@@ -76,7 +76,7 @@ public class FeedbackFragment extends Fragment {
     }
 
     private void sendEmail(String contents) {
-        String address = getString(R.string.contact_mail);
+        String address = getString(R.string.appInfo_contact_mail);
         String subject = getString(R.string.help_subject);
         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", address, null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);

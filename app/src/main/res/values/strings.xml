@@ -1,97 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name">Flóramo</string>
-    <string name="app_version">App version %1$s</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort_family">Sort by family</string>
+    <string name="action_sort_name">Sort by name</string>
+
     <string name="android_version">Android version %1$s, SDK %2$s</string>
 
-    <string name="floraBase" translatable="false">http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=</string>
-    <string name="tropicos_base_url" translatable="false">http://www.tropicos.org/Name/</string>
-    <string name="folder_name" translatable="false">Floramo</string>
-    <string name="contact_mail" translatable="false">nth.development@gmail.com</string>
+    <string name="appInfo_contact_mail" translatable="false">nth.development@gmail.com</string>
+    <string name="appInfo_floraBase" translatable="false">http://www.mobot.org/MOBOT/paramo/search_paramo.asp?searchFor=</string>
+    <string name="appInfo_folder_name" translatable="false">Floramo</string>
+    <string name="appInfo_tropicos_api_key" translatable="false">34a6225b-552c-4e0b-9937-fe12a2541176</string>
+    <string name="appInfo_tropicos_base_url" translatable="false">http://www.tropicos.org/Name/</string>
+    <string name="appInfo_tropicos_max_results" translatable="false">10</string>
+    <string name="appInfo_tropicos_url" translatable="false">http://services.tropicos.org/Name/Search</string>
 
-    <string name="tropicos_url" translatable="false">http://services.tropicos.org/Name/Search</string>
-    <string name="tropicos_api_key" translatable="false">34a6225b-552c-4e0b-9937-fe12a2541176</string>
-    <string name="tropicos_max_results" translatable="false">10</string>
-
-    <string name="action_sort_name">Sort by name</string>
-    <string name="action_sort_family">Sort by family</string>
-
-    <string name="menu_title">Navigation</string>
-    <string name="navigation_drawer_open">Open</string>
-    <string name="navigation_drawer_close">Close</string>
-    <string name="menu_encyclopedia">Encyclopedia</string>
-
-    <string name="drawer_open">Open navigation menu</string>
-    <string name="drawer_close">Close navigation menu</string>
-    <string name="search_btn_label">Search</string>
+    <string name="app_name">Flóramo</string>
     <string name="app_name_drawer">Flóramo</string>
+    <string name="app_version">App version %1$s</string>
 
-    <string name="title_detail">Flóramo</string>
-
-    <string name="detail_family">Family</string>
-    <string name="detail_genus">Genus</string>
-    <string name="detail_species">Species</string>
-    <string name="detail_color">Color</string>
-    <string name="detail_life_form">Life form</string>
-
-    <string name="fv_none">-None-</string>
-    <string name="fv_cushion">Cushion</string>
-    <string name="fv_shrub">Shrub</string>
-    <string name="fv_herb">Herb</string>
-    <string name="fv_grass">Grass</string>
-    <string name="fv_rosette">Rosette</string>
-    <string name="fv_aquatic">Aquatic</string>
-    <string name="fv_liana">Liana</string>
-    <string name="fv_tree">Tree</string>
-
-    <string name="cl_none">-None-</string>
     <string name="cl_blue">Blue</string>
     <string name="cl_brown">Brown</string>
+    <string name="cl_cone">Fern/Other</string>
     <string name="cl_green">Green</string>
+    <string name="cl_none">-None-</string>
     <string name="cl_orange">Orange</string>
     <string name="cl_pink">Pink</string>
     <string name="cl_purple">Purple</string>
     <string name="cl_red">Red</string>
     <string name="cl_white">White</string>
     <string name="cl_yellow">Yellow</string>
-    <string name="cl_cone">Fern/Other</string>
 
-    <string name="title_encyclopedia">Encyclopedia</string>
-    <string name="menu_about">About this app</string>
-    <string name="menu_help">Bug reports, feedback</string>
+    <string name="detail_color">Color</string>
+    <string name="detail_family">Family</string>
+    <string name="detail_genus">Genus</string>
+    <string name="detail_life_form">Life form</string>
+    <string name="detail_species">Species</string>
 
-    <string name="title_feedback">Bug reports, feedback</string>
-    <string name="help_comments">Comments, suggestions, feedback, bugs</string>
-    <string name="help_subject">Comments, suggestions, feedback, bugs</string>
-    <string name="help_comments_error">Please enter some text</string>
-    <string name="help_card_title">App, Android and device information</string>
+    <string name="drawer_close">Close navigation menu</string>
+    <string name="drawer_open">Open navigation menu</string>
+
+    <string name="fv_aquatic">Aquatic</string>
+    <string name="fv_cushion">Cushion</string>
+    <string name="fv_grass">Grass</string>
+    <string name="fv_herb">Herb</string>
+    <string name="fv_liana">Liana</string>
+    <string name="fv_none">-None-</string>
+    <string name="fv_rosette">Rosette</string>
+    <string name="fv_shrub">Shrub</string>
+    <string name="fv_tree">Tree</string>
+
     <string name="global_close">Close</string>
 
-    <string name="action_search">Search</string>
-    <string name="title_search">Search</string>
-    <string name="search_txt_hint">Family, genus or species</string>
-    <string name="search_radio_and">AND search</string>
-    <string name="search_radio_or">OR search</string>
-    <string name="search">Search</string>
+    <string name="help_card_title">App, Android and device information</string>
+    <string name="help_comments">Comments, suggestions, feedback, bugs</string>
+    <string name="help_comments_error">Please enter some text</string>
+    <string name="help_subject">Comments, suggestions, feedback, bugs</string>
 
+    <string name="loading_message">Please wait while we search</string>
+    <string name="loading_title">Loading</string>
+
+    <string name="menu_about">About this app</string>
+    <string name="menu_about_cajas">Cajas</string>
+    <string name="menu_about_dmq">DMQ</string>
+    <string name="menu_about_paramo">Páramo</string>
+    <string name="menu_about_this_app">This app</string>
+    <string name="menu_credits">Credits</string>
+    <string name="menu_encyclopedia">Encyclopedia</string>
+    <string name="menu_group_about">About</string>
+    <string name="menu_help">Bug reports, feedback</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_title">Navigation</string>
+    <string name="menu_tropicos">Tropicos® Search</string>
+
+    <string name="navigation_drawer_close">Close</string>
+    <string name="navigation_drawer_open">Open</string>
+
+    <string name="search">Search</string>
+    <string name="search_btn_label">Search</string>
+    <string name="search_color_info">Species with color %1$s</string>
     <string name="search_conditional_info_and">Search species matching ALL of the next criteria:</string>
     <string name="search_conditional_info_or">Search species matching ANY of the next criteria:</string>
     <string name="search_life_form_info">Species with life form %1$s</string>
-    <string name="search_color_info">Species with color %1$s</string>
-    <string name="search_text_info">Species with family, genus or name containing %1$s</string>
     <string name="search_no_results">No results match your search</string>
-    <string name="menu_search">Search</string>
+    <string name="search_radio_and">AND search</string>
+    <string name="search_radio_or">OR search</string>
+    <string name="search_text_info">Species with family, genus or name containing %1$s</string>
+    <string name="search_txt_hint">Family, genus or species</string>
 
+    <string name="title_detail">Flóramo</string>
+    <string name="title_encyclopedia">Encyclopedia</string>
+    <string name="title_feedback">Bug reports, feedback</string>
+    <string name="title_search">Search</string>
     <string name="title_tropicos">Tropicos® Search</string>
-    <string name="menu_tropicos">Tropicos® Search</string>
-    <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database</string>
+    <string name="title_webview">Web view</string>
 
-    <string name="tropicos_name">Name</string>
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
-    <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
+    <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database</string>
     <string name="tropicos_info_warning">This search will connect to the internet</string>
+    <string name="tropicos_name">Name</string>
     <string name="tropicos_search_result_author">Author:</string>
-    <string name="loading_title">Loading</string>
-    <string name="loading_message">Please wait while we search</string>
-    <string name="title_webview">Web view</string>
+    <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
 </resources>
