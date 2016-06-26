@@ -17,7 +17,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
@@ -250,11 +249,6 @@ public class MainActivity extends AppCompatActivity
                 FragmentHelper.openFragment(activity, fragment, getString(R.string.title_tropicos));
             }
         });
-    }
-
-    public void noTropicosSearchResults(ProgressDialog dialog) {
-        dialog.dismiss();
-        Toast.makeText(this, getString(R.string.list_no_results), Toast.LENGTH_SHORT).show();
     }
 
     @Override

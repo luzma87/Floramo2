@@ -54,33 +54,28 @@ public class TropicosSearchResultFragment extends Fragment {
         activity.setActiveFragment(MainActivity.FRAGMENT_TROPICOS_RESULTS);
 
         View view = inflater.inflate(R.layout.tropicos_search_result_fragment, container, false);
-        boolean hasItems = false;
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        Context context = view.getContext();
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.tropicos_search_result_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-            List<TropicosSearchResult> items = new ArrayList<>();
+        List<TropicosSearchResult> items = new ArrayList<>();
 
-            try {
-                JSONArray arr = new JSONArray(jsonResponse);
-                items = new ArrayList<>();
-                for (int i = 0; i < arr.length(); i++) {
-                    JSONObject obj = arr.getJSONObject(i);
-                    TropicosSearchResult curent = new TropicosSearchResult(obj.getString("NameId"), obj.getString("ScientificName"), obj.getString("ScientificNameWithAuthors"), obj.getString("Family"), obj.getString("RankAbbreviation"), obj.getString("Author"), obj.getString("DisplayReference"), obj.getString("DisplayDate"));
-                    items.add(curent);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            JSONArray arr = new JSONArray(jsonResponse);
+            items = new ArrayList<>();
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                TropicosSearchResult curent = new TropicosSearchResult(obj.getString("NameId"), obj.getString("ScientificName"), obj.getString("ScientificNameWithAuthors"), obj.getString("Family"), obj.getString("RankAbbreviation"), obj.getString("Author"), obj.getString("DisplayReference"), obj.getString("DisplayDate"));
+                items.add(curent);
             }
-            TropicosSearchResultItemRecyclerViewAdapter adapter = new TropicosSearchResultItemRecyclerViewAdapter(items, mListener);
-            recyclerView.setAdapter(adapter);
-            hasItems = true;
-
-//            recyclerView.setVisibility((adapter.isEmpty()) ? View.GONE : View.VISIBLE);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println("------------------- has items? " + hasItems);
+        TropicosSearchResultItemRecyclerViewAdapter adapter = new TropicosSearchResultItemRecyclerViewAdapter(items, mListener);
+        recyclerView.setAdapter(adapter);
+
+        recyclerView.setVisibility((adapter.isEmpty()) ? View.GONE : View.VISIBLE);
         return view;
     }
 
