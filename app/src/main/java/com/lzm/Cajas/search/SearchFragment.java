@@ -24,7 +24,7 @@ import com.lzm.Cajas.customComponents.CustomToggleButton;
 import com.lzm.Cajas.customComponents.FlowLayout;
 import com.lzm.Cajas.db.Color;
 import com.lzm.Cajas.db.FormaVida;
-import com.lzm.Cajas.enums.Fragments;
+import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
 
@@ -66,7 +66,7 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) this.getActivity();
-        context.setActiveFragment(Fragments.SEARCH);
+        context.setActiveFragment(FloramoFragment.SEARCH);
 
         colorButtons = new ArrayList<>();
         lifeFormButtons = new ArrayList<>();
@@ -272,7 +272,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(Fragments.SEARCH.getTitleId());
+        context.setTitle(FloramoFragment.SEARCH.getTitleId());
     }
 
     public interface OnFragmentInteractionListener {

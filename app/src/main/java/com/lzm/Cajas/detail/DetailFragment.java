@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -24,7 +23,7 @@ import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
-import com.lzm.Cajas.enums.Fragments;
+import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
 
@@ -64,7 +63,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(Fragments.DETAILS);
+        context.setActiveFragment(FloramoFragment.DETAILS);
 
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
@@ -270,7 +269,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(Fragments.DETAILS.getTitleId());
+        context.setTitle(FloramoFragment.DETAILS.getTitleId());
     }
 
     public interface OnFragmentInteractionListener {

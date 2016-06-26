@@ -22,7 +22,7 @@ import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
-import com.lzm.Cajas.enums.Fragments;
+import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.feedback.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private static final String SAVED_SEARCH_RESULTS = "searchResults";
     private static final String SAVED_URL = "savedUrl";
 
-    Fragments activeFragment = Fragments.ENCYCLOPEDIA;
+    FloramoFragment activeFragment = FloramoFragment.ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
     private SearchFragment searchFragment;
@@ -80,10 +80,10 @@ public class MainActivity extends AppCompatActivity
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
 
-        openFragment(Fragments.ENCYCLOPEDIA);
+        openFragment(FloramoFragment.ENCYCLOPEDIA);
     }
 
-    public void setActiveFragment(Fragments activeFragment) {
+    public void setActiveFragment(FloramoFragment activeFragment) {
         this.activeFragment = activeFragment;
         invalidateOptionsMenu();
     }
@@ -94,11 +94,11 @@ public class MainActivity extends AppCompatActivity
         return searchResults.getResults();
     }
 
-    private void openFragment(Fragments fragmentToOpen) {
+    private void openFragment(FloramoFragment fragmentToOpen) {
         openFragment(fragmentToOpen, true);
     }
 
-    private void openFragment(Fragments fragmentToOpen, boolean resetSearch) {
+    private void openFragment(FloramoFragment fragmentToOpen, boolean resetSearch) {
         Fragment fragment = encyclopediaFragment;
         int titleRes = R.string.title_encyclopedia;
         switch (fragmentToOpen) {
@@ -108,27 +108,27 @@ public class MainActivity extends AppCompatActivity
                 }
                 encyclopediaFragment = EncyclopediaFragment.newInstance();
                 fragment = encyclopediaFragment;
-                titleRes = Fragments.ENCYCLOPEDIA.getTitleId();
+                titleRes = FloramoFragment.ENCYCLOPEDIA.getTitleId();
                 break;
             case DETAILS:
                 fragment = DetailFragment.newInstance(detailSpeciesId);
-                titleRes = Fragments.DETAILS.getTitleId();
+                titleRes = FloramoFragment.DETAILS.getTitleId();
                 break;
             case FEEDBACK:
                 fragment = FeedbackFragment.newInstance();
-                titleRes = Fragments.FEEDBACK.getTitleId();
+                titleRes = FloramoFragment.FEEDBACK.getTitleId();
                 break;
             case SEARCH:
                 fragment = searchFragment;
-                titleRes = Fragments.SEARCH.getTitleId();
+                titleRes = FloramoFragment.SEARCH.getTitleId();
                 break;
             case TROPICOS:
                 fragment = TropicosFragment.newInstance();
-                titleRes = Fragments.TROPICOS.getTitleId();
+                titleRes = FloramoFragment.TROPICOS.getTitleId();
                 break;
             case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
-                titleRes = Fragments.WEB_VIEW.getTitleId();
+                titleRes = FloramoFragment.WEB_VIEW.getTitleId();
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem itemSortFamily = menu.findItem(R.id.action_sort_family);
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
         if (itemSortName != null) {
-            if (activeFragment == Fragments.ENCYCLOPEDIA) {
+            if (activeFragment == FloramoFragment.ENCYCLOPEDIA) {
                 String encyclopediaSort = encyclopediaFragment.getSort();
                 if (encyclopediaSort.equals(SearchResults.SORT_BY_FAMILY)) {
                     itemSortName.setVisible(true);
@@ -189,10 +189,10 @@ public class MainActivity extends AppCompatActivity
                 encyclopediaFragment.setSort(SearchResults.SORT_BY_FAMILY);
                 break;
             case R.id.action_search:
-                if (activeFragment == Fragments.SEARCH) {
+                if (activeFragment == FloramoFragment.SEARCH) {
                     searchFragment.buttonSearchClick();
                 } else {
-                    openFragment(Fragments.SEARCH);
+                    openFragment(FloramoFragment.SEARCH);
                 }
                 break;
         }
@@ -207,16 +207,16 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_encyclopedia:
-                openFragment(Fragments.ENCYCLOPEDIA);
+                openFragment(FloramoFragment.ENCYCLOPEDIA);
                 break;
             case R.id.nav_search:
-                openFragment(Fragments.SEARCH);
+                openFragment(FloramoFragment.SEARCH);
                 break;
             case R.id.nav_tropicos:
-                openFragment(Fragments.TROPICOS);
+                openFragment(FloramoFragment.TROPICOS);
                 break;
             case R.id.nav_feedback:
-                openFragment(Fragments.FEEDBACK);
+                openFragment(FloramoFragment.FEEDBACK);
                 break;
         }
 
@@ -230,19 +230,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPlantSelected(Long speciesId) {
         detailSpeciesId = speciesId;
-        openFragment(Fragments.DETAILS);
+        openFragment(FloramoFragment.DETAILS);
     }
 
     @Override
     public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
         searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
-        openFragment(Fragments.ENCYCLOPEDIA, false);
+        openFragment(FloramoFragment.ENCYCLOPEDIA, false);
     }
 
     @Override
     public void onDetailTropicosClicked(String url) {
         this.url = url;
-        openFragment(Fragments.WEB_VIEW, false);
+        openFragment(FloramoFragment.WEB_VIEW, false);
     }
 
     public void onTropicosSearchPerformed(final String response, final ProgressDialog dialog) {
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity
     public void onTropicosItemClicked(TropicosSearchResult item) {
         String baseUrl = getString(R.string.tropicos_base_url);
         url = baseUrl + item.getNameId();
-        openFragment(Fragments.WEB_VIEW, false);
+        openFragment(FloramoFragment.WEB_VIEW, false);
     }
 
     @Override
@@ -270,9 +270,9 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putSerializable(SAVED_ACTIVE_FRAGMENT, activeFragment);
         savedInstanceState.putParcelable(SAVED_SEARCH_RESULTS, searchResults);
-        if (activeFragment == Fragments.DETAILS) {
+        if (activeFragment == FloramoFragment.DETAILS) {
             savedInstanceState.putSerializable(SAVED_DETAIL_SPECIES_ID, detailSpeciesId);
-        } else if (activeFragment == Fragments.WEB_VIEW) {
+        } else if (activeFragment == FloramoFragment.WEB_VIEW) {
             savedInstanceState.putString(SAVED_URL, url);
         }
     }
@@ -280,14 +280,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        activeFragment = (Fragments) savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT);
-        if (activeFragment == Fragments.DETAILS) {
+        activeFragment = (FloramoFragment) savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT);
+        if (activeFragment == FloramoFragment.DETAILS) {
             detailSpeciesId = Long.parseLong(savedInstanceState.getSerializable(SAVED_DETAIL_SPECIES_ID).toString());
         }
-        if (activeFragment == Fragments.ENCYCLOPEDIA) {
+        if (activeFragment == FloramoFragment.ENCYCLOPEDIA) {
             searchResults = savedInstanceState.getParcelable(SAVED_SEARCH_RESULTS);
         }
-        if (activeFragment == Fragments.WEB_VIEW) {
+        if (activeFragment == FloramoFragment.WEB_VIEW) {
             url = savedInstanceState.getString(SAVED_URL);
         }
         openFragment(activeFragment, false);

@@ -9,14 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.customComponents.indexableList.IndexableListView;
-import com.lzm.Cajas.enums.Fragments;
+import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.search.SearchResults;
 
 import java.util.List;
@@ -52,7 +50,7 @@ public class EncyclopediaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(Fragments.ENCYCLOPEDIA);
+        context.setActiveFragment(FloramoFragment.ENCYCLOPEDIA);
 
         View view = inflater.inflate(R.layout.encyclopedia_fragment, container, false);
         listView = (IndexableListView) view.findViewById(R.id.listview);
@@ -120,7 +118,7 @@ public class EncyclopediaFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(Fragments.ENCYCLOPEDIA.getTitleId());
+        context.setTitle(FloramoFragment.ENCYCLOPEDIA.getTitleId());
     }
 
     public interface OnFragmentInteractionListener {

@@ -5,7 +5,7 @@ import com.lzm.Cajas.R;
 /**
  * Created by luz on 6/26/16.
  */
-public enum Fragments {
+public enum FloramoFragment {
     ENCYCLOPEDIA(R.string.title_encyclopedia),
     DETAILS(R.string.title_detail),
     FEEDBACK(R.string.title_feedback),
@@ -16,7 +16,7 @@ public enum Fragments {
 
     private int titleId;
 
-    Fragments(final int titleId) {
+    FloramoFragment(final int titleId) {
         this.titleId = titleId;
     }
 

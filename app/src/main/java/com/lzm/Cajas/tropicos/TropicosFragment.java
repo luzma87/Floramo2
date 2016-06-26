@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
-import com.lzm.Cajas.enums.Fragments;
+import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.Utils;
 
 import java.util.concurrent.ExecutorService;
@@ -39,7 +39,7 @@ public class TropicosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) this.getActivity();
-        context.setActiveFragment(Fragments.TROPICOS);
+        context.setActiveFragment(FloramoFragment.TROPICOS);
         View view = inflater.inflate(R.layout.tropicos_fragment, container, false);
         setTropicosSearchClick(view);
         return view;
@@ -77,7 +77,7 @@ public class TropicosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(Fragments.TROPICOS.getTitleId());
+        context.setTitle(FloramoFragment.TROPICOS.getTitleId());
     }
 
     @Override
