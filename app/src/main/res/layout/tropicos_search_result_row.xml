@@ -2,47 +2,58 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="@dimen/text_margin">
-
-    <TextView
-        android:id="@+id/tropicos_search_result_row_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="nombre cientifico"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:id="@+id/tropicos_search_result_row_family"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:text="familia"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textStyle="italic" />
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="@dimen/text_margin">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tropicos_search_result_row_name"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="7dp"
-            android:layout_marginRight="7dp"
-            android:maxLines="3"
-            android:text="@string/tropicos_search_result_author"
+            android:text="nombre cientifico"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textStyle="bold" />
+            android:textStyle="bold|italic" />
 
         <TextView
-            android:id="@+id/tropicos_search_result_row_author"
+            android:id="@+id/tropicos_search_result_row_family"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:text="autor"
-            android:textAppearance="?attr/textAppearanceListItem" />
+            android:text="familia"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="7dp"
+                android:maxLines="3"
+                android:text="@string/tropicos_search_result_author"
+                android:textAppearance="?attr/textAppearanceListItem"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tropicos_search_result_row_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:text="autor"
+                android:textAppearance="?attr/textAppearanceListItem" />
+        </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/primary_light" />
 </LinearLayout>
