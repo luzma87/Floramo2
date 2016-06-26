@@ -22,6 +22,7 @@ import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
+import com.lzm.Cajas.enums.Fragments;
 import com.lzm.Cajas.feedback.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
@@ -39,27 +40,12 @@ public class MainActivity extends AppCompatActivity
         SearchFragment.OnFragmentInteractionListener,
         TropicosSearchResultFragment.OnTropicosSearchResultFragmentInteractionListener {
 
-    public static final int FRAGMENT_ENCYCLOPEDIA = 1;
-    public static final int FRAGMENT_DETAILS = 2;
-    public static final int FRAGMENT_FEEDBACK = 3;
-    public static final int FRAGMENT_SEARCH = 4;
-    public static final int FRAGMENT_TROPICOS = 5;
-    public static final int FRAGMENT_TROPICOS_RESULTS = 6;
-    public static final int FRAGMENT_WEB_VIEW = 100;
-
-    public static final int FRAGMENT_ENCYCLOPEDIA_TITLE = R.string.title_encyclopedia;
-    public static final int FRAGMENT_DETAILS_TITLE = R.string.title_detail;
-    public static final int FRAGMENT_FEEDBACK_TITLE = R.string.title_feedback;
-    public static final int FRAGMENT_SEARCH_TITLE = R.string.title_search;
-    public static final int FRAGMENT_TROPICOS_TITLE = R.string.title_tropicos;
-    public static final int FRAGMENT_WEBVIEW_TITLE = R.string.title_webview;
-
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
     private static final String SAVED_SEARCH_RESULTS = "searchResults";
     private static final String SAVED_URL = "savedUrl";
 
-    int activeFragment = FRAGMENT_ENCYCLOPEDIA;
+    Fragments activeFragment = Fragments.ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
     private SearchFragment searchFragment;
@@ -94,10 +80,10 @@ public class MainActivity extends AppCompatActivity
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
 
-        openFragment(FRAGMENT_ENCYCLOPEDIA);
+        openFragment(Fragments.ENCYCLOPEDIA);
     }
 
-    public void setActiveFragment(int activeFragment) {
+    public void setActiveFragment(Fragments activeFragment) {
         this.activeFragment = activeFragment;
         invalidateOptionsMenu();
     }
@@ -108,41 +94,41 @@ public class MainActivity extends AppCompatActivity
         return searchResults.getResults();
     }
 
-    private void openFragment(int fragmentToOpen) {
+    private void openFragment(Fragments fragmentToOpen) {
         openFragment(fragmentToOpen, true);
     }
 
-    private void openFragment(int fragmentToOpen, boolean resetSearch) {
+    private void openFragment(Fragments fragmentToOpen, boolean resetSearch) {
         Fragment fragment = encyclopediaFragment;
         int titleRes = R.string.title_encyclopedia;
         switch (fragmentToOpen) {
-            case FRAGMENT_ENCYCLOPEDIA:
+            case ENCYCLOPEDIA:
                 if (resetSearch) {
                     searchResults = new SearchResults(this);
                 }
                 encyclopediaFragment = EncyclopediaFragment.newInstance();
                 fragment = encyclopediaFragment;
-                titleRes = FRAGMENT_ENCYCLOPEDIA_TITLE;
+                titleRes = Fragments.ENCYCLOPEDIA.getTitleId();
                 break;
-            case FRAGMENT_DETAILS:
+            case DETAILS:
                 fragment = DetailFragment.newInstance(detailSpeciesId);
-                titleRes = FRAGMENT_DETAILS_TITLE;
+                titleRes = Fragments.DETAILS.getTitleId();
                 break;
-            case FRAGMENT_FEEDBACK:
+            case FEEDBACK:
                 fragment = FeedbackFragment.newInstance();
-                titleRes = FRAGMENT_FEEDBACK_TITLE;
+                titleRes = Fragments.FEEDBACK.getTitleId();
                 break;
-            case FRAGMENT_SEARCH:
+            case SEARCH:
                 fragment = searchFragment;
-                titleRes = FRAGMENT_SEARCH_TITLE;
+                titleRes = Fragments.SEARCH.getTitleId();
                 break;
-            case FRAGMENT_TROPICOS:
+            case TROPICOS:
                 fragment = TropicosFragment.newInstance();
-                titleRes = FRAGMENT_TROPICOS_TITLE;
+                titleRes = Fragments.TROPICOS.getTitleId();
                 break;
-            case FRAGMENT_WEB_VIEW:
+            case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
-                titleRes = FRAGMENT_WEBVIEW_TITLE;
+                titleRes = Fragments.WEB_VIEW.getTitleId();
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
@@ -174,7 +160,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem itemSortFamily = menu.findItem(R.id.action_sort_family);
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
         if (itemSortName != null) {
-            if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
+            if (activeFragment == Fragments.ENCYCLOPEDIA) {
                 String encyclopediaSort = encyclopediaFragment.getSort();
                 if (encyclopediaSort.equals(SearchResults.SORT_BY_FAMILY)) {
                     itemSortName.setVisible(true);
@@ -203,10 +189,10 @@ public class MainActivity extends AppCompatActivity
                 encyclopediaFragment.setSort(SearchResults.SORT_BY_FAMILY);
                 break;
             case R.id.action_search:
-                if (activeFragment == FRAGMENT_SEARCH) {
+                if (activeFragment == Fragments.SEARCH) {
                     searchFragment.buttonSearchClick();
                 } else {
-                    openFragment(FRAGMENT_SEARCH);
+                    openFragment(Fragments.SEARCH);
                 }
                 break;
         }
@@ -221,16 +207,16 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_encyclopedia:
-                openFragment(FRAGMENT_ENCYCLOPEDIA);
+                openFragment(Fragments.ENCYCLOPEDIA);
                 break;
             case R.id.nav_search:
-                openFragment(FRAGMENT_SEARCH);
+                openFragment(Fragments.SEARCH);
                 break;
             case R.id.nav_tropicos:
-                openFragment(FRAGMENT_TROPICOS);
+                openFragment(Fragments.TROPICOS);
                 break;
             case R.id.nav_feedback:
-                openFragment(FRAGMENT_FEEDBACK);
+                openFragment(Fragments.FEEDBACK);
                 break;
         }
 
@@ -244,19 +230,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPlantSelected(Long speciesId) {
         detailSpeciesId = speciesId;
-        openFragment(FRAGMENT_DETAILS);
+        openFragment(Fragments.DETAILS);
     }
 
     @Override
     public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
         searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
-        openFragment(FRAGMENT_ENCYCLOPEDIA, false);
+        openFragment(Fragments.ENCYCLOPEDIA, false);
     }
 
     @Override
     public void onDetailTropicosClicked(String url) {
         this.url = url;
-        openFragment(FRAGMENT_WEB_VIEW, false);
+        openFragment(Fragments.WEB_VIEW, false);
     }
 
     public void onTropicosSearchPerformed(final String response, final ProgressDialog dialog) {
@@ -276,7 +262,7 @@ public class MainActivity extends AppCompatActivity
     public void onTropicosItemClicked(TropicosSearchResult item) {
         String baseUrl = getString(R.string.tropicos_base_url);
         url = baseUrl + item.getNameId();
-        openFragment(FRAGMENT_WEB_VIEW, false);
+        openFragment(Fragments.WEB_VIEW, false);
     }
 
     @Override
@@ -284,9 +270,9 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putSerializable(SAVED_ACTIVE_FRAGMENT, activeFragment);
         savedInstanceState.putParcelable(SAVED_SEARCH_RESULTS, searchResults);
-        if (activeFragment == FRAGMENT_DETAILS) {
+        if (activeFragment == Fragments.DETAILS) {
             savedInstanceState.putSerializable(SAVED_DETAIL_SPECIES_ID, detailSpeciesId);
-        } else if (activeFragment == FRAGMENT_WEB_VIEW) {
+        } else if (activeFragment == Fragments.WEB_VIEW) {
             savedInstanceState.putString(SAVED_URL, url);
         }
     }
@@ -294,14 +280,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        activeFragment = Integer.parseInt(savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT).toString());
-        if (activeFragment == FRAGMENT_DETAILS) {
+        activeFragment = (Fragments) savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT);
+        if (activeFragment == Fragments.DETAILS) {
             detailSpeciesId = Long.parseLong(savedInstanceState.getSerializable(SAVED_DETAIL_SPECIES_ID).toString());
         }
-        if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
+        if (activeFragment == Fragments.ENCYCLOPEDIA) {
             searchResults = savedInstanceState.getParcelable(SAVED_SEARCH_RESULTS);
         }
-        if (activeFragment == FRAGMENT_WEB_VIEW) {
+        if (activeFragment == Fragments.WEB_VIEW) {
             url = savedInstanceState.getString(SAVED_URL);
         }
         openFragment(activeFragment, false);

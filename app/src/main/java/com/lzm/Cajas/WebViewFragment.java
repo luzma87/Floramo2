@@ -14,6 +14,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.lzm.Cajas.enums.Fragments;
+
 public class WebViewFragment extends Fragment {
     private static final String URL = "url";
 
@@ -43,7 +45,7 @@ public class WebViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) this.getActivity();
-        context.setActiveFragment(MainActivity.FRAGMENT_WEB_VIEW);
+        context.setActiveFragment(Fragments.WEB_VIEW);
 
         View view = inflater.inflate(R.layout.web_view_fragment, container, false);
         final WebView webView = (WebView) view.findViewById(R.id.webview);
@@ -82,7 +84,7 @@ public class WebViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(MainActivity.FRAGMENT_WEBVIEW_TITLE);
+        context.setTitle(Fragments.WEB_VIEW.getTitleId());
     }
 
     @Override

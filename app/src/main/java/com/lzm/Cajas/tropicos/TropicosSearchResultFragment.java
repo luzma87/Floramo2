@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.enums.Fragments;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -26,6 +27,7 @@ public class TropicosSearchResultFragment extends Fragment {
     private static final String JSON_RESPONSE = "json_response";
     private OnTropicosSearchResultFragmentInteractionListener mListener;
     private String jsonResponse;
+    private MainActivity activity;
 
     public TropicosSearchResultFragment() {
     }
@@ -48,8 +50,8 @@ public class TropicosSearchResultFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MainActivity activity = (MainActivity) this.getActivity();
-        activity.setActiveFragment(MainActivity.FRAGMENT_TROPICOS_RESULTS);
+        activity = (MainActivity) this.getActivity();
+        activity.setActiveFragment(Fragments.TROPICOS_RESULTS);
 
         View view = inflater.inflate(R.layout.tropicos_search_result_fragment, container, false);
         // Set the adapter
@@ -99,11 +101,17 @@ public class TropicosSearchResultFragment extends Fragment {
             throw new RuntimeException(context.toString() + " must implement OnTropicosSearchResultFragmentInteractionListener");
         }
     }
-    
+
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.setTitle(Fragments.TROPICOS_RESULTS.getTitleId());
     }
 
     public interface OnTropicosSearchResultFragmentInteractionListener {

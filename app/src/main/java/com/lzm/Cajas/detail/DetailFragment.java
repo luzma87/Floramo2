@@ -24,6 +24,7 @@ import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.enums.Fragments;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
 
@@ -63,7 +64,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(MainActivity.FRAGMENT_DETAILS);
+        context.setActiveFragment(Fragments.DETAILS);
 
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
@@ -269,7 +270,7 @@ public class DetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(MainActivity.FRAGMENT_DETAILS_TITLE);
+        context.setTitle(Fragments.DETAILS.getTitleId());
     }
 
     public interface OnFragmentInteractionListener {

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.MainActivity;
+import com.lzm.Cajas.enums.Fragments;
 
 import org.apache.commons.lang.WordUtils;
 
@@ -41,7 +42,7 @@ public class FeedbackFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(MainActivity.FRAGMENT_FEEDBACK);
+        context.setActiveFragment(Fragments.FEEDBACK);
         View view = inflater.inflate(R.layout.feedback_fragment, container, false);
 
         TextView appVersionLbl = (TextView) view.findViewById(R.id.app_version);
@@ -122,6 +123,6 @@ public class FeedbackFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(MainActivity.FRAGMENT_FEEDBACK_TITLE);
+        context.setTitle(Fragments.FEEDBACK.getTitleId());
     }
 }

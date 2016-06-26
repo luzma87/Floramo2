@@ -16,6 +16,7 @@ import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.customComponents.indexableList.IndexableListView;
+import com.lzm.Cajas.enums.Fragments;
 import com.lzm.Cajas.search.SearchResults;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class EncyclopediaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
-        context.setActiveFragment(MainActivity.FRAGMENT_ENCYCLOPEDIA);
+        context.setActiveFragment(Fragments.ENCYCLOPEDIA);
 
         View view = inflater.inflate(R.layout.encyclopedia_fragment, container, false);
         listView = (IndexableListView) view.findViewById(R.id.listview);
@@ -119,7 +120,7 @@ public class EncyclopediaFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(MainActivity.FRAGMENT_ENCYCLOPEDIA_TITLE);
+        context.setTitle(Fragments.ENCYCLOPEDIA.getTitleId());
     }
 
     public interface OnFragmentInteractionListener {
