@@ -35,6 +35,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         EncyclopediaFragment.OnFragmentInteractionListener,
+        DetailFragment.OnFragmentInteractionListener,
         SearchFragment.OnFragmentInteractionListener,
         TropicosSearchResultFragment.OnTropicosSearchResultFragmentInteractionListener {
 
@@ -45,15 +46,19 @@ public class MainActivity extends AppCompatActivity
     public static final int FRAGMENT_TROPICOS = 5;
     public static final int FRAGMENT_TROPICOS_RESULTS = 6;
 
+    public static final int FRAGMENT_WEB_VIEW = 100;
+
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";
     private static final String SAVED_SEARCH_RESULTS = "searchResults";
+    private static final String SAVED_URL = "savedUrl";
 
     int activeFragment = FRAGMENT_ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
     private SearchFragment searchFragment;
     private Long detailSpeciesId;
+    private String url;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +133,10 @@ public class MainActivity extends AppCompatActivity
             case FRAGMENT_TROPICOS:
                 fragment = TropicosFragment.newInstance();
                 titleRes = R.string.title_tropicos;
+                break;
+            case FRAGMENT_WEB_VIEW:
+                fragment = WebViewFragment.newInstance(url);
+                titleRes = R.string.webview;
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
@@ -238,6 +247,12 @@ public class MainActivity extends AppCompatActivity
         openFragment(FRAGMENT_ENCYCLOPEDIA, false);
     }
 
+    @Override
+    public void onDetailTropicosClicked(String url) {
+        this.url = url;
+        openFragment(FRAGMENT_WEB_VIEW, false);
+    }
+
     public void onTropicosSearchPerformed(final String response, final ProgressDialog dialog) {
         final MainActivity activity = this;
         Handler handler = new Handler(Looper.getMainLooper());
@@ -263,6 +278,8 @@ public class MainActivity extends AppCompatActivity
         savedInstanceState.putParcelable(SAVED_SEARCH_RESULTS, searchResults);
         if (activeFragment == FRAGMENT_DETAILS) {
             savedInstanceState.putSerializable(SAVED_DETAIL_SPECIES_ID, detailSpeciesId);
+        } else if (activeFragment == FRAGMENT_WEB_VIEW) {
+            savedInstanceState.putString(SAVED_URL, url);
         }
     }
 
@@ -275,6 +292,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (activeFragment == FRAGMENT_ENCYCLOPEDIA) {
             searchResults = savedInstanceState.getParcelable(SAVED_SEARCH_RESULTS);
+        }
+        if (activeFragment == FRAGMENT_WEB_VIEW) {
+            url = savedInstanceState.getString(SAVED_URL);
         }
         openFragment(activeFragment, false);
     }

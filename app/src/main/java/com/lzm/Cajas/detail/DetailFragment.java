@@ -1,9 +1,12 @@
 package com.lzm.Cajas.detail;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -28,6 +31,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DetailFragment extends Fragment {
+    private OnFragmentInteractionListener mListener;
+
     public static final String SPECIES_ID = "especieId";
     private MainActivity context;
 
@@ -139,8 +144,9 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 String baseUrl = context.getString(R.string.tropicos_base_url);
                 String url = baseUrl + especie.getIdTropicos();
-                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(myIntent);
+                if (mListener != null) {
+                    mListener.onDetailTropicosClicked(url);
+                }
             }
         });
     }
@@ -231,7 +237,36 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        onAttachAction(context);
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            onAttachAction(activity);
+        }
+    }
+
+    private void onAttachAction(Context context) {
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
     public void onDetach() {
         super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onDetailTropicosClicked(String url);
     }
 }
