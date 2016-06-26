@@ -2,13 +2,17 @@ package com.lzm.Cajas;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 public class WebViewFragment extends Fragment {
     private static final String URL = "url";
@@ -43,23 +47,34 @@ public class WebViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.web_view_fragment, container, false);
         final WebView webView = (WebView) view.findViewById(R.id.webview);
 
-        webView.setWebViewClient(new WebViewClient() {
+        final LinearLayout spinnerLayout = (LinearLayout) view.findViewById(R.id.webview_progressBarLayout);
 
+        webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 webView.setVisibility(View.GONE);
+                spinnerLayout.setVisibility(View.VISIBLE);
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 webView.setVisibility(View.VISIBLE);
+                spinnerLayout.setVisibility(View.GONE);
             }
-
         });
 
         webView.loadUrl(url);
+
+        FloatingActionButton openInBrowser = (FloatingActionButton) view.findViewById(R.id.webview_fab_browser);
+        openInBrowser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(myIntent);
+            }
+        });
         return view;
     }
 
