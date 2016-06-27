@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lzm.Cajas.credits.AboutFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
@@ -127,6 +128,22 @@ public class MainActivity extends AppCompatActivity
                 fragment = TropicosFragment.newInstance();
                 titleRes = FloramoFragment.TROPICOS.getTitleId();
                 break;
+            case ABOUT_PARAMO:
+                fragment = AboutFragment.newInstance(fragmentToOpen);
+                titleRes = FloramoFragment.ABOUT_PARAMO.getTitleId();
+                break;
+            case ABOUT_CAJAS:
+                fragment = AboutFragment.newInstance(fragmentToOpen);
+                titleRes = FloramoFragment.ABOUT_CAJAS.getTitleId();
+                break;
+            case ABOUT_QUITO:
+                fragment = AboutFragment.newInstance(fragmentToOpen);
+                titleRes = FloramoFragment.ABOUT_QUITO.getTitleId();
+                break;
+            case ABOUT_APP:
+                fragment = AboutFragment.newInstance(fragmentToOpen);
+                titleRes = FloramoFragment.ABOUT_APP.getTitleId();
+                break;
             case CREDITS:
                 fragment = CreditsFragment.newInstance();
                 titleRes = FloramoFragment.CREDITS.getTitleId();
@@ -219,6 +236,18 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_tropicos:
                 openFragment(FloramoFragment.TROPICOS);
+                break;
+            case R.id.nav_about_paramo:
+                openFragment(FloramoFragment.ABOUT_PARAMO);
+                break;
+            case R.id.nav_about_cajas:
+                openFragment(FloramoFragment.ABOUT_CAJAS);
+                break;
+            case R.id.nav_about_quito:
+                openFragment(FloramoFragment.ABOUT_QUITO);
+                break;
+            case R.id.nav_about_app:
+                openFragment(FloramoFragment.ABOUT_APP);
                 break;
             case R.id.nav_credits:
                 openFragment(FloramoFragment.CREDITS);
