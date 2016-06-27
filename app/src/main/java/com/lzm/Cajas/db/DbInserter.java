@@ -2,9 +2,6 @@ package com.lzm.Cajas.db;
 
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by DELL on 28/09/2014.
- */
 public class DbInserter {
 
     private SQLiteDatabase db;

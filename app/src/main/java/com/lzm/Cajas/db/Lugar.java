@@ -6,9 +6,6 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 27/07/2014.
- */
 public class Lugar {
     private long id = 0;
     private String fecha;

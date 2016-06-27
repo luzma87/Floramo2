@@ -9,9 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by DELL on 26/07/2014.
- */
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
@@ -394,16 +391,10 @@ public class DbHelper extends SQLiteOpenHelper {
         db.execSQL(createTableSql(tableName, common, columnNames));
     }
 
-    /**
-     * @param tableName:   el nombre de la tabla
-     * @param common:      los campos comunes a las tablas: en pos 0 el id i en pos 1 la fecha
-     * @param columnNames: los campos
-     * @return el sql
-     */
     public static String createTableSql(String tableName, String[] common, String[] columnNames) {
         String sql = "CREATE TABLE " + tableName + " (" +
-                common[0] + " INTEGER PRIMARY KEY," +
-                common[1] + " DATETIME";
+                common[0] + " INTEGER PRIMARY KEY," + //id
+                common[1] + " DATETIME"; //date
         for (String c : columnNames) {
             if (c.startsWith("lat") || c.startsWith("long")) {
                 sql += ", " + c + " REAL";

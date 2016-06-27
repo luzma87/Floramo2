@@ -8,9 +8,6 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 26/07/2014.
- */
 public class EspecieDbHelper extends DbHelper {
 
     public static final String KEY_NOMBRE_COMUN = "nombre_comun";

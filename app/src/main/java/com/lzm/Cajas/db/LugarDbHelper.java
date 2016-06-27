@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 27/07/2014.
- */
 public class LugarDbHelper extends DbHelper {
 
     private static final String LOG = "LugarDbHelper";

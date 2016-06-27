@@ -7,9 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-/**
- * Created by luz on 6/12/16.
- */
 public class ImageHelper {
     public static Bitmap decodeFile(String filePath, int WIDTH, int HIGHT) {
         try {

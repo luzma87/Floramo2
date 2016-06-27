@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 28/07/2014.
- */
 public class GeneroDbHelper extends DbHelper {
 
     public static final String KEY_NOMBRE = "nombre";

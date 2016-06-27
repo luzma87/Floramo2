@@ -5,9 +5,6 @@ import android.content.Context;
 import java.text.Normalizer;
 import java.util.List;
 
-/**
- * Created by DELL on 28/07/2014.
- */
 public class Genero {
     private long id = 0;
     private String fecha;

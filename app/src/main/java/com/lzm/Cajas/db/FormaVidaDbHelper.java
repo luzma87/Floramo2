@@ -6,9 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-/**
- * Created by DELL on 27/07/2014.
- */
 public class FormaVidaDbHelper extends DbHelper {
 
     public static final String KEY_NOMBRE = "nombre";

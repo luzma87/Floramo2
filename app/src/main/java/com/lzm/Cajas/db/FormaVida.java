@@ -5,9 +5,6 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 27/07/2014.
- */
 public class FormaVida {
     private long id = 0;
     private String fecha;

@@ -4,9 +4,6 @@ import android.content.Context;
 
 import java.util.List;
 
-/**
- * Created by Svt on 7/27/2014.
- */
 public class Coordenada {
     private long id = 0;
     private double latitud;

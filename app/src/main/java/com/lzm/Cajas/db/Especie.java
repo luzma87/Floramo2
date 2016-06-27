@@ -7,9 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by DELL on 26/07/2014.
- */
 public class Especie {
     private long id = 0;
     private String fecha;

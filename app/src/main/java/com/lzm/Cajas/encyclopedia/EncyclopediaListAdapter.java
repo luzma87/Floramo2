@@ -20,9 +20,6 @@ import com.lzm.Cajas.customComponents.indexableList.StringMatcher;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by luz on 6/5/16.
- */
 public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements SectionIndexer {
 
     private final String sort;

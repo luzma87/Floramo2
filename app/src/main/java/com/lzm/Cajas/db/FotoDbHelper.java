@@ -7,9 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by DELL on 26/07/2014.
- */
 public class FotoDbHelper extends DbHelper {
 
     private static final String KEY_ESPECIE_ID = "especie_id";

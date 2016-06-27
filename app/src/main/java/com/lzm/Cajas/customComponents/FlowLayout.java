@@ -18,10 +18,6 @@ public class FlowLayout extends ViewGroup {
         public final int horizontal_spacing;
         public final int vertical_spacing;
 
-        /**
-         * @param horizontal_spacing Pixels between items, horizontally
-         * @param vertical_spacing   Pixels between items, vertically
-         */
         public LayoutParams(int horizontal_spacing, int vertical_spacing) {
             super(0, 0);
             this.horizontal_spacing = horizontal_spacing;

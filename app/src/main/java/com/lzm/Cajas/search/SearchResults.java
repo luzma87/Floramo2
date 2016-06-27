@@ -9,9 +9,6 @@ import com.lzm.Cajas.db.Especie;
 
 import java.util.ArrayList;
 
-/**
- * Created by luz on 6/19/16.
- */
 public class SearchResults implements Parcelable {
 
     public static final String SORT_BY_NAME = "n";

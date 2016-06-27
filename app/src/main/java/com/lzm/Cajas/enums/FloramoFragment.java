@@ -2,9 +2,6 @@ package com.lzm.Cajas.enums;
 
 import com.lzm.Cajas.R;
 
-/**
- * Created by luz on 6/26/16.
- */
 public enum FloramoFragment {
     ENCYCLOPEDIA(R.string.title_encyclopedia),
     DETAILS(R.string.title_detail),

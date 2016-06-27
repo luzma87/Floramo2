@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
 
-/**
- * Created by luz on 6/18/16.
- */
 public class Utils {
     public static int dp2px(Context context, int dps) {
         final float scale = context.getResources().getDisplayMetrics().density;

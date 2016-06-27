@@ -1,6 +1,5 @@
 package com.lzm.Cajas.detail;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +14,6 @@ import com.lzm.Cajas.helpers.ResourcesHelper;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by luz on 6/12/16.
- */
 public class DetailGridViewAdapter extends BaseAdapter {
     private MainActivity context;
     private ArrayList<Foto> photos = new ArrayList<>();

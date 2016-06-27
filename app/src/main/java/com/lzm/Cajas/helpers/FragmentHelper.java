@@ -7,9 +7,6 @@ import android.os.Bundle;
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 
-/**
- * Created by luz on 6/5/16.
- */
 public class FragmentHelper {
 
     public static void openFragment(MainActivity context, Fragment fragment, String title) {

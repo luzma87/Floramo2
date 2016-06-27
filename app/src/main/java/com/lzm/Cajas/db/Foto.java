@@ -4,9 +4,6 @@ import android.content.Context;
 
 import java.util.List;
 
-/**
- * Created by DELL on 26/07/2014.
- */
 public class Foto {
     private long id = 0;
     private String fecha;

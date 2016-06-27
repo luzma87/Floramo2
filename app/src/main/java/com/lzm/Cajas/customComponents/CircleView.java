@@ -1,9 +1,5 @@
 package com.lzm.Cajas.customComponents;
 
-/**
- * https://github.com/bieliaievays/ViewPagerIndicatorCircles
- */
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -18,8 +14,8 @@ import com.lzm.Cajas.R;
 
 /**
  * Created by iuliia on 16.05.16.
+ * https://github.com/bieliaievays/ViewPagerIndicatorCircles
  */
-
 public class CircleView extends View {
 
     private static final String TAG = CircleView.class.getSimpleName();
@@ -79,11 +75,6 @@ public class CircleView extends View {
         requestLayout();
     }
 
-    /**
-     * Setting color of all circles except accent one {@link #setColorAccent(int)}. )
-     *
-     * @param color
-     */
     public void setColorBase(int color) {
         colorBase = color;
         paintBase.setColor(colorBase);
@@ -92,12 +83,6 @@ public class CircleView extends View {
         requestLayout();
     }
 
-
-    /**
-     * Setting color of accent circle. For another circles use {@link #setColorBase(int)}.
-     *
-     * @param color
-     */
     public void setColorAccent(int color) {
         colorAccent = color;
         paintAccent.setColor(colorAccent);
@@ -106,20 +91,12 @@ public class CircleView extends View {
         requestLayout();
     }
 
-
-    /**
-     * Set the current item by index. Optionally, scroll the current item into view. This version
-     * is for internal use--the scrollIntoView option is always true for external callers.
-     *
-     * @param currentItem The index of the current item.
-     */
     private void setCurrentItem(int currentItem) {
         mCurrentItem = currentItem;
 
         invalidate();
         requestLayout();
     }
-
 
     private void init() throws Exception {
         circleDistance = generateCircleDistance();
@@ -133,12 +110,6 @@ public class CircleView extends View {
         paintAccent.setAntiAlias(true);
     }
 
-    /**
-     * Generate distance between circles. Return value depends on screen width.
-     *
-     * @return distance between circles.
-     * @throws Exception
-     */
     private int generateCircleDistance() throws Exception {
 
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
