@@ -52,7 +52,7 @@ public class DetailGridViewAdapter extends BaseAdapter {
         Foto foto = photos.get(position);
         String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
         try {
-            Bitmap image = ResourcesHelper.getAssetByName(context, path);
+            Bitmap image = ResourcesHelper.getEncyclopediaAssetByName(context, path);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
             imageView.setImageBitmap(image);

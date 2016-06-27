@@ -8,18 +8,23 @@ import android.graphics.BitmapFactory;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * Created by luz on 6/5/16.
- */
 public class ResourcesHelper {
     public static int getImageResourceByName(Context c, String resourceName) {
         String packageName = c.getPackageName();
         return c.getResources().getIdentifier(resourceName, "drawable", packageName);
     }
 
-    public static Bitmap getAssetByName(Context c, String resourceName) throws IOException {
+    public static Bitmap getEncyclopediaAssetByName(Context c, String resourceName) throws IOException {
+        return getAssetByName(c, "encyclopedia", resourceName);
+    }
+
+    public static Bitmap getAboutAssetByName(Context c, String resourceName) throws IOException {
+        return getAssetByName(c, "about", resourceName);
+    }
+
+    public static Bitmap getAssetByName(Context c, String folder, String resourceName) throws IOException {
         AssetManager assetManager = c.getAssets();
-        InputStream is = assetManager.open("encyclopedia/" + resourceName);
+        InputStream is = assetManager.open(folder + "/" + resourceName);
         return BitmapFactory.decodeStream(is);
     }
 
