@@ -9,7 +9,8 @@ public enum FloramoFragment {
     SEARCH(R.string.title_search),
     TROPICOS(R.string.title_tropicos),
     TROPICOS_RESULTS(R.string.title_tropicos),
-    WEB_VIEW(R.string.title_webview);
+    WEB_VIEW(R.string.title_webview),
+    CREDITS(R.string.title_credits);
 
     private int titleId;
 

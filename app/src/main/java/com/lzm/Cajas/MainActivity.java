@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         if (drawer != null) {
-            drawer.setDrawerListener(toggle);
+            drawer.addDrawerListener(toggle);
         }
         toggle.syncState();
 
@@ -125,6 +126,10 @@ public class MainActivity extends AppCompatActivity
             case TROPICOS:
                 fragment = TropicosFragment.newInstance();
                 titleRes = FloramoFragment.TROPICOS.getTitleId();
+                break;
+            case CREDITS:
+                fragment = CreditsFragment.newInstance();
+                titleRes = FloramoFragment.CREDITS.getTitleId();
                 break;
             case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
@@ -214,6 +219,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_tropicos:
                 openFragment(FloramoFragment.TROPICOS);
+                break;
+            case R.id.nav_credits:
+                openFragment(FloramoFragment.CREDITS);
                 break;
             case R.id.nav_feedback:
                 openFragment(FloramoFragment.FEEDBACK);

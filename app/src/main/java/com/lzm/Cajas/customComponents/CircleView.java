@@ -37,8 +37,8 @@ public class CircleView extends View {
                 R.styleable.CircleView,
                 0, 0);
         try {
-            colorBase = a.getColor(R.styleable.CircleView_base_color, getResources().getColor(R.color.white30));
-            colorAccent = a.getColor(R.styleable.CircleView_accent_color, getResources().getColor(R.color.white80));
+            colorBase = a.getColor(R.styleable.CircleView_base_color, getResources().getColor(R.color.white_30));
+            colorAccent = a.getColor(R.styleable.CircleView_accent_color, getResources().getColor(R.color.white_80));
 
         } finally {
             a.recycle();

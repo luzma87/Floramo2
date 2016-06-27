@@ -66,7 +66,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:src="@drawable/ic_fv_aquatic_tiny"
-            app:riv_border_color="@color/primary_text"
+            app:riv_border_color="@color/text_primary"
             app:riv_border_width="1dip"
 
             app:riv_corner_radius="5dip"
@@ -83,7 +83,7 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             android:src="@drawable/ic_fv_shrub_tiny"
-            app:riv_border_color="@color/primary_text"
+            app:riv_border_color="@color/text_primary"
             app:riv_border_width="1dip"
             app:riv_corner_radius="5dip"
 

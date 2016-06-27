@@ -38,7 +38,7 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/app_name_drawer"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/text_primary"
         android:textSize="18sp"
         android:textStyle="bold" />
 

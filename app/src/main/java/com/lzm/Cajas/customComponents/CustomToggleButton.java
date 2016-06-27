@@ -12,9 +12,6 @@ import android.widget.ToggleButton;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.helpers.Utils;
 
-/**
- * Created by luz on 6/18/16.
- */
 public class CustomToggleButton extends ToggleButton implements CompoundButton.OnCheckedChangeListener {
     private Context context;
     private int primaryColor;

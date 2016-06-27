@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <string name="about_contact">Contact us</string>
+
     <string name="action_search">Search</string>
     <string name="action_sort_family">Sort by family</string>
     <string name="action_sort_name">Sort by name</string>
@@ -30,9 +32,26 @@
     <string name="cl_white">White</string>
     <string name="cl_yellow">Yellow</string>
 
-    <string name="credits"><![CDATA["<p>The Cajas Flora project is a collaboration between
-        the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay)
-        with Parque Nacional Cajas.</p><p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p><p>Design and development: L.M. Unda, V. Zapata, Quito</p><br/><p>Icons from:</p><p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>'Silhouette of tree of flowers and plants'</a> icons</p><p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a> icon</p><p><a href='link::http://www.google.com'>Google</a> from <a href='link::http://www.flaticon.com'>Flaticon</a>, licenced under <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p><br/><p>All rights reserved.</p><p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
+    <string name="credits"><![CDATA["
+<p>The Cajas Flora project is a collaboration between the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay)
+        with Parque Nacional Cajas.</p>
+<p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p>
+<p>Design and development: L.M. Unda, V. Zapata, Quito, Ecuador</p><br/>
+
+<p><b>Icons</b></p>
+<p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>'Silhouette of tree of flowers and plants'</a>, licenced under Non commercial use, learning and reference use only.</p>
+<p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a>, licenced under Non commercial use, learning and reference use only.</p>
+<p><a href='link::https://design.google.com/icons/'>Material icons</a>, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p><br/>
+
+<p><b>Components</b></p>
+<p><a href='link::https://github.com/woozzu/IndexableListView'>IndexableListView</a>, by Woozzu, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p>
+<p><a href='link::https://github.com/bieliaievays/ViewPagerIndicatorCircles'>ViewPagerIndicatorCircles</a>, by Iuliia Ashomok, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p>
+<p><a href='link::https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android/'>FlowLayout</a>, by Nishant Nair</p>
+<p><a href='link::http://www.androidhive.info/2013/09/android-fullscreen-image-slider-with-swipe-and-pinch-zoom-gestures/'>Android Fullscreen Image Slider with Swipe and Pinch Zoom Gestures</a>, by Ravi Tamada</p>
+<p><a href='link::https://github.com/MikeOrtiz/TouchImageView'>TouchImageView</a>, by Mike Ortiz</p><br/>
+
+<p>All rights reserved.</p>
+<p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
 
     <string name="detail_color">Color</string>
     <string name="detail_family">Family</string>
@@ -91,6 +110,7 @@
     <string name="search_text_info">Species with family, genus or name containing %1$s</string>
     <string name="search_txt_hint">Family, genus or species</string>
 
+    <string name="title_credits">Credits</string>
     <string name="title_detail">Flóramo</string>
     <string name="title_encyclopedia">Encyclopedia</string>
     <string name="title_feedback">Bug reports, feedback</string>
