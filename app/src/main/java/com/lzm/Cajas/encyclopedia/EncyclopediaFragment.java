@@ -20,7 +20,7 @@ import com.lzm.Cajas.search.SearchResults;
 import java.util.List;
 
 public class EncyclopediaFragment extends Fragment {
-    private OnFragmentInteractionListener mListener;
+    private OnEncyclopediaInteractionListener mListener;
     private List<Especie> especies;
     private MainActivity context;
 
@@ -97,8 +97,8 @@ public class EncyclopediaFragment extends Fragment {
     }
 
     private void onAttachAction(Context context) {
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnEncyclopediaInteractionListener) {
+            mListener = (OnEncyclopediaInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnSearchFragmentInteractionListener");
@@ -121,7 +121,7 @@ public class EncyclopediaFragment extends Fragment {
         context.setTitle(FloramoFragment.ENCYCLOPEDIA.getTitleId());
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnEncyclopediaInteractionListener {
         void onPlantSelected(Long speciesId);
     }
 }

@@ -1,4 +1,4 @@
-package com.lzm.Cajas.feedback;
+package com.lzm.Cajas.credits;
 
 import android.app.Fragment;
 import android.content.Intent;

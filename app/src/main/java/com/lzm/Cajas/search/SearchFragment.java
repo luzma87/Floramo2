@@ -31,7 +31,7 @@ import com.lzm.Cajas.helpers.Utils;
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
-    private OnFragmentInteractionListener mListener;
+    private OnSearchInteractionListener mListener;
 
     private ArrayList<CustomToggleButton> colorButtons;
     private ArrayList<CustomToggleButton> lifeFormButtons;
@@ -255,8 +255,8 @@ public class SearchFragment extends Fragment {
     }
 
     private void onAttachAction(Context context) {
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnSearchInteractionListener) {
+            mListener = (OnSearchInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnSearchFragmentInteractionListener");
@@ -275,7 +275,7 @@ public class SearchFragment extends Fragment {
         context.setTitle(FloramoFragment.SEARCH.getTitleId());
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnSearchInteractionListener {
         void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional);
     }
 }

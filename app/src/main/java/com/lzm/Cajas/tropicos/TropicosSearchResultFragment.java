@@ -25,7 +25,7 @@ import java.util.List;
 public class TropicosSearchResultFragment extends Fragment {
 
     private static final String JSON_RESPONSE = "json_response";
-    private OnTropicosSearchResultFragmentInteractionListener mListener;
+    private OnTropicosSearchResultInteractionListener mListener;
     private String jsonResponse;
     private MainActivity activity;
 
@@ -95,11 +95,11 @@ public class TropicosSearchResultFragment extends Fragment {
     }
 
     private void onAttachAction(Context context) {
-        if (context instanceof OnTropicosSearchResultFragmentInteractionListener) {
-            mListener = (OnTropicosSearchResultFragmentInteractionListener) context;
+        if (context instanceof OnTropicosSearchResultInteractionListener) {
+            mListener = (OnTropicosSearchResultInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString() +
-                    " must implement OnTropicosSearchResultFragmentInteractionListener");
+                    " must implement OnTropicosSearchResultInteractionListener");
         }
     }
 
@@ -115,7 +115,7 @@ public class TropicosSearchResultFragment extends Fragment {
         activity.setTitle(FloramoFragment.TROPICOS_RESULTS.getTitleId());
     }
 
-    public interface OnTropicosSearchResultFragmentInteractionListener {
+    public interface OnTropicosSearchResultInteractionListener {
         void onTropicosItemClicked(TropicosSearchResult item);
     }
 }

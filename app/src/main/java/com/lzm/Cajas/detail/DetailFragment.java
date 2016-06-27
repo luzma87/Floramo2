@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DetailFragment extends Fragment {
-    private OnFragmentInteractionListener mListener;
+    private OnDetailInteractionListener mListener;
 
     public static final String SPECIES_ID = "especieId";
     private MainActivity context;
@@ -252,11 +252,11 @@ public class DetailFragment extends Fragment {
     }
 
     private void onAttachAction(Context context) {
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnDetailInteractionListener) {
+            mListener = (OnDetailInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnEncyclopediaInteractionListener");
         }
     }
 
@@ -272,7 +272,7 @@ public class DetailFragment extends Fragment {
         context.setTitle(FloramoFragment.DETAILS.getTitleId());
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnDetailInteractionListener {
         void onDetailTropicosClicked(String url);
     }
 }

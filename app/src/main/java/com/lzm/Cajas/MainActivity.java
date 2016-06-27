@@ -23,7 +23,7 @@ import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;
-import com.lzm.Cajas.feedback.FeedbackFragment;
+import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
@@ -35,10 +35,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        EncyclopediaFragment.OnFragmentInteractionListener,
-        DetailFragment.OnFragmentInteractionListener,
-        SearchFragment.OnFragmentInteractionListener,
-        TropicosSearchResultFragment.OnTropicosSearchResultFragmentInteractionListener {
+        EncyclopediaFragment.OnEncyclopediaInteractionListener,
+        DetailFragment.OnDetailInteractionListener,
+        SearchFragment.OnSearchInteractionListener,
+        TropicosSearchResultFragment.OnTropicosSearchResultInteractionListener {
 
     public static final String SAVED_ACTIVE_FRAGMENT = "activeFragment";
     private static final String SAVED_DETAIL_SPECIES_ID = "detailSpeciesId";

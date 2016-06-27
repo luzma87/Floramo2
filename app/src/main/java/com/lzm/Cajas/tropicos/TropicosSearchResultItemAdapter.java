@@ -7,16 +7,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lzm.Cajas.R;
-import com.lzm.Cajas.tropicos.TropicosSearchResultFragment.OnTropicosSearchResultFragmentInteractionListener;
 
 import java.util.List;
 
 public class TropicosSearchResultItemAdapter extends RecyclerView.Adapter<TropicosSearchResultItemAdapter.ViewHolder> {
 
     private final List<TropicosSearchResult> mValues;
-    private final OnTropicosSearchResultFragmentInteractionListener mListener;
+    private final TropicosSearchResultFragment.OnTropicosSearchResultInteractionListener mListener;
 
-    public TropicosSearchResultItemAdapter(List<TropicosSearchResult> items, OnTropicosSearchResultFragmentInteractionListener listener) {
+    public TropicosSearchResultItemAdapter(List<TropicosSearchResult> items, TropicosSearchResultFragment.OnTropicosSearchResultInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
