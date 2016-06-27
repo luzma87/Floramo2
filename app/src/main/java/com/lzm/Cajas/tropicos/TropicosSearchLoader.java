@@ -19,6 +19,7 @@ import java.net.URL;
  * Missouri Botanical Garden
  * <p/>
  * Help is here:
+ * http://services.tropicos.org/help
  * Example calls (using your api key):
  * name search:
  * http://services.tropicos.org/Name/Search?name=poa+annua&type=wildcard&apikey=34a6225b-552c-4e0b-9937-fe12a2541176&format=xml
@@ -51,35 +52,9 @@ public class TropicosSearchLoader implements Runnable {
 
     @Override
     public void run() {
-        String urlstr = context.getString(R.string.appInfo_tropicos_url);
-        String key = context.getString(R.string.appInfo_tropicos_api_key);
-
-        String parameters = "";
-        if (!name.trim().equals("")) {
-            parameters += "name=" + name.trim();
-        }
-        if (!nameId.trim().equals("")) {
-            if (!parameters.equals(""))
-                parameters += "&";
-            parameters += "nameid=" + nameId.trim() + "&type=exact";
-        }
-        if (!common.trim().equals("")) {
-            if (!parameters.equals(""))
-                parameters += "&";
-            parameters += "commonname=" + common.trim();
-        }
-        if (!family.trim().equals("")) {
-            if (!parameters.equals(""))
-                parameters += "&";
-            parameters += "family=" + family.trim();
-        }
-        if (!parameters.equals(""))
-            parameters += "&";
-        parameters += "apikey=" + key + "&format=json&pagesize=" + context.getString(R.string.appInfo_tropicos_max_results);
-        urlstr += "?" + parameters;
         String response = "";
         try {
-            URL url = new URL(urlstr);
+            URL url = new URL(getUrl());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             if (conn != null) {
                 conn.setRequestMethod("GET");
@@ -92,5 +67,41 @@ public class TropicosSearchLoader implements Runnable {
             e.printStackTrace();
         }
         context.onTropicosSearchPerformed(response, dialog);
+    }
+
+    private String getUrl() {
+        String urlstr = context.getString(R.string.appInfo_tropicos_url);
+        String key = context.getString(R.string.appInfo_tropicos_api_key);
+        String parameters = getParams();
+        if (parameters.contains("nameid")) {
+            parameters += "&type=exact";
+        } else {
+            parameters += "&type=wildcard";
+        }
+        parameters += "&format=json";
+        parameters += "&apikey=" + key;
+        parameters += "&pagesize=" + context.getString(R.string.appInfo_tropicos_max_results);
+        urlstr += "?" + parameters;
+        return urlstr;
+    }
+
+    private String getParams() {
+        String parameters = "";
+        parameters = updateParams(parameters, "name", name);
+        parameters = updateParams(parameters, "nameid", nameId);
+        parameters = updateParams(parameters, "commonname", common);
+        parameters = updateParams(parameters, "family", family);
+        return parameters;
+    }
+
+    private String updateParams(String parameters, String paramName, String property) {
+        property = property.trim();
+        if (!property.equals("")) {
+            if (!parameters.equals("")) {
+                parameters += "&";
+            }
+            parameters += paramName + "=" + property;
+        }
+        return parameters;
     }
 }

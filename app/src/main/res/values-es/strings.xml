@@ -22,6 +22,10 @@
     <string name="cl_white">Blanco</string>
     <string name="cl_yellow">Amarillo</string>
 
+    <string name="credits"><![CDATA["<p>El proyecto Flora del Cajas es una colaboración entre
+        el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay)
+        con el Parque Nacional Cajas.</p><p>Contacto del proyecto: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p><p>Diseño y programación: L.M. Unda, V. Zapata, Quito</p><br/><p>Íconos de:</p><p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>Silhouette of tree of flowers and plants'</a></p><p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a></p><p><a href='link::http://www.google.com'>Google</a> de <a href='link::http://www.flaticon.com'>Flaticon</a>, licenciados bajo <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p><br/><p>Todos los derechos reservados.</p><p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
+
     <string name="detail_color">Color</string>
     <string name="detail_family">Familia</string>
     <string name="detail_genus">Género</string>
@@ -88,7 +92,7 @@
 
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
-    <string name="tropicos_info">Ingrese al menos uno de los siguientes criterios para buscar en la base de datos de Tropicos®</string>
+    <string name="tropicos_info">Ingrese al menos uno de los siguientes criterios para buscar en la base de datos de Tropicos®. Se mostrarán hasta %1$s resultados.</string>
     <string name="tropicos_info_warning">Esta búsqueda se conectará al internet</string>
     <string name="tropicos_name">Name</string>
     <string name="tropicos_search_result_author">Autor</string>

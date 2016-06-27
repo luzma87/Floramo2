@@ -16,6 +16,7 @@ import com.lzm.Cajas.R;
 import com.lzm.Cajas.enums.FloramoFragment;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -64,14 +65,14 @@ public class TropicosSearchResultFragment extends Fragment {
             JSONArray arr = new JSONArray(jsonResponse);
             items = new ArrayList<>();
             for (int i = 0; i < arr.length(); i++) {
-                JSONObject obj = arr.getJSONObject(i);
-                TropicosSearchResult curent = new TropicosSearchResult(obj.getString("NameId"), obj.getString("ScientificName"), obj.getString("ScientificNameWithAuthors"), obj.getString("Family"), obj.getString("RankAbbreviation"), obj.getString("Author"), obj.getString("DisplayReference"), obj.getString("DisplayDate"));
+                JSONObject row = arr.getJSONObject(i);
+                TropicosSearchResult curent = new TropicosSearchResult(row);
                 items.add(curent);
             }
-        } catch (Exception e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
-        TropicosSearchResultItemRecyclerViewAdapter adapter = new TropicosSearchResultItemRecyclerViewAdapter(items, mListener);
+        TropicosSearchResultItemAdapter adapter = new TropicosSearchResultItemAdapter(items, mListener);
         recyclerView.setAdapter(adapter);
 
         recyclerView.setVisibility((adapter.isEmpty()) ? View.GONE : View.VISIBLE);
@@ -97,7 +98,8 @@ public class TropicosSearchResultFragment extends Fragment {
         if (context instanceof OnTropicosSearchResultFragmentInteractionListener) {
             mListener = (OnTropicosSearchResultFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString() + " must implement OnTropicosSearchResultFragmentInteractionListener");
+            throw new RuntimeException(context.toString() +
+                    " must implement OnTropicosSearchResultFragmentInteractionListener");
         }
     }
 

@@ -11,12 +11,12 @@ import com.lzm.Cajas.tropicos.TropicosSearchResultFragment.OnTropicosSearchResul
 
 import java.util.List;
 
-public class TropicosSearchResultItemRecyclerViewAdapter extends RecyclerView.Adapter<TropicosSearchResultItemRecyclerViewAdapter.ViewHolder> {
+public class TropicosSearchResultItemAdapter extends RecyclerView.Adapter<TropicosSearchResultItemAdapter.ViewHolder> {
 
     private final List<TropicosSearchResult> mValues;
     private final OnTropicosSearchResultFragmentInteractionListener mListener;
 
-    public TropicosSearchResultItemRecyclerViewAdapter(List<TropicosSearchResult> items, OnTropicosSearchResultFragmentInteractionListener listener) {
+    public TropicosSearchResultItemAdapter(List<TropicosSearchResult> items, OnTropicosSearchResultFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

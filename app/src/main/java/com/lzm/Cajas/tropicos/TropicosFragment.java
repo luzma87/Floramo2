@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
@@ -41,6 +42,13 @@ public class TropicosFragment extends Fragment {
         context = (MainActivity) this.getActivity();
         context.setActiveFragment(FloramoFragment.TROPICOS);
         View view = inflater.inflate(R.layout.tropicos_fragment, container, false);
+
+        String max = context.getString(R.string.appInfo_tropicos_max_results);
+        String info = context.getString(R.string.tropicos_info, max);
+
+        TextView infoView = (TextView) view.findViewById(R.id.tropicos_info);
+        infoView.setText(info);
+
         setTropicosSearchClick(view);
         return view;
     }
@@ -60,14 +68,18 @@ public class TropicosFragment extends Fragment {
                     Snackbar.make(v, R.string.tropicos_search_warning, Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 } else {
-                    String loadingTitle = context.getString(R.string.loading_title);
-                    String loadingMessage = context.getString(R.string.loading_message);
-                    ProgressDialog dialog = ProgressDialog.show(context, loadingTitle, loadingMessage, true);
+                    ProgressDialog dialog = getProgressDialog();
                     ExecutorService queue = Executors.newSingleThreadExecutor();
                     queue.execute(new TropicosSearchLoader(context, name, "", family, common, dialog));
                 }
             }
         });
+    }
+
+    private ProgressDialog getProgressDialog() {
+        String loadingTitle = context.getString(R.string.loading_title);
+        String loadingMessage = context.getString(R.string.loading_message);
+        return ProgressDialog.show(context, loadingTitle, loadingMessage, true);
     }
 
     private String getEditTextString(View view, int editText) {

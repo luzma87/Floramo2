@@ -11,7 +11,7 @@
     <string name="appInfo_folder_name" translatable="false">Floramo</string>
     <string name="appInfo_tropicos_api_key" translatable="false">34a6225b-552c-4e0b-9937-fe12a2541176</string>
     <string name="appInfo_tropicos_base_url" translatable="false">http://www.tropicos.org/Name/</string>
-    <string name="appInfo_tropicos_max_results" translatable="false">10</string>
+    <string name="appInfo_tropicos_max_results" translatable="false">100</string>
     <string name="appInfo_tropicos_url" translatable="false">http://services.tropicos.org/Name/Search</string>
 
     <string name="app_name">Flóramo</string>
@@ -29,6 +29,10 @@
     <string name="cl_red">Red</string>
     <string name="cl_white">White</string>
     <string name="cl_yellow">Yellow</string>
+
+    <string name="credits"><![CDATA["<p>The Cajas Flora project is a collaboration between
+        the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay)
+        with Parque Nacional Cajas.</p><p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p><p>Design and development: L.M. Unda, V. Zapata, Quito</p><br/><p>Icons from:</p><p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>'Silhouette of tree of flowers and plants'</a> icons</p><p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a> icon</p><p><a href='link::http://www.google.com'>Google</a> from <a href='link::http://www.flaticon.com'>Flaticon</a>, licenced under <a href='link::http://creativecommons.org/licenses/by/3.0/'>Creative Commons</a></p><br/><p>All rights reserved.</p><p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
 
     <string name="detail_color">Color</string>
     <string name="detail_family">Family</string>
@@ -96,7 +100,7 @@
 
     <string name="tropicos_common_name">Common name</string>
     <string name="tropicos_family">Family</string>
-    <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database</string>
+    <string name="tropicos_info">Enter at least one of the following criteria to perform a search on the Tropicos® database. This search will show up to %1$s results.</string>
     <string name="tropicos_info_warning">This search will connect to the internet</string>
     <string name="tropicos_name">Name</string>
     <string name="tropicos_search_result_author">Author:</string>
