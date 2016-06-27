@@ -16,30 +16,6 @@
             android:icon="@drawable/ic_tropicos"
             android:title="@string/menu_tropicos" />
     </group>
-    <group
-        android:id="@+id/menu_about"
-        android:checkableBehavior="single">
-        <item android:title="@string/menu_group_about">
-            <menu>
-                <item
-                    android:id="@+id/nav_paramo"
-                    android:icon="@drawable/ic_about_paramo_24dp"
-                    android:title="@string/menu_about_paramo" />
-                <item
-                    android:id="@+id/nav_cajas"
-                    android:icon="@drawable/ic_about_cajas_24dp"
-                    android:title="@string/menu_about_cajas" />
-                <item
-                    android:id="@+id/nav_quito"
-                    android:icon="@drawable/ic_about_quito_24dp"
-                    android:title="@string/menu_about_dmq" />
-                <item
-                    android:id="@+id/nav_app"
-                    android:icon="@drawable/ic_about_app_24dp"
-                    android:title="@string/menu_about_this_app" />
-            </menu>
-        </item>
-    </group>
 
     <group
         android:id="@+id/menu_misc"
@@ -48,9 +24,5 @@
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_bug_report_24dp"
             android:title="@string/menu_help" />
-        <item
-            android:id="@+id/nav_credits"
-            android:icon="@drawable/ic_credits_24dp"
-            android:title="@string/menu_credits" />
     </group>
 </menu>
