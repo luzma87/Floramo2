@@ -3,9 +3,11 @@ package com.lzm.Cajas.credits;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,16 +81,29 @@ public class AboutFragment extends Fragment {
             e.printStackTrace();
         }
 
-        TextView textView = (TextView) view.findViewById(R.id.about_text);
+        setBarTitle(view);
+
         String text = getString(textId);
+        TextView textView = (TextView) view.findViewById(R.id.about_text);
         TextHelper.setTextWithLinks(context, textView, text);
 
+//        WebView wv = (WebView) view.findViewById(R.id.about_text);
+//        wv.loadData(text, "text/html; charset=utf-8", "UTF-8");
+
+
         return view;
+    }
+
+    private void setBarTitle(View view) {
+        CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.about_collapsing_toolbar);
+        collapsingToolbar.setTitle(getString(aboutType.getTitleId()));
+        collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        context.setTitle(aboutType.getTitleId());
+        context.setTitle(R.string.title_about);
     }
 }

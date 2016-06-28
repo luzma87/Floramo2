@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
 
     private void openFragment(FloramoFragment fragmentToOpen, boolean resetSearch) {
         Fragment fragment = encyclopediaFragment;
-        int titleRes = R.string.title_encyclopedia;
+        int titleRes = fragmentToOpen.getTitleId();
         switch (fragmentToOpen) {
             case ENCYCLOPEDIA:
                 if (resetSearch) {
@@ -110,47 +110,40 @@ public class MainActivity extends AppCompatActivity
                 }
                 encyclopediaFragment = EncyclopediaFragment.newInstance();
                 fragment = encyclopediaFragment;
-                titleRes = FloramoFragment.ENCYCLOPEDIA.getTitleId();
                 break;
             case DETAILS:
                 fragment = DetailFragment.newInstance(detailSpeciesId);
-                titleRes = FloramoFragment.DETAILS.getTitleId();
                 break;
             case FEEDBACK:
                 fragment = FeedbackFragment.newInstance();
-                titleRes = FloramoFragment.FEEDBACK.getTitleId();
                 break;
             case SEARCH:
                 fragment = searchFragment;
-                titleRes = FloramoFragment.SEARCH.getTitleId();
                 break;
             case TROPICOS:
                 fragment = TropicosFragment.newInstance();
-                titleRes = FloramoFragment.TROPICOS.getTitleId();
                 break;
             case ABOUT_PARAMO:
                 fragment = AboutFragment.newInstance(fragmentToOpen);
-                titleRes = FloramoFragment.ABOUT_PARAMO.getTitleId();
+                titleRes = R.string.title_about;
                 break;
             case ABOUT_CAJAS:
                 fragment = AboutFragment.newInstance(fragmentToOpen);
-                titleRes = FloramoFragment.ABOUT_CAJAS.getTitleId();
+                titleRes = R.string.title_about;
                 break;
             case ABOUT_QUITO:
                 fragment = AboutFragment.newInstance(fragmentToOpen);
-                titleRes = FloramoFragment.ABOUT_QUITO.getTitleId();
+                titleRes = R.string.title_about;
                 break;
             case ABOUT_APP:
                 fragment = AboutFragment.newInstance(fragmentToOpen);
-                titleRes = FloramoFragment.ABOUT_APP.getTitleId();
+                titleRes = R.string.title_about;
                 break;
             case CREDITS:
                 fragment = CreditsFragment.newInstance();
-                titleRes = FloramoFragment.CREDITS.getTitleId();
                 break;
             case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
-                titleRes = FloramoFragment.WEB_VIEW.getTitleId();
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);

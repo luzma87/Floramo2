@@ -97,6 +97,7 @@
     <string name="search_text_info">Species with family, genus or name containing %1$s</string>
     <string name="search_txt_hint">Family, genus or species</string>
 
+    <string name="title_about">About</string>
     <string name="title_about_app">App</string>
     <string name="title_about_cajas">Cajas</string>
     <string name="title_about_paramo">Páramo</string>
