@@ -46,6 +46,8 @@
     <string name="detail_life_form">Life form</string>
     <string name="detail_species">Species</string>
 
+    <string name="dialog_button_close">Close</string>
+
     <string name="drawer_close">Close navigation menu</string>
     <string name="drawer_open">Open navigation menu</string>
 

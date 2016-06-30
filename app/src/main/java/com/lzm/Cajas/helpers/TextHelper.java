@@ -15,7 +15,8 @@ public class TextHelper {
         String[] parts = str.split("<a href='");
 
         // la primera parte es lo que hay antes del primer link
-        texto.setText(Html.fromHtml(parts[0]));
+        String textBeforeLink = parts[0];
+        texto.setText(Html.fromHtml(textBeforeLink));
         texto.setMovementMethod(LinkMovementMethod.getInstance());
 
         //System.out.println("*****************************************");

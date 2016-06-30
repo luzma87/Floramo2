@@ -1,16 +1,29 @@
 package com.lzm.Cajas.customComponents;
 
+import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.WebViewFragment;
+import com.lzm.Cajas.enums.FloramoFragment;
+import com.lzm.Cajas.helpers.FragmentHelper;
+import com.lzm.Cajas.helpers.ResourcesHelper;
+
+import java.io.IOException;
 
 public class ClickableLinkSpan extends ClickableSpan { //clickable span
 
@@ -65,36 +78,36 @@ public class ClickableLinkSpan extends ClickableSpan { //clickable span
     }
 
     private void handleInfoLink(String text) {
-//        LayoutInflater inflater = context.getLayoutInflater();
-//        View v = inflater.inflate(R.layout.settings_about_definition_dlg, null);
-//
-//        try {
-//            Bitmap image = ResourcesHelper.getAboutAssetByName(context, spanUrl);
-//            ImageView imgAbout = (ImageView) v.findViewById(R.id.about_definition_img);
-//            imgAbout.setImageBitmap(image);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
-//                .setNeutralButton(R.string.dialog_btn_cerrar, null) //Set to null. We override the onclick
-//                .setTitle(text);
-//
-//        final AlertDialog d = builder.create();
-//
-//        d.setOnShowListener(new DialogInterface.OnShowListener() {
-//            @Override
-//            public void onShow(DialogInterface dialog) {
-//                Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
-//                cerrar.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        d.dismiss();
-//                    }
-//                });
-//            }
-//        });
-//        d.show();
+        LayoutInflater inflater = context.getLayoutInflater();
+        View v = inflater.inflate(R.layout.about_dialog_definitions, null);
+
+        try {
+            Bitmap image = ResourcesHelper.getAboutAssetByName(context, spanUrl + ".jpg");
+            ImageView imgAbout = (ImageView) v.findViewById(R.id.about_definition_img);
+            imgAbout.setImageBitmap(image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context).setView(v)
+                .setNeutralButton(R.string.dialog_button_close, null) //Set to null. We override the onclick
+                .setTitle(text);
+
+        final AlertDialog d = builder.create();
+
+        d.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Button cerrar = d.getButton(AlertDialog.BUTTON_NEUTRAL);
+                cerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                    }
+                });
+            }
+        });
+        d.show();
     }
 
     private void handleMailLink() {
@@ -103,7 +116,8 @@ public class ClickableLinkSpan extends ClickableSpan { //clickable span
     }
 
     private void handleWebLink() {
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(spanUrl));
-        context.startActivity(myIntent);
+        Fragment fragment = WebViewFragment.newInstance(spanUrl);
+        int titleRes = FloramoFragment.WEB_VIEW.getTitleId();
+        FragmentHelper.openFragment(context, fragment, context.getString(titleRes), true);
     }
 }
