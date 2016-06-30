@@ -86,11 +86,6 @@ public class AboutFragment extends Fragment {
         String text = getString(textId);
         TextView textView = (TextView) view.findViewById(R.id.about_text);
         TextHelper.setTextWithLinks(context, textView, text);
-
-//        WebView wv = (WebView) view.findViewById(R.id.about_text);
-//        wv.loadData(text, "text/html; charset=utf-8", "UTF-8");
-
-
         return view;
     }
 
