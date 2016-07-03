@@ -4,4 +4,14 @@
         <attr name="base_color" format="color" />
         <attr name="accent_color" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="TitledCardView">
+        <attr name="cardTitleText" format="string" />
+        <attr name="cardContentText" format="string" />
+        <attr name="cardTitleBackground" format="color" />
+        <attr name="cardContentBackground" format="color" />
+        <attr name="cardTitleTextColor" format="color" />
+        <attr name="cardContentTextColor" format="color" />
+        <attr name="cardSpecialContent" format="boolean" />
+    </declare-styleable>
 </resources>

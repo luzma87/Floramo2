@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/scrollView"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -7,11 +8,80 @@
     android:fitsSystemWindows="true"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/credits_text"
-        style="@style/credits_text"
-        android:layout_width="wrap_content"
-
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/credits" />
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/detail_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/credits_intro" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_contact"
+            custom:cardSpecialContent="true"
+            custom:cardTitleText="@string/credits_contact_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_design"
+            custom:cardTitleText="@string/credits_design_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_authors_cajas"
+            custom:cardTitleText="@string/credits_authors_cajas_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_authors_dmq"
+            custom:cardTitleText="@string/credits_authors_dmq_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_photos"
+            custom:cardTitleText="@string/credits_photos_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_acknowledgments"
+            custom:cardTitleText="@string/credits_acknowledgments_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_icons"
+            custom:cardSpecialContent="true"
+            custom:cardTitleText="@string/credits_icons_title" />
+
+        <com.lzm.Cajas.customComponents.TitledCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            custom:cardContentText="@string/credits_components"
+            custom:cardSpecialContent="true"
+            custom:cardTitleText="@string/credits_components_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/credits_footer" />
+    </LinearLayout>
 </ScrollView>

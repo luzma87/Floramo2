@@ -37,9 +37,9 @@ public class CreditsFragment extends Fragment {
         context.setActiveFragment(FloramoFragment.CREDITS);
 
         View view = inflater.inflate(R.layout.credits_fragment, container, false);
-        TextView creditsView = (TextView) view.findViewById(R.id.credits_text);
-        String creditsText = getString(R.string.credits);
-        TextHelper.setTextWithLinks(context, creditsView, creditsText);
+//        TextView creditsView = (TextView) view.findViewById(R.id.credits_text);
+//        String creditsText = getString(R.string.credits);
+//        TextHelper.setTextWithLinks(context, creditsView, creditsText);
 
         return view;
     }
