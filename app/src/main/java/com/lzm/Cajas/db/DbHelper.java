@@ -12,7 +12,7 @@ import java.util.Locale;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 27;
+    public static final int DATABASE_VERSION = 28;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -64,6 +64,7 @@ public class DbHelper extends SQLiteOpenHelper {
         updateWhenVersionLessThan24(db);
         updateWhenVersionLessThan25(db);
         updateWhenVersionLessThan27(db);
+        updateWhenVersionLessThan28(db);
     }
 
     @Override
@@ -83,6 +84,15 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 27) {
             updateWhenVersionLessThan27(db);
         }
+        if (oldVersion < 28) {
+            updateWhenVersionLessThan28(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan28(SQLiteDatabase db) {
+        upgradeTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
+        DbInserter dbInserter = new DbInserter(db);
+        dbInserter.insertLugares();
     }
 
     private void updateWhenVersionLessThan27(SQLiteDatabase db) {

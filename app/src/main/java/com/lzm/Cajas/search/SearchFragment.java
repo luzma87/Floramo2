@@ -232,7 +232,7 @@ public class SearchFragment extends Fragment {
 
     private CustomToggleButton initToggleButton(FlowLayout layout, Long itemId, String itemString) {
         String colorName = ResourcesHelper.getStringResourceByName(context, itemString);
-        int colorImage = ResourcesHelper.getImageResourceByName(context, "ic_" + itemString + "_tiny");
+        int colorImage = ResourcesHelper.getImageResourceByName(context, "ic_" + itemString);
         Drawable icon = ContextCompat.getDrawable(context, colorImage);
         CustomToggleButton colorToggle = new CustomToggleButton(context, itemId, colorName, icon);
         layout.addView(colorToggle);

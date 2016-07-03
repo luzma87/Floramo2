@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:padding="5dp"
     android:paddingEnd="30dp"
     android:paddingRight="30dp">
@@ -10,112 +11,117 @@
         android:id="@+id/encyclopedia_row_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-
         android:scaleType="fitCenter"
         android:src="@drawable/ic_app_icon_drawer"
         app:riv_border_color="@color/primary"
-
         app:riv_border_width="2dip"
         app:riv_corner_radius="5dip"
-
         app:riv_mutate_background="true"
         app:riv_oval="false"
         app:riv_tile_mode="clamp" />
 
-    <TextView
-        android:id="@+id/encyclopedia_row_nombre_cientifico"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/encyclopedia_row_image"
-
-        android:layout_toRightOf="@id/encyclopedia_row_image"
-        android:text="nombre cientifico"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:id="@+id/encyclopedia_row_familia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/encyclopedia_row_nombre_cientifico"
-        android:layout_alignStart="@id/encyclopedia_row_nombre_cientifico"
-        android:layout_below="@id/encyclopedia_row_nombre_cientifico"
-        android:maxLines="3"
-        android:text="familia"
-        android:textStyle="italic" />
-
     <LinearLayout
-        android:id="@+id/layout_icons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/encyclopedia_row_familia"
-        android:layout_alignStart="@id/encyclopedia_row_familia"
-        android:layout_below="@id/encyclopedia_row_familia"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/encyclopedia_row_fv_1"
-
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/encyclopedia_row_nombre_cientifico"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="nombre cientifico"
+            android:textStyle="bold|italic" />
 
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/ic_fv_aquatic_tiny"
-            app:riv_border_color="@color/text_primary"
-            app:riv_border_width="1dip"
-
-            app:riv_corner_radius="5dip"
-            app:riv_mutate_background="true"
-            app:riv_oval="false"
-            app:riv_tile_mode="clamp" />
-
-        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/encyclopedia_row_fv_2"
-
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/encyclopedia_row_familia"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="familia"
+            android:textStyle="italic" />
 
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/ic_fv_shrub_tiny"
-            app:riv_border_color="@color/text_primary"
-            app:riv_border_width="1dip"
-            app:riv_corner_radius="5dip"
-
-            app:riv_mutate_background="true"
-            app:riv_oval="false"
-            app:riv_tile_mode="clamp" />
-
-        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/encyclopedia_row_cl_1"
-
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/layout_icons"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
 
-            android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
-            android:src="@drawable/ic_cl_red_tiny"
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_fv_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_fv_aquatic"
+                app:riv_border_color="@color/text_primary"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="5dip"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
 
-            app:riv_mutate_background="true"
-            app:riv_oval="false"
-            app:riv_tile_mode="clamp" />
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_fv_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_fv_shrub"
+                app:riv_border_color="@color/text_primary"
+                app:riv_border_width="1dip"
+                app:riv_corner_radius="5dip"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
 
-        <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/encyclopedia_row_cl_2"
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_cl_1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_cl_red"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_cl_2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_cl_blue"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
+        </LinearLayout>
 
-            android:src="@drawable/ic_cl_blue_tiny"
+        <LinearLayout
+            android:id="@+id/encyclopedia_row_layout_lugares"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            app:riv_mutate_background="true"
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_cajas"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_about_cajas_24dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
 
-            app:riv_oval="false"
-            app:riv_tile_mode="clamp" />
+            <com.makeramen.roundedimageview.RoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/encyclopedia_row_quito"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_about_quito_24dp"
+                app:riv_mutate_background="true"
+                app:riv_oval="false"
+                app:riv_tile_mode="clamp" />
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

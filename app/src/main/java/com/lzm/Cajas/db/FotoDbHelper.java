@@ -10,7 +10,6 @@ import java.util.List;
 public class FotoDbHelper extends DbHelper {
 
     private static final String KEY_ESPECIE_ID = "especie_id";
-    private static final String KEY_KEYWORDS = "keywords";
     private static final String KEY_PATH = "path";
     public static final String KEY_RUTA_ID = "ruta_id";
     private static final String KEY_LONGITUD = "longitud";
@@ -20,7 +19,7 @@ public class FotoDbHelper extends DbHelper {
     private static final String KEY_COORDENADA_ID = "coordenada_id";
     private static final String KEY_ES_MIA = "es_mia";
 
-    public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_KEYWORDS, KEY_PATH,
+    public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_PATH,
             KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_COORDENADA_ID, KEY_RUTA_ID, KEY_ES_MIA};
 
     public FotoDbHelper(Context context) {
@@ -96,29 +95,30 @@ public class FotoDbHelper extends DbHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Foto> fotos = new ArrayList<>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_FOTO +
+        String selectQuery = "SELECT " +
+                "f.id id," +
+                "f.fecha fecha," +
+                "f.especie_id especie_id," +
+                "f.latitud latitud," +
+                "f.longitud longitud," +
+                "f.altitud altitud," +
+                "f.path path," +
+                "f.coordenada_id coordenada_id," +
+                "f.lugar_id lugar_id," +
+                "l.icon lugar_icon FROM " + TABLE_FOTO + " f " +
+                " LEFT JOIN " + TABLE_LUGAR + " l ON f.lugar_id = l.id" +
                 " WHERE " + KEY_ESPECIE_ID + " = " + especieId;
 
         Cursor c = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                Foto f = setDatos(c);
-
-                // adding to foto list
+                Foto f = setDatos2(c);
                 fotos.add(f);
             } while (c.moveToNext());
         }
         db.close();
         return fotos;
-    }
-
-    public void deleteFoto(Foto foto) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_FOTO, KEY_ID + " = ?",
-                new String[]{String.valueOf(foto.getId())});
-        db.close();
     }
 
     private Foto setDatos(Cursor c) {
@@ -129,7 +129,6 @@ public class FotoDbHelper extends DbHelper {
         f.setLatitud(c.getDouble(c.getColumnIndex(KEY_LATITUD)));
         f.setLongitud(c.getDouble(c.getColumnIndex(KEY_LONGITUD)));
         f.setAltitud(c.getDouble(c.getColumnIndex(KEY_ALTITUD)));
-        f.setKeywords((c.getString(c.getColumnIndex(KEY_KEYWORDS))));
         f.setPath((c.getString(c.getColumnIndex(KEY_PATH))));
         f.setCoordenada_id((c.getLong(c.getColumnIndex(KEY_COORDENADA_ID))));
         f.setLugar_id((c.getLong(c.getColumnIndex(KEY_LUGAR_ID))));

@@ -5,10 +5,13 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -213,7 +216,7 @@ public class DetailFragment extends Fragment {
     private void setColor(String color, ImageView colorImage) {
         if (color != null && !color.equals("none")) {
             color = "cl_" + color;
-            String resourceName = "ic_" + color + "_tiny";
+            String resourceName = "ic_" + color;
             int imageResource = ResourcesHelper.getImageResourceByName(context, resourceName);
             colorImage.setImageResource(imageResource);
             colorImage.setVisibility(View.VISIBLE);
@@ -225,10 +228,17 @@ public class DetailFragment extends Fragment {
     private void setFormaVida(String formaVida, TextView formaVidaCompound) {
         if (formaVida != null && !formaVida.equals("none")) {
             formaVida = "fv_" + formaVida;
-            String resourceName = "ic_" + formaVida + "_tiny";
+            String resourceName = "ic_" + formaVida;
             String formaVidaName = ResourcesHelper.getStringResourceByName(context, formaVida);
             int imageResource = ResourcesHelper.getImageResourceByName(context, resourceName);
-            formaVidaCompound.setCompoundDrawablesWithIntrinsicBounds(imageResource, 0, 0, 0);
+            Drawable icon = ContextCompat.getDrawable(context, imageResource);
+
+            int drawableDp = 20;
+            int drawablePx = Utils.dp2px(context, drawableDp);
+            Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
+            Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, drawablePx, drawablePx, true));
+
+            formaVidaCompound.setCompoundDrawablesWithIntrinsicBounds(d, null, null, null);
             formaVidaCompound.setText(formaVidaName);
             formaVidaCompound.setVisibility(View.VISIBLE);
         } else {

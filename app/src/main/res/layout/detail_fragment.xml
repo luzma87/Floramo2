@@ -145,19 +145,19 @@
 
                             <ImageView
                                 android:id="@+id/detail_color1_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
 
-                                android:paddingLeft="10dp"
-                                android:paddingStart="10dp"
-                                android:src="@drawable/ic_cl_red_tiny" />
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginStart="10dp"
+                                android:src="@drawable/ic_cl_red" />
 
                             <ImageView
                                 android:id="@+id/detail_color2_image"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
 
-                                android:src="@drawable/ic_cl_blue_tiny" />
+                                android:src="@drawable/ic_cl_blue" />
                         </LinearLayout>
                     </TableRow>
 
@@ -182,8 +182,8 @@
                                 style="@style/detail_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@drawable/ic_fv_liana_tiny"
-                                android:drawableStart="@drawable/ic_fv_liana_tiny"
+                                android:drawableLeft="@drawable/ic_fv_liana"
+                                android:drawableStart="@drawable/ic_fv_liana"
                                 android:gravity="center"
                                 android:text="forma vida 1" />
 
@@ -192,8 +192,8 @@
                                 style="@style/detail_info"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:drawableLeft="@drawable/ic_fv_grass_tiny"
-                                android:drawableStart="@drawable/ic_fv_grass_tiny"
+                                android:drawableLeft="@drawable/ic_fv_grass"
+                                android:drawableStart="@drawable/ic_fv_grass"
                                 android:gravity="center"
                                 android:text="forma vida 2" />
                         </LinearLayout>

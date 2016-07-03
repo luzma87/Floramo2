@@ -7,7 +7,6 @@ import java.util.List;
 public class Foto {
     private long id = 0;
     private String fecha;
-    private String keywords;
 
     private Long especie_id;
 
@@ -17,6 +16,7 @@ public class Foto {
     private Long coordenada_id;
 
     private Long lugar_id;
+    private String lugarIcon;
 
     private String path;
 
@@ -38,6 +38,10 @@ public class Foto {
 
     public String getPath() {
         return path;
+    }
+
+    public String getLugarIcon() {
+        return lugarIcon;
     }
 
     public void setCoordenada_id(Long coordenada_id) {
@@ -68,12 +72,12 @@ public class Foto {
         this.lugar_id = lugar_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setLugarIcon(String lugarIcon) {
+        this.lugarIcon = lugarIcon;
     }
 
-    public void setKeywords(String keywords) {
-        this.keywords = keywords;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public void setFecha(String fecha) {
@@ -82,10 +86,6 @@ public class Foto {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public void delete() {
-        this.fotoDbHelper.deleteFoto(this);
     }
 
     public static Foto get(Context context, long id) {

@@ -2,11 +2,13 @@ package com.lzm.Cajas.encyclopedia;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -16,8 +18,11 @@ import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.customComponents.indexableList.StringMatcher;
+import com.lzm.Cajas.helpers.Utils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements SectionIndexer {
@@ -37,21 +42,41 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Especie especie = especies.get(position);
-
-        List<Foto> fotos = Foto.findAllByEspecie(context, especie);
-        Foto foto = null;
-        if (fotos.size() > 0) {
-            foto = fotos.get(0);
-        }
-
-        String labelNombreCientifico = especie.getGenero() + " " + especie.getNombre();
-        String labelNombreFamilia = especie.getFamilia();
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.encyclopedia_row, null);
         }
+
+        Especie especie = especies.get(position);
+
+        List<Foto> fotos = Foto.findAllByEspecie(context, especie);
+        ArrayList<String> lugares = new ArrayList<>();
+        Foto foto = null;
+        if (fotos.size() > 0) {
+            foto = fotos.get(0);
+            for (Foto f : fotos) {
+                String lugarIcon = f.getLugarIcon();
+                if (!lugares.contains(lugarIcon)) {
+                    lugares.add(lugarIcon);
+                }
+            }
+            LinearLayout layoutLugares = (LinearLayout) convertView.findViewById(R.id.encyclopedia_row_layout_lugares);
+            layoutLugares.removeAllViews();
+            for (String lugar : lugares) {
+                int icon_size = Utils.dp2px(context, 20);
+                int margin = Utils.dp2px(context, 5);
+                RoundedImageView viewLugar = new RoundedImageView(context);
+                LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(icon_size, icon_size);
+                parms.setMargins(0, 0, margin, 0);
+                viewLugar.setLayoutParams(parms);
+                int lugarIcon = ResourcesHelper.getImageResourceByName(context, lugar);
+                viewLugar.setImageResource(lugarIcon);
+                layoutLugares.addView(viewLugar);
+            }
+        }
+
+        String labelNombreCientifico = especie.getGenero() + " " + especie.getNombre();
+        String labelNombreFamilia = especie.getFamilia();
 
         ImageView itemFoto = (ImageView) convertView.findViewById(R.id.encyclopedia_row_image);
 
@@ -62,21 +87,20 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         ImageView itemFormaVida1 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_fv_1);
         ImageView itemFormaVida2 = (ImageView) convertView.findViewById(R.id.encyclopedia_row_fv_2);
 
-
         itemNombreCientifico.setText(labelNombreCientifico);
         itemNombreFamilia.setText(labelNombreFamilia);
 
-        itemColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor1() + "_tiny"));
+        itemColor1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor1()));
         if (especie.getColor2() != null && !especie.getColor2().equals("none")) {
-            itemColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor2() + "_tiny"));
+            itemColor2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_cl_" + especie.getColor2()));
             itemColor2.setVisibility(View.VISIBLE);
         } else {
             itemColor2.setVisibility(View.GONE);
         }
 
-        itemFormaVida1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida1() + "_tiny"));
+        itemFormaVida1.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida1()));
         if (especie.getFormaVida2() != null && !especie.getFormaVida2().equals("none")) {
-            itemFormaVida2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida2() + "_tiny"));
+            itemFormaVida2.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_fv_" + especie.getFormaVida2()));
             itemFormaVida2.setVisibility(View.VISIBLE);
         } else {
             itemFormaVida2.setVisibility(View.GONE);

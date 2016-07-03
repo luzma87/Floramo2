@@ -1,6 +1,8 @@
 package com.lzm.Cajas.customComponents;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -51,13 +53,18 @@ public class CustomToggleButton extends ToggleButton implements CompoundButton.O
 
         int textSp = 14;
         int paddingDp = 5;
+        int drawableDp = 20;
+        int drawablePx = Utils.dp2px(context, drawableDp);
         int paddingPx = Utils.dp2px(context, paddingDp);
+
+        Bitmap bitmap = ((BitmapDrawable) icon).getBitmap();
+        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, drawablePx, drawablePx, true));
 
         setTextStyle(textSp);
         setPadding(paddingPx, paddingPx, paddingPx, paddingPx);
         setUncheckedColors();
 
-        this.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+        this.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
         super.setOnCheckedChangeListener(this);
     }
 

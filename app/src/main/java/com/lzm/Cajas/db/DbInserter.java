@@ -11,7 +11,7 @@ public class DbInserter {
     }
 
     public void insertLugares() {
-        db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"Cajas.jpg\");");
+        db.execSQL("INSERT INTO lugares (id, nombre, nombre_norm, path, icon) VALUES (\"1\", \"Páramo del Cajas, Ecuador\", \"Paramo del Cajas, Ecuador\", \"Cajas.jpg\", \"ic_about_cajas_24dp\");");
     }
 
     public void insertColores() {
