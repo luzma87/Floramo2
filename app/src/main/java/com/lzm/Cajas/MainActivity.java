@@ -62,46 +62,12 @@ public class MainActivity extends AppCompatActivity
     private Long detailSpeciesId;
     private String url;
 
-    private String getAppVersion() {
-        try {
-            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-            String version = pInfo.versionName;
-            return getString(R.string.app_version, version);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return "";
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        /* ****************************************************************************************** */
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        String currentVersion = getAppVersion();
-        String lastVersionStored = sharedPref.getString(VERSION_FOR_DIALOG, "0");
-
-        if (!lastVersionStored.equalsIgnoreCase(currentVersion)) {
-            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
-            // set the message to display
-            alertbox.setTitle(getString(R.string.aa_new_title));
-            alertbox.setMessage(getString(R.string.aa_new));
-            // add a neutral button to the alert box and assign a click listener
-            alertbox.setNegativeButton(getString(R.string.global_close), new DialogInterface.OnClickListener() {
-                // click listener on the alert box
-                public void onClick(DialogInterface arg0, int arg1) {
-                    // the button was clicked
-                }
-            });
-            // show it
-            alertbox.show();
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putString(VERSION_FOR_DIALOG, currentVersion);
-            editor.apply();
-        }
-        /* ****************************************************************************************** */
+        manageNewsDialog();
 
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();
@@ -127,6 +93,41 @@ public class MainActivity extends AppCompatActivity
         encyclopediaFragment = EncyclopediaFragment.newInstance();
 
         openFragment(FloramoFragment.ENCYCLOPEDIA);
+    }
+
+    private void manageNewsDialog() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String currentVersion = getAppVersion();
+        String lastVersionStored = sharedPref.getString(VERSION_FOR_DIALOG, "0");
+
+        if (!lastVersionStored.equalsIgnoreCase(currentVersion)) {
+            showNewsDialog();
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(VERSION_FOR_DIALOG, currentVersion);
+            editor.apply();
+        }
+    }
+
+    private String getAppVersion() {
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            return getString(R.string.app_version, version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    private void showNewsDialog() {
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+        alertbox.setTitle(getString(R.string.aa_new_title));
+        alertbox.setMessage(getString(R.string.aa_new));
+        alertbox.setNegativeButton(getString(R.string.global_close), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+            }
+        });
+        alertbox.show();
     }
 
     public void setActiveFragment(FloramoFragment activeFragment) {
