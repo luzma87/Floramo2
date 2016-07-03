@@ -12,6 +12,7 @@ public class Lugar {
     private String nombre;
     private String nombreNorm;
     private String path;
+    private String icon;
 
     LugarDbHelper lugarDbHelper;
 
@@ -39,11 +40,18 @@ public class Lugar {
         return path;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public void setPath(String path) {
         this.path = path;
     }
 
-    //setters
     public void setId(long id) {
         this.id = id;
     }
@@ -61,41 +69,13 @@ public class Lugar {
         return "**" + nombre;
     }
 
-    public void save() {
-        if (this.id == 0) {
-            this.id = this.lugarDbHelper.createLugar(this);
-        } else {
-            this.lugarDbHelper.updateLugar(this);
-        }
-    }
-
     public static Lugar get(Context context, long id) {
         LugarDbHelper e = new LugarDbHelper(context);
         return e.getLugar(id);
     }
 
-    public static int count(Context context) {
-        LugarDbHelper e = new LugarDbHelper(context);
-        return e.countAllLugares();
-    }
-
-    public static int countByNombre(Context context, String lugar) {
-        LugarDbHelper e = new LugarDbHelper(context);
-        return e.countLugaresByNombre(lugar);
-    }
-
     public static ArrayList<Lugar> list(Context context) {
         LugarDbHelper e = new LugarDbHelper(context);
         return e.getAllLugares();
-    }
-
-    public static List<Lugar> findAllByNombre(Context context, String lugar) {
-        LugarDbHelper e = new LugarDbHelper(context);
-        return e.getAllLugaresByNombre(lugar);
-    }
-
-    public static void empty(Context context) {
-        LugarDbHelper e = new LugarDbHelper(context);
-        e.deleteAllLugares();
     }
 }
