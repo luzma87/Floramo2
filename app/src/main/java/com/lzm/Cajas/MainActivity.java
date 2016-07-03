@@ -2,6 +2,11 @@ package com.lzm.Cajas;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -13,6 +18,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity
     private static final String SAVED_SEARCH_RESULTS = "searchResults";
     private static final String SAVED_URL = "savedUrl";
 
+    private static final String VERSION_FOR_DIALOG = "versionForDialog";
+
     FloramoFragment activeFragment = FloramoFragment.ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
@@ -54,10 +62,46 @@ public class MainActivity extends AppCompatActivity
     private Long detailSpeciesId;
     private String url;
 
+    private String getAppVersion() {
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String version = pInfo.versionName;
+            return getString(R.string.app_version, version);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        /* ****************************************************************************************** */
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        String currentVersion = getAppVersion();
+        String lastVersionStored = sharedPref.getString(VERSION_FOR_DIALOG, "0");
+
+        if (!lastVersionStored.equalsIgnoreCase(currentVersion)) {
+            AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+            // set the message to display
+            alertbox.setTitle(getString(R.string.aa_new_title));
+            alertbox.setMessage(getString(R.string.aa_new));
+            // add a neutral button to the alert box and assign a click listener
+            alertbox.setNegativeButton(getString(R.string.global_close), new DialogInterface.OnClickListener() {
+                // click listener on the alert box
+                public void onClick(DialogInterface arg0, int arg1) {
+                    // the button was clicked
+                }
+            });
+            // show it
+            alertbox.show();
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString(VERSION_FOR_DIALOG, currentVersion);
+            editor.apply();
+        }
+        /* ****************************************************************************************** */
 
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();

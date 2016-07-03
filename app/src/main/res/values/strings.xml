@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
+    <string name="aa_new">Added About pages: Páramo, Cajas, DMQ, This app\n\nAdded credits\n\nAdded this dialog, it will appear once every time the app is updated</string>
+    <string name="aa_new_title">What\'s new</string>
+
     <string name="about_app"><![CDATA["<p>Flóramo is a field guide to identify 100 species of wild plants found in the páramo, a vegetation type at the top of the Andes Mountains of tropical South America. It contains field images, species descriptions, and an identification key using life forms, flower colors or scientific names. A map with location of species, routes for personalized records. Additional features include searches into the Missouri Botanical Garden Tropicos® database. Flóramo currently includes plants found the in the Cajas massif of southern Ecuador, but various species are found beyond this area.</p><p>The Flora of Cajas project is a collaboration between the <a href='link::http://www.missouribotanicalgarden.org/'>Missouri Botanical Garden</a> and the <a href='link::http://www.uazuay.edu.ec/HerbarioAzuay/'>Azuay Herbarium</a> (Universidad del Azuay, Cuenca Ecuador) with Parque Nacional Cajas.</p><p>We thank the Prometeo program of Ecuador´s Secretaría de Educación Superior, Ciencia, Tecnología e Innovación for a research fellowship to Carmen Ulloa at Universidad del Azuay; to Etapa-Parque Nacional Cajas, Ministerio del Ambiente de Ecuador, and funding agencies for field work; to the National Geographic Society.</p><br/><p>Project contact: <a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a></p><br/><p>All rights reserved.</p><p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>
     <string name="about_cajas"><![CDATA["<p>The Cajas massif is located 30 km west of the city of Cuenca, Azuay province in southern Ecuador. It is dominated by herbaceous páramo with scattered patches of forest.</p><p>Pleistocene glaciers carved the landscape resulting in a unique area of irregular topography with more than 235 lakes and lagoons and unparalleled scenic beauty. The climate is cold and humid; there is however, considerable daily weather variation that can change rapidly from calm to strong winds, from cloudy to intense sun, from dry to fog or drizzle, and from hard rain to hail. The minimum daily temperature is –2°C and the maximum is 18°C. The annual mean precipitation is 1200 mm. It has two access roads: the main Cuenca-Molleturo-Naranjal road, and the unpaved Cuenca-Soldados. The Área de Recreación Cajas was created in 1977 and upgraded to Cajas National Park in 1996.  It comprises 28,544 hectares, between 3150 and 4450 m asl.</p><br/><p>Read more: <a href='link::http://www.mobot.org/MOBOT/research/paramo/study.shtml'>Study area: Cajas National Park</a></p>"]]></string>
     <string name="about_contact">Contact us</string>
@@ -101,6 +104,8 @@
 
     <string name="navigation_drawer_close">Close</string>
     <string name="navigation_drawer_open">Open</string>
+
+    <string name="preference_file_key" translatable="false">com.lzm.Cajas.SHARED_PREFERENCES_FILE_KEY</string>
 
     <string name="search">Search</string>
     <string name="search_btn_label">Search</string>
