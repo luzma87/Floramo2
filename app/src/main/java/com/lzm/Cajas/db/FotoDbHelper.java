@@ -134,4 +134,20 @@ public class FotoDbHelper extends DbHelper {
         f.setLugar_id((c.getLong(c.getColumnIndex(KEY_LUGAR_ID))));
         return f;
     }
+
+    private Foto setDatos2(Cursor c) {
+        Foto f = new Foto(this.context);
+        f.setId(c.getLong((c.getColumnIndex("id"))));
+        f.setFecha(c.getString(c.getColumnIndex("fecha")));
+        f.setEspecie_id(c.getLong(c.getColumnIndex("especie_id")));
+        f.setLatitud(c.getDouble(c.getColumnIndex("latitud")));
+        f.setLongitud(c.getDouble(c.getColumnIndex("longitud")));
+        f.setAltitud(c.getDouble(c.getColumnIndex("altitud")));
+        f.setPath((c.getString(c.getColumnIndex("path"))));
+        f.setCoordenada_id((c.getLong(c.getColumnIndex("coordenada_id"))));
+        f.setLugar_id((c.getLong(c.getColumnIndex("lugar_id"))));
+        f.setLugarIcon((c.getString(c.getColumnIndex("lugar_icon"))));
+        f.setLugar((c.getString(c.getColumnIndex("lugar_nombre"))));
+        return f;
+    }
 }

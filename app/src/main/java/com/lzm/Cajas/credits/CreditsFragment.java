@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.TextView;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.enums.FloramoFragment;
-import com.lzm.Cajas.helpers.TextHelper;
 
 public class CreditsFragment extends Fragment {
 
@@ -35,13 +32,7 @@ public class CreditsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         context = (MainActivity) getActivity();
         context.setActiveFragment(FloramoFragment.CREDITS);
-
-        View view = inflater.inflate(R.layout.credits_fragment, container, false);
-//        TextView creditsView = (TextView) view.findViewById(R.id.credits_text);
-//        String creditsText = getString(R.string.credits);
-//        TextHelper.setTextWithLinks(context, creditsView, creditsText);
-
-        return view;
+        return inflater.inflate(R.layout.credits_fragment, container, false);
     }
 
     @Override

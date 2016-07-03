@@ -41,20 +41,19 @@
 
     <string name="credits_acknowledgments">We thank the support of the Prometeo program of Ecuador’s Secretaría de Educación Superior, Ciencia, Tecnología e Innovación for a fellowship to C. Ulloa Ulloa, Ph.D. at Ecuador’ National Herbarium of the National Institute of Biodiversity and at the Herbarium of Universidad del Azuay. To the Ministerio del Ambiente del Ecuador and Province offices, the project Mapa de Vegetación del Ecuador, Etapa-Parque Nacional Cajas, F. Sornoza (Yanacocha), Agua Potable del DMQ, the National Geographic. To S. Christoph y C. Davidson of FloraoftheWorld.org. M. Unda help updating data.</string>
     <string name="credits_acknowledgments_title">Acknowledgments</string>
-    <string name="credits_authors_cajas">C. Ulloa Ulloa, D. Minga, R. Ansaloni, A. Verdugo, S. Álvarez, P. M. Jørgensen</string>
+    <string name="credits_authors_cajas">C. Ulloa Ulloa, D. Minga, R. Ansaloni, A. Verdugo, S. Álvarez, P. M. Jørgensen.\n\nThe Cajas Flora project is a collaboration between the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay) with Parque Nacional Cajas.</string>
     <string name="credits_authors_cajas_title">Authors Cajas text</string>
-    <string name="credits_authors_dmq">B. Cuamacás, D. Fernández, E. Freire, M. Haro, V. Herrera, B. Obando, W. Palacios, M. Peñafiel, E. Rea, C. Ulloa Ulloa, M. Unda, A. Yánez</string>
+    <string name="credits_authors_dmq">B. Cuamacás, D. Fernández, E. Freire, M. Haro, V. Herrera, B. Obando, W. Palacios, M. Peñafiel, E. Rea, C. Ulloa Ulloa, M. Unda, A. Yánez.\n\nThe DMQ project is a collaboration between the Missouri Botanical Garden and the \'Herbario Nacional del Ecuador del Instituto Nacional de Biodiversidad\'.</string>
     <string name="credits_authors_dmq_title">Authors DMQ text</string>
     <string name="credits_components"><![CDATA["<p><a href='link::https://github.com/woozzu/IndexableListView'>IndexableListView</a>, by Woozzu, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p><br/><p><a href='link::https://github.com/bieliaievays/ViewPagerIndicatorCircles'>ViewPagerIndicatorCircles</a>, by Iuliia Ashomok, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p><br/><p><a href='link::https://nishantvnair.wordpress.com/2010/09/28/flowlayout-in-android/'>FlowLayout</a>, by Nishant Nair </p><br/><p><a href='link::http://www.androidhive.info/2013/09/android-fullscreen-image-slider-with-swipe-and-pinch-zoom-gestures/'>Android Fullscreen Image Slider with Swipe and Pinch Zoom Gestures</a>, by Ravi Tamada </p><br/><p><a href='link::https://github.com/MikeOrtiz/TouchImageView'>TouchImageView</a>, by Mike Ortiz </p>"]]></string>
     <string name="credits_components_title">Components</string>
     <string name="credits_contact"><![CDATA["<a href='mailto::carmen.ulloa@mobot.org'>C. Ulloa</a>"]]></string>
     <string name="credits_contact_title">Project contact</string>
-    <string name="credits_design">L.M. Unda, V. Zapata, Quito, Ecuador</string>
+    <string name="credits_design">L.M. Unda, V. Zapata, Quito, Ecuador.</string>
     <string name="credits_design_title">Design and development</string>
     <string name="credits_footer">All rights reserved.\n©Missouri Botanical Garden, Science and Conservation Division</string>
     <string name="credits_icons"><![CDATA["<p><a href='link::http://www.freevectorvip.com/silhouette-of-tree-of-flowers-and-plants.html'>'Silhouette of tree of flowers and plants'</a>, licenced under Non commercial use, learning and reference use only. </p><br/><p><a href='link::http://www.freevectorvip.com/marine-biology-silhouette.html'>'Marine biology silhouette'</a>, licenced under Non commercial use, learning and reference use only. </p><br/><p><a href='link::https://design.google.com/icons/'>Material icons</a>, licenced under <a href='link::http://www.apache.org/licenses/LICENSE-2.0'>Apache License Version 2.0</a></p>"]]></string>
     <string name="credits_icons_title">Icons</string>
-    <string name="credits_intro">The Cajas Flora project is a collaboration between the Missouri Botanical Garden and the Azuay Herbarium (Universidad del Azuay) with Parque Nacional Cajas.</string>
     <string name="credits_photos">C. Aedo, D. Fernández, FloraoftheWorld.org, E. Freire, P. M. Jørgensen, P. Mena Vásconez, D. Minga, B. Obando, W. Palacios, C. Ulloa Ulloa, A. Verdugo.</string>
     <string name="credits_photos_title">Photographic credits</string>
 

@@ -13,16 +13,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/detail_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/credits_intro" />
-
         <com.lzm.Cajas.customComponents.TitledCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             custom:cardContentText="@string/credits_contact"
             custom:cardSpecialContent="true"
             custom:cardTitleText="@string/credits_contact_title" />
