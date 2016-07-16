@@ -24,6 +24,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.lzm.Cajas.credits.AboutFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.db.DbHelper;
@@ -33,6 +40,8 @@ import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
+import com.lzm.Cajas.map.EspecieLoader;
+import com.lzm.Cajas.map.EspecieMarker;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
 import com.lzm.Cajas.tropicos.TropicosSearchResult;
@@ -40,9 +49,14 @@ import com.lzm.Cajas.tropicos.TropicosSearchResultFragment;
 import com.lzm.Cajas.tropicos.TropicosFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
+        OnMapReadyCallback,
         EncyclopediaFragment.OnEncyclopediaInteractionListener,
         DetailFragment.OnDetailInteractionListener,
         SearchFragment.OnSearchInteractionListener,
@@ -62,9 +76,15 @@ public class MainActivity extends AppCompatActivity
     private Long detailSpeciesId;
     private String url;
 
+    private HashMap<Marker, EspecieMarker> markersEspecies;
+    private GoogleMap googleMap;
+
+    private boolean showingMarkers = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.main_activity);
 
         manageNewsDialog();
@@ -91,6 +111,13 @@ public class MainActivity extends AppCompatActivity
 
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
+
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+        markersEspecies = new HashMap<>();
 
         openFragment(FloramoFragment.ENCYCLOPEDIA);
     }
@@ -189,6 +216,11 @@ public class MainActivity extends AppCompatActivity
                 break;
             case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
+                break;
+            case MAP:
+                fragment = null;
+                setActiveFragment(fragmentToOpen);
+                break;
         }
 //        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
@@ -217,10 +249,17 @@ public class MainActivity extends AppCompatActivity
         DrawableCompat.setTintList(searchIcon, colorSelector);
         itemSearch.setIcon(searchIcon);
 
+        MenuItem itemShowMarkers = menu.findItem(R.id.action_show_markers);
+        Drawable showMarkersIcon = DrawableCompat.wrap(itemShowMarkers.getIcon());
+        DrawableCompat.setTintList(showMarkersIcon, colorSelector);
+        itemShowMarkers.setIcon(showMarkersIcon);
+
         MenuItem itemSortFamily = menu.findItem(R.id.action_sort_family);
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
+
         if (itemSortName != null) {
             if (activeFragment == FloramoFragment.ENCYCLOPEDIA) {
+                itemShowMarkers.setVisible(false);
                 String encyclopediaSort = encyclopediaFragment.getSort();
                 if (encyclopediaSort.equals(SearchResults.SORT_BY_FAMILY)) {
                     itemSortName.setVisible(true);
@@ -229,7 +268,12 @@ public class MainActivity extends AppCompatActivity
                     itemSortName.setVisible(false);
                     itemSortFamily.setVisible(true);
                 }
+            } else if (activeFragment == FloramoFragment.MAP) {
+                itemSortName.setVisible(false);
+                itemSortFamily.setVisible(false);
+                itemShowMarkers.setVisible(true);
             } else {
+                itemShowMarkers.setVisible(false);
                 itemSortName.setVisible(false);
                 itemSortFamily.setVisible(false);
             }
@@ -254,6 +298,9 @@ public class MainActivity extends AppCompatActivity
                 } else {
                     openFragment(FloramoFragment.SEARCH);
                 }
+                break;
+            case R.id.action_show_markers:
+                showMarkers();
                 break;
         }
         invalidateOptionsMenu();
@@ -292,6 +339,11 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_feedback:
                 openFragment(FloramoFragment.FEEDBACK);
+                break;
+            case R.id.nav_map:
+//                Intent intent = new Intent(this, MapActivity.class);
+//                startActivity(intent);
+                openFragment(FloramoFragment.MAP);
                 break;
         }
 
@@ -371,5 +423,53 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+        LatLng latLng = new LatLng(-2.84360424, -79.2282486);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+    }
+
+    private void showMarkers() {
+        if (showingMarkers) {
+            setSpeciesMarkersVisible(false);
+        } else {
+            if (markersEspecies.isEmpty()) {
+                createSpeciesMarkers();
+            } else {
+                setSpeciesMarkersVisible(true);
+            }
+        }
+        showingMarkers = !showingMarkers;
+    }
+
+    private void setSpeciesMarkersVisible(boolean visible) {
+        for (Map.Entry<Marker, EspecieMarker> entry : markersEspecies.entrySet()) {
+            Marker marker = entry.getKey();
+            marker.setVisible(visible);
+        }
+    }
+
+    private void createSpeciesMarkers() {
+        ArrayList<Especie> especies = (ArrayList<Especie>) Especie.list(this);
+        for (Especie especie : especies) {
+            ExecutorService queue = Executors.newSingleThreadExecutor();
+            queue.execute(new EspecieLoader(this, especie));
+        }
+    }
+
+    public void addSpeciesMarker(final EspecieMarker especieMarker) {
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                MarkerOptions markerOptions = new MarkerOptions().position(especieMarker.getCoords())
+                        .title(especieMarker.getNombre());
+                Marker marker = googleMap.addMarker(markerOptions);
+                markersEspecies.put(marker, especieMarker);
+            }
+        });
     }
 }

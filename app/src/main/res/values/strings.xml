@@ -139,4 +139,7 @@
     <string name="tropicos_name">Name</string>
     <string name="tropicos_search_result_author">Author:</string>
     <string name="tropicos_search_warning">Enter at leat one criteria to perform the search</string>
+    <string name="title_activity_map">Map</string>
+    <string name="menu_map">Map</string>
+    <string name="title_map">Map</string>
 </resources>

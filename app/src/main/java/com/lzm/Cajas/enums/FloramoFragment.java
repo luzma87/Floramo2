@@ -14,7 +14,8 @@ public enum FloramoFragment {
     ABOUT_CAJAS(R.string.title_about_cajas),
     ABOUT_QUITO(R.string.title_about_quito),
     ABOUT_PARAMO(R.string.title_about_paramo),
-    ABOUT_APP(R.string.title_about_app);
+    ABOUT_APP(R.string.title_about_app),
+    MAP(R.string.title_map);
 
     private int titleId;
 

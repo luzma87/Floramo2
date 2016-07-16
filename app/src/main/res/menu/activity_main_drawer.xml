@@ -15,6 +15,10 @@
             android:id="@+id/nav_tropicos"
             android:icon="@drawable/ic_tropicos"
             android:title="@string/menu_tropicos" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map_24dp"
+            android:title="@string/menu_map" />
     </group>
     <group
         android:id="@+id/menu_about"

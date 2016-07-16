@@ -248,7 +248,7 @@ public class DetailFragment extends Fragment {
     }
 
     private void setBarTitle(CollapsingToolbarLayout collapsingToolbar) {
-        collapsingToolbar.setTitle(especie.getGenero() + " " + especie.getNombre().toLowerCase());
+        collapsingToolbar.setTitle(especie.getNombreCientifico());
         collapsingToolbar.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }

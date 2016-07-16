@@ -127,6 +127,11 @@ public class EspecieDbHelper extends DbHelper {
         return 0;
     }
 
+    public List<Especie> getBusqueda() {
+        List<Long> emptyList = new ArrayList<>();
+        return getBusqueda(emptyList, emptyList, "", "", "n", "a");
+    }
+
     public List<Especie> getBusqueda(List<Long> formasVida, List<Long> colores, String nombre, String andOr, String sort, String order) {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Especie> especies = new ArrayList<>();

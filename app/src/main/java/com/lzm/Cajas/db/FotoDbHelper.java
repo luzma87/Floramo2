@@ -123,6 +123,39 @@ public class FotoDbHelper extends DbHelper {
         return fotos;
     }
 
+    public List<Foto> getAllFotosByEspecieIdWithCoords(Long especieId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Foto> fotos = new ArrayList<>();
+
+        String selectQuery = "SELECT " +
+                "f.id id," +
+                "f.fecha fecha," +
+                "f.especie_id especie_id," +
+                "f.path path," +
+                "f.coordenada_id coordenada_id," +
+                "c.latitud latitud," +
+                "c.longitud longitud," +
+                "c.altitud altitud," +
+                "f.lugar_id lugar_id," +
+                "l.icon lugar_icon," +
+                "l.nombre lugar_nombre" +
+                " FROM " + TABLE_FOTO + " f " +
+                " LEFT JOIN " + TABLE_LUGAR + " l ON f.lugar_id = l.id" +
+                " INNER JOIN " + TABLE_COORDENADA + " c ON f.coordenada_id = c.id" +
+                " WHERE " + KEY_ESPECIE_ID + " = " + especieId;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Foto f = setDatos2(c);
+                fotos.add(f);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return fotos;
+    }
+
     private Foto setDatos(Cursor c) {
         Foto f = new Foto(this.context);
         f.setId(c.getLong((c.getColumnIndex(KEY_ID))));

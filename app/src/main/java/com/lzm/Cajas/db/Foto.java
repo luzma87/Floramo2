@@ -49,6 +49,18 @@ public class Foto {
         return lugar;
     }
 
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public double getAltitud() {
+        return altitud;
+    }
+
     public void setCoordenada_id(Long coordenada_id) {
         this.coordenada_id = coordenada_id;
     }
@@ -115,6 +127,11 @@ public class Foto {
     public static List<Foto> findAllByEspecie(Context context, Especie especie) {
         FotoDbHelper e = new FotoDbHelper(context);
         return e.getAllFotosByEspecie(especie);
+    }
+
+    public static List<Foto> findAllByEspecieWithdCoords(Context context, Especie especie) {
+        FotoDbHelper e = new FotoDbHelper(context);
+        return e.getAllFotosByEspecieIdWithCoords(especie.getId());
     }
 
     public List<Foto> findAllSameEspecie(Context context) {

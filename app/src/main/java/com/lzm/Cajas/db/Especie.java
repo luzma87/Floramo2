@@ -60,6 +60,10 @@ public class Especie {
         return nombre;
     }
 
+    public String getNombreCientifico() {
+        return genero + " " + nombre.toLowerCase();
+    }
+
     public String getFecha() {
         return fecha;
     }
@@ -191,7 +195,7 @@ public class Especie {
 
     public static List<Especie> list(Context context) {
         EspecieDbHelper e = new EspecieDbHelper(context);
-        return e.getAllEspecies();
+        return e.getBusqueda();
     }
 
     public static int count(Context context) {
