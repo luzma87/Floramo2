@@ -17,6 +17,7 @@ public class Foto {
 
     private Long lugar_id;
     private String lugarIcon;
+    private String lugar;
 
     private String path;
 
@@ -42,6 +43,10 @@ public class Foto {
 
     public String getLugarIcon() {
         return lugarIcon;
+    }
+
+    public String getLugar() {
+        return lugar;
     }
 
     public void setCoordenada_id(Long coordenada_id) {
@@ -74,6 +79,10 @@ public class Foto {
 
     public void setLugarIcon(String lugarIcon) {
         this.lugarIcon = lugarIcon;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
     }
 
     public void setId(long id) {

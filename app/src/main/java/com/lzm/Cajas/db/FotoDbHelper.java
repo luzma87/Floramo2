@@ -105,7 +105,9 @@ public class FotoDbHelper extends DbHelper {
                 "f.path path," +
                 "f.coordenada_id coordenada_id," +
                 "f.lugar_id lugar_id," +
-                "l.icon lugar_icon FROM " + TABLE_FOTO + " f " +
+                "l.icon lugar_icon," +
+                "l.nombre lugar_nombre" +
+                " FROM " + TABLE_FOTO + " f " +
                 " LEFT JOIN " + TABLE_LUGAR + " l ON f.lugar_id = l.id" +
                 " WHERE " + KEY_ESPECIE_ID + " = " + especieId;
 

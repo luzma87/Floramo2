@@ -80,7 +80,6 @@ public class TitledCardView extends CardView {
                 TextHelper.setTextWithLinks((MainActivity) context, content, contentText);
             }
         } else {
-//            content.setText(Html.fromHtml(contentText));
             content.setText(contentText);
         }
     }

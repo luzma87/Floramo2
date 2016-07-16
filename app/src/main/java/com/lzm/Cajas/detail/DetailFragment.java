@@ -29,6 +29,7 @@ import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -82,11 +83,50 @@ public class DetailFragment extends Fragment {
         setSpecies(view);
         setColors(view);
         setLifeForms(view);
+        setPlaces(view);
         setDescription(view);
 
         initImageGallery(view);
 
         return view;
+    }
+
+    private void setPlaces(View view) {
+        LinearLayout placeIconsLayout = (LinearLayout) view.findViewById(R.id.detail_places_layout);
+        ArrayList<String[]> places = new ArrayList<>();
+        for (Foto photo : photos) {
+            String placeIcon = photo.getLugarIcon();
+            String placeName = photo.getLugar();
+            String[] place = {placeIcon, placeName};
+            if (!places.contains(place)) {
+                places.add(place);
+            }
+        }
+        for (String[] place : places) {
+            TextView textView = new TextView(context);
+            if (Build.VERSION.SDK_INT < 23) {
+                textView.setTextAppearance(context, R.style.detail_info);
+            } else {
+                textView.setTextAppearance(R.style.detail_info);
+            }
+            textView.setText(place[1]);
+
+            int icon_size = Utils.dp2px(context, 20);
+            int margin = Utils.dp2px(context, 5);
+            RoundedImageView viewLugar = new RoundedImageView(context);
+            LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(icon_size, icon_size);
+            parms.setMargins(0, 0, margin, 0);
+            viewLugar.setLayoutParams(parms);
+            int lugarIcon = ResourcesHelper.getImageResourceByName(context, place[0]);
+            viewLugar.setImageResource(lugarIcon);
+
+            LinearLayout placeLayout = new LinearLayout(context);
+
+            placeLayout.addView(viewLugar);
+            placeLayout.addView(textView);
+
+            placeIconsLayout.addView(placeLayout);
+        }
     }
 
     private void setSpecies(View view) {
