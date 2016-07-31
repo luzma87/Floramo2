@@ -3,8 +3,9 @@ package com.lzm.Cajas.map;
 import android.graphics.Bitmap;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.maps.android.clustering.ClusterItem;
 
-public class EspecieMarker {
+public class EspecieMarker implements ClusterItem {
 
     private final LatLng coords;
     private final String nombre;
@@ -16,11 +17,16 @@ public class EspecieMarker {
         this.coords = coords;
     }
 
-    public LatLng getCoords() {
-        return coords;
+    public Bitmap getFoto() {
+        return foto;
     }
 
-    public String getNombre() {
+    public String getName() {
         return nombre;
+    }
+
+    @Override
+    public LatLng getPosition() {
+        return coords;
     }
 }

@@ -15,9 +15,6 @@ import com.lzm.Cajas.helpers.ResourcesHelper;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Created by luz on 7/16/16.
- */
 public class EspecieLoader implements Runnable {
     private MainActivity context;
     private Especie especie;
