@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -219,7 +218,6 @@ public class MainActivity extends AppCompatActivity
                 setActiveFragment(fragmentToOpen);
                 break;
         }
-//        navigationView.getMenu().getItem(fragmentToOpen).setChecked(true);
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
     }
 
@@ -237,7 +235,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem itemSearch = menu.findItem(R.id.action_search);
@@ -295,7 +292,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         switch (id) {
@@ -419,7 +415,6 @@ public class MainActivity extends AppCompatActivity
     private void setUpClusterer() {
         clusterManager = new ClusterManager<>(this, googleMap);
         clusterManager.setRenderer(new EspecieRenderer<>(this, googleMap, clusterManager));
-//        googleMap.setOnCameraChangeListener(clusterManager);
         googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
             @Override
             public void onCameraChange(CameraPosition cameraPosition) {
@@ -434,20 +429,6 @@ public class MainActivity extends AppCompatActivity
     private void createSpeciesMarkers() {
         ArrayList<Especie> especies = (ArrayList<Especie>) Especie.list(this);
         for (Especie especie : especies) {
-//            List<Foto> fotos = Foto.findAllByEspecieWithdCoords(this, especie);
-//            String nombre = especie.getNombreCientifico();
-//            for (Foto foto : fotos) {
-//                LatLng latLng = new LatLng(foto.getLatitud(), foto.getLongitud());
-//                Bitmap bitmap;
-//                String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
-//                try {
-//                    bitmap = ResourcesHelper.getEncyclopediaAssetByName(this, path);
-//                    EspecieMarker especieMarker = new EspecieMarker(nombre, bitmap, latLng);
-//                    clusterManager.addItem(especieMarker);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
             ExecutorService queue = Executors.newSingleThreadExecutor();
             queue.execute(new EspecieLoader(this, especie));
         }
