@@ -2,6 +2,7 @@ package com.lzm.Cajas.helpers;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -28,39 +29,24 @@ public class FragmentHelper {
         FragmentManager fragmentManager = context.getFragmentManager();
 
         RelativeLayout mapLayout = (RelativeLayout) context.findViewById(R.id.map_layout);
-        if (mapLayout != null) {
-            if (fragment != null) {
-                if (args != null) {
-                    fragment.setArguments(args);
-                }
-                if (backstack) {
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                            .replace(R.id.fragment_container, fragment)
-                            .addToBackStack("")
-                            .commit();
-                } else {
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                            .replace(R.id.fragment_container, fragment)
-                            .commit();
-                }
-                mapLayout.setVisibility(View.GONE);
-            } else {
-                if (backstack) {
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                            .hide(fragmentManager.findFragmentById(R.id.fragment_container))
-                            .addToBackStack("")
-                            .commit();
-                } else {
-                    fragmentManager.beginTransaction()
-                            .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                            .hide(fragmentManager.findFragmentById(R.id.fragment_container))
-                            .commit();
-                }
-                mapLayout.setVisibility(View.VISIBLE);
-            }
+        if (mapLayout == null) {
+            return;
         }
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
+        if (fragment == null) {
+            mapLayout.setVisibility(View.VISIBLE);
+            fragmentTransaction.hide(fragmentManager.findFragmentById(R.id.fragment_container));
+        } else {
+            mapLayout.setVisibility(View.GONE);
+            if (args != null) {
+                fragment.setArguments(args);
+            }
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+        }
+        if (backstack) {
+            fragmentTransaction.addToBackStack(null);
+        }
+        fragmentTransaction.commit();
     }
 }

@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        openFragment(FloramoFragment.ENCYCLOPEDIA);
+        int titleRes = FloramoFragment.ENCYCLOPEDIA.getTitleId();
+        FragmentHelper.openFragment(this, encyclopediaFragment, getString(titleRes), false);
     }
 
     private void manageNewsDialog() {
