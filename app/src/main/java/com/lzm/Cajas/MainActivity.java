@@ -33,25 +33,27 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.maps.android.clustering.ClusterManager;
 import com.lzm.Cajas.credits.AboutFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
+import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.db.DbHelper;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;
-import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
 import com.lzm.Cajas.map.EspecieLoader;
 import com.lzm.Cajas.map.EspecieMarker;
 import com.lzm.Cajas.map.EspecieRenderer;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
+import com.lzm.Cajas.tropicos.TropicosFragment;
 import com.lzm.Cajas.tropicos.TropicosSearchResult;
 import com.lzm.Cajas.tropicos.TropicosSearchResultFragment;
-import com.lzm.Cajas.tropicos.TropicosFragment;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import static com.lzm.Cajas.enums.FloramoFragment.*;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String VERSION_FOR_DIALOG = "versionForDialog";
 
-    FloramoFragment activeFragment = FloramoFragment.ENCYCLOPEDIA;
+    FloramoFragment activeFragment = ENCYCLOPEDIA;
     private EncyclopediaFragment encyclopediaFragment;
     private SearchResults searchResults;
     private SearchFragment searchFragment;
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        int titleRes = FloramoFragment.ENCYCLOPEDIA.getTitleId();
+        int titleRes = ENCYCLOPEDIA.getTitleId();
         FragmentHelper.openFragment(this, encyclopediaFragment, getString(titleRes), false);
     }
 
@@ -248,7 +250,7 @@ public class MainActivity extends AppCompatActivity
         MenuItem itemSortName = menu.findItem(R.id.action_sort_name);
 
         if (itemSortName != null) {
-            if (activeFragment == FloramoFragment.ENCYCLOPEDIA) {
+            if (activeFragment == ENCYCLOPEDIA) {
                 String encyclopediaSort = encyclopediaFragment.getSort();
                 if (encyclopediaSort.equals(SearchResults.SORT_BY_FAMILY)) {
                     itemSortName.setVisible(true);
@@ -257,7 +259,7 @@ public class MainActivity extends AppCompatActivity
                     itemSortName.setVisible(false);
                     itemSortFamily.setVisible(true);
                 }
-            } else if (activeFragment == FloramoFragment.MAP) {
+            } else if (activeFragment == MAP) {
                 itemSortName.setVisible(false);
                 itemSortFamily.setVisible(false);
             } else {
@@ -280,10 +282,10 @@ public class MainActivity extends AppCompatActivity
                 encyclopediaFragment.setSort(SearchResults.SORT_BY_FAMILY);
                 break;
             case R.id.action_search:
-                if (activeFragment == FloramoFragment.SEARCH) {
+                if (activeFragment == SEARCH) {
                     searchFragment.buttonSearchClick();
                 } else {
-                    openFragment(FloramoFragment.SEARCH);
+                    openFragment(SEARCH);
                 }
                 break;
         }
@@ -297,34 +299,34 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             case R.id.nav_encyclopedia:
-                openFragment(FloramoFragment.ENCYCLOPEDIA);
+                openFragment(ENCYCLOPEDIA);
                 break;
             case R.id.nav_search:
-                openFragment(FloramoFragment.SEARCH);
+                openFragment(SEARCH);
                 break;
             case R.id.nav_tropicos:
-                openFragment(FloramoFragment.TROPICOS);
+                openFragment(TROPICOS);
                 break;
             case R.id.nav_about_paramo:
-                openFragment(FloramoFragment.ABOUT_PARAMO);
+                openFragment(ABOUT_PARAMO);
                 break;
             case R.id.nav_about_cajas:
-                openFragment(FloramoFragment.ABOUT_CAJAS);
+                openFragment(ABOUT_CAJAS);
                 break;
             case R.id.nav_about_quito:
-                openFragment(FloramoFragment.ABOUT_QUITO);
+                openFragment(ABOUT_QUITO);
                 break;
             case R.id.nav_about_app:
-                openFragment(FloramoFragment.ABOUT_APP);
+                openFragment(ABOUT_APP);
                 break;
             case R.id.nav_credits:
-                openFragment(FloramoFragment.CREDITS);
+                openFragment(CREDITS);
                 break;
             case R.id.nav_feedback:
-                openFragment(FloramoFragment.FEEDBACK);
+                openFragment(FEEDBACK);
                 break;
             case R.id.nav_map:
-                openFragment(FloramoFragment.MAP);
+                openFragment(MAP);
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -337,19 +339,19 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onPlantSelected(Long speciesId) {
         detailSpeciesId = speciesId;
-        openFragment(FloramoFragment.DETAILS);
+        openFragment(DETAILS);
     }
 
     @Override
     public void onSearchPerformed(ArrayList<Long> colors, ArrayList<Long> lifeForms, String text, String conditional) {
         searchResults = new SearchResults(this, colors, lifeForms, text, conditional);
-        openFragment(FloramoFragment.ENCYCLOPEDIA, false);
+        openFragment(ENCYCLOPEDIA, false);
     }
 
     @Override
     public void onDetailTropicosClicked(String url) {
         this.url = url;
-        openFragment(FloramoFragment.WEB_VIEW, false);
+        openFragment(WEB_VIEW, false);
     }
 
     public void onTropicosSearchPerformed(final String response, final ProgressDialog dialog) {
@@ -369,7 +371,7 @@ public class MainActivity extends AppCompatActivity
     public void onTropicosItemClicked(TropicosSearchResult item) {
         String baseUrl = getString(R.string.appInfo_tropicos_base_url);
         url = baseUrl + item.getNameId();
-        openFragment(FloramoFragment.WEB_VIEW, false);
+        openFragment(WEB_VIEW, false);
     }
 
     @Override
@@ -377,9 +379,9 @@ public class MainActivity extends AppCompatActivity
         super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putSerializable(SAVED_ACTIVE_FRAGMENT, activeFragment);
         savedInstanceState.putParcelable(SAVED_SEARCH_RESULTS, searchResults);
-        if (activeFragment == FloramoFragment.DETAILS) {
+        if (activeFragment == DETAILS) {
             savedInstanceState.putSerializable(SAVED_DETAIL_SPECIES_ID, detailSpeciesId);
-        } else if (activeFragment == FloramoFragment.WEB_VIEW) {
+        } else if (activeFragment == WEB_VIEW) {
             savedInstanceState.putString(SAVED_URL, url);
         }
     }
@@ -388,13 +390,13 @@ public class MainActivity extends AppCompatActivity
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         activeFragment = (FloramoFragment) savedInstanceState.getSerializable(SAVED_ACTIVE_FRAGMENT);
-        if (activeFragment == FloramoFragment.DETAILS) {
+        if (activeFragment == DETAILS) {
             detailSpeciesId = Long.parseLong(savedInstanceState.getSerializable(SAVED_DETAIL_SPECIES_ID).toString());
         }
-        if (activeFragment == FloramoFragment.ENCYCLOPEDIA) {
+        if (activeFragment == ENCYCLOPEDIA) {
             searchResults = savedInstanceState.getParcelable(SAVED_SEARCH_RESULTS);
         }
-        if (activeFragment == FloramoFragment.WEB_VIEW) {
+        if (activeFragment == WEB_VIEW) {
             url = savedInstanceState.getString(SAVED_URL);
         }
         openFragment(activeFragment, false);
