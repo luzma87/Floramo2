@@ -12,18 +12,17 @@ import com.google.maps.android.clustering.Cluster;
 import com.google.maps.android.clustering.ClusterManager;
 import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
-import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
 
 public class EspecieRenderer<T extends EspecieMarker> extends DefaultClusterRenderer<T> {
     private final IconGenerator iconGenerator;
     private final ImageView imageView;
     private final int dimension;
-    MainActivity mainActivity;
+    private final FloramoMapFragment floramoMapFragment;
 
-    public EspecieRenderer(Context context, GoogleMap map, ClusterManager<T> clusterManager) {
+    public EspecieRenderer(FloramoMapFragment floramoMapFragment, Context context, GoogleMap map, ClusterManager<T> clusterManager) {
         super(context, map, clusterManager);
-        this.mainActivity = (MainActivity) context;
+        this.floramoMapFragment = floramoMapFragment;
 
         iconGenerator = new IconGenerator(context);
         imageView = new ImageView(context);
@@ -50,8 +49,8 @@ public class EspecieRenderer<T extends EspecieMarker> extends DefaultClusterRend
 
     @Override
     protected boolean shouldRenderAsCluster(Cluster cluster) {
-        float currentZoom = mainActivity.getClusterZoom();
-        return currentZoom < 11.5 && cluster.getSize() >= 5;
+        float currentZoom = floramoMapFragment.getClusterZoom();
+        return currentZoom < 11.5 && cluster.getSize() > 1;
     }
 
 }

@@ -24,13 +24,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.maps.android.clustering.ClusterManager;
 import com.lzm.Cajas.credits.AboutFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.credits.FeedbackFragment;
@@ -40,9 +33,7 @@ import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
-import com.lzm.Cajas.map.EspecieLoader;
-import com.lzm.Cajas.map.EspecieMarker;
-import com.lzm.Cajas.map.EspecieRenderer;
+import com.lzm.Cajas.map.FloramoMapFragment;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
 import com.lzm.Cajas.tropicos.TropicosFragment;
@@ -50,14 +41,11 @@ import com.lzm.Cajas.tropicos.TropicosSearchResult;
 import com.lzm.Cajas.tropicos.TropicosSearchResultFragment;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static com.lzm.Cajas.enums.FloramoFragment.*;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        OnMapReadyCallback,
         EncyclopediaFragment.OnEncyclopediaInteractionListener,
         DetailFragment.OnDetailInteractionListener,
         SearchFragment.OnSearchInteractionListener,
@@ -76,11 +64,6 @@ public class MainActivity extends AppCompatActivity
     private SearchFragment searchFragment;
     private Long detailSpeciesId;
     private String url;
-
-    private GoogleMap googleMap;
-
-    private ClusterManager<EspecieMarker> clusterManager;
-    private float clusterZoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,10 +95,6 @@ public class MainActivity extends AppCompatActivity
 
         searchResults = new SearchResults(this);
         encyclopediaFragment = EncyclopediaFragment.newInstance();
-
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
 
         int titleRes = ENCYCLOPEDIA.getTitleId();
         FragmentHelper.openFragment(this, encyclopediaFragment, getString(titleRes), false);
@@ -217,8 +196,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = WebViewFragment.newInstance(url);
                 break;
             case MAP:
-                fragment = null;
-                setActiveFragment(fragmentToOpen);
+                fragment = FloramoMapFragment.newInstance();
                 break;
         }
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
@@ -405,49 +383,5 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
-        LatLng latLng = new LatLng(-2.84360424, -79.2282486);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
-        setUpClusterer();
-    }
-
-    private void setUpClusterer() {
-        clusterManager = new ClusterManager<>(this, googleMap);
-        clusterManager.setRenderer(new EspecieRenderer<>(this, googleMap, clusterManager));
-        googleMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
-            @Override
-            public void onCameraChange(CameraPosition cameraPosition) {
-                clusterZoom = cameraPosition.zoom;
-                clusterManager.onCameraChange(cameraPosition);
-            }
-        });
-        googleMap.setOnMarkerClickListener(clusterManager);
-        createSpeciesMarkers();
-    }
-
-    private void createSpeciesMarkers() {
-        ArrayList<Especie> especies = (ArrayList<Especie>) Especie.list(this);
-        for (Especie especie : especies) {
-            ExecutorService queue = Executors.newSingleThreadExecutor();
-            queue.execute(new EspecieLoader(this, especie));
-        }
-    }
-
-    public float getClusterZoom() {
-        return clusterZoom;
-    }
-
-    public void addSpeciesMarker(final EspecieMarker especieMarker) {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                clusterManager.addItem(especieMarker);
-            }
-        });
     }
 }

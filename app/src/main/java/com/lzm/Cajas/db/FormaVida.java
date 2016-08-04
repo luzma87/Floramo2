@@ -3,7 +3,6 @@ package com.lzm.Cajas.db;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FormaVida {
     private long id = 0;

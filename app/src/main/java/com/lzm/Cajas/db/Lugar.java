@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Lugar {
     private long id = 0;

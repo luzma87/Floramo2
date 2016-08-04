@@ -2,22 +2,17 @@ package com.lzm.Cajas.encyclopedia;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.SectionIndexer;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
+import com.lzm.Cajas.customComponents.indexableList.StringMatcher;
 import com.lzm.Cajas.db.Especie;
 import com.lzm.Cajas.db.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
-import com.lzm.Cajas.customComponents.indexableList.StringMatcher;
 import com.lzm.Cajas.helpers.Utils;
 import com.makeramen.roundedimageview.RoundedImageView;
 
