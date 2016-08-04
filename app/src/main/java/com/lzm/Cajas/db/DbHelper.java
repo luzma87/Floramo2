@@ -87,6 +87,25 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 28) {
             updateWhenVersionLessThan28(db);
         }
+        if (oldVersion < 29) {
+            updateWhenVersionLessThan29(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan29(SQLiteDatabase db) {
+        // Huperzia crassa -> usar Phlegmariurus crassus. Nuevo Tropicos ID 100364214
+        db.execSQL("UPDATE " + TABLE_GENERO + " SET " + GeneroDbHelper.KEY_NOMBRE + " = \"Phlegmariurus\" WHERE " + GeneroDbHelper.KEY_ID + " = 167");
+        db.execSQL("UPDATE " + TABLE_GENERO + " SET " + GeneroDbHelper.KEY_NOMBRE_NORM + " = \"phlegmariurus\" WHERE " + GeneroDbHelper.KEY_ID + " = 167");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_NOMBRE + " = \"crassus\" WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_NOMBRE_NORM + " = \"crassus\" WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_ID_TROPICOS + " = \"100364214\" WHERE " + EspecieDbHelper.KEY_ID + " = 168");
+
+        // Scirpus rigidus -> usar Schoenoplectus californicus. Nuevo Tropicos ID 9904887
+        db.execSQL("UPDATE " + TABLE_GENERO + " SET " + GeneroDbHelper.KEY_NOMBRE + " = \"Schoenoplectus\" WHERE " + GeneroDbHelper.KEY_ID + " = 307");
+        db.execSQL("UPDATE " + TABLE_GENERO + " SET " + GeneroDbHelper.KEY_NOMBRE_NORM + " = \"schoenoplectus\" WHERE " + GeneroDbHelper.KEY_ID + " = 307");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_NOMBRE + " = \"californicus\" WHERE " + EspecieDbHelper.KEY_ID + " = 308");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_NOMBRE_NORM + " = \"californicus\" WHERE " + EspecieDbHelper.KEY_ID + " = 308");
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_ID_TROPICOS + " = \"9904887\" WHERE " + EspecieDbHelper.KEY_ID + " = 308");
     }
 
     private void updateWhenVersionLessThan28(SQLiteDatabase db) {
