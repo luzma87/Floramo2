@@ -33,7 +33,6 @@ import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.FragmentHelper;
-import com.lzm.Cajas.map.FloramoMapFragment;
 import com.lzm.Cajas.search.SearchFragment;
 import com.lzm.Cajas.search.SearchResults;
 import com.lzm.Cajas.tropicos.TropicosFragment;
@@ -195,9 +194,6 @@ public class MainActivity extends AppCompatActivity
             case WEB_VIEW:
                 fragment = WebViewFragment.newInstance(url);
                 break;
-            case MAP:
-                fragment = FloramoMapFragment.newInstance();
-                break;
         }
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
     }
@@ -237,9 +233,6 @@ public class MainActivity extends AppCompatActivity
                     itemSortName.setVisible(false);
                     itemSortFamily.setVisible(true);
                 }
-            } else if (activeFragment == MAP) {
-                itemSortName.setVisible(false);
-                itemSortFamily.setVisible(false);
             } else {
                 itemSortName.setVisible(false);
                 itemSortFamily.setVisible(false);
@@ -302,9 +295,6 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_feedback:
                 openFragment(FEEDBACK);
-                break;
-            case R.id.nav_map:
-                openFragment(MAP);
                 break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
