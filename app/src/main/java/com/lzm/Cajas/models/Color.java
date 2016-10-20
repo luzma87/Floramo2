@@ -1,6 +1,8 @@
-package com.lzm.Cajas.db;
+package com.lzm.Cajas.models;
 
 import android.content.Context;
+
+import com.lzm.Cajas.repositories.ColorDbHelper;
 
 import java.util.ArrayList;
 

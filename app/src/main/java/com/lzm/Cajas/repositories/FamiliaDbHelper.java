@@ -1,8 +1,11 @@
-package com.lzm.Cajas.db;
+package com.lzm.Cajas.repositories;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.lzm.Cajas.db.DbHelper;
+import com.lzm.Cajas.models.Familia;
 
 import java.util.ArrayList;
 import java.util.List;

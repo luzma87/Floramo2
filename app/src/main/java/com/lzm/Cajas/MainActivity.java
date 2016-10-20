@@ -28,7 +28,7 @@ import com.lzm.Cajas.credits.AboutFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.db.DbHelper;
-import com.lzm.Cajas.db.Especie;
+import com.lzm.Cajas.models.Especie;
 import com.lzm.Cajas.detail.DetailFragment;
 import com.lzm.Cajas.encyclopedia.EncyclopediaFragment;
 import com.lzm.Cajas.enums.FloramoFragment;

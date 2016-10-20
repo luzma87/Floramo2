@@ -4,6 +4,14 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.lzm.Cajas.repositories.ColorDbHelper;
+import com.lzm.Cajas.repositories.EspecieDbHelper;
+import com.lzm.Cajas.repositories.FamiliaDbHelper;
+import com.lzm.Cajas.repositories.FormaVidaDbHelper;
+import com.lzm.Cajas.repositories.FotoDbHelper;
+import com.lzm.Cajas.repositories.GeneroDbHelper;
+import com.lzm.Cajas.repositories.LugarDbHelper;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -20,8 +20,8 @@ import android.widget.*;
 
 import com.lzm.Cajas.MainActivity;
 import com.lzm.Cajas.R;
-import com.lzm.Cajas.db.Especie;
-import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.models.Especie;
+import com.lzm.Cajas.models.Foto;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;

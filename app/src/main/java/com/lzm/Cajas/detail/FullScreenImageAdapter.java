@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.customComponents.TouchImageView;
-import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.models.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 
 import java.io.IOException;

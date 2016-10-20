@@ -8,7 +8,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.lzm.Cajas.MainActivity;
-import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.models.Foto;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 
 import java.io.IOException;

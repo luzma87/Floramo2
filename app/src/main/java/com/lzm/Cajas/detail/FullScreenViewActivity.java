@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import com.lzm.Cajas.R;
 import com.lzm.Cajas.customComponents.CircleView;
-import com.lzm.Cajas.db.Foto;
+import com.lzm.Cajas.models.Foto;
 
 import java.util.ArrayList;
 

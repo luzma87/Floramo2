@@ -1,18 +1,24 @@
-package com.lzm.Cajas.db;
+package com.lzm.Cajas.repositories;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.lzm.Cajas.db.DbHelper;
+import com.lzm.Cajas.models.Lugar;
+
 import java.util.ArrayList;
 
-public class FormaVidaDbHelper extends DbHelper {
+public class LugarDbHelper extends DbHelper {
 
     public static final String KEY_NOMBRE = "nombre";
+    public static final String KEY_NOMBRE_NORM = "nombre_norm";
+    public static final String KEY_PATH = "path";
+    public static final String KEY_ICON = "icon";
 
-    public static final String[] KEYS_FORMA_VIDA = {KEY_NOMBRE};
+    public static final String[] KEYS_LUGAR = {KEY_NOMBRE, KEY_NOMBRE_NORM, KEY_PATH, KEY_ICON};
 
-    public FormaVidaDbHelper(Context context) {
+    public LugarDbHelper(Context context) {
         super(context);
     }
 
@@ -23,19 +29,19 @@ public class FormaVidaDbHelper extends DbHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FORMA_VIDA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_LUGAR);
 
         // create new tables
         onCreate(db);
     }
 
-    public FormaVida getFormaVida(long formavida_id) {
+    public Lugar getLugar(long lugar_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA + " WHERE "
-                + KEY_ID + " = " + formavida_id;
+        String selectQuery = "SELECT  * FROM " + TABLE_LUGAR + " WHERE "
+                + KEY_ID + " = " + lugar_id;
 
         Cursor c = db.rawQuery(selectQuery, null);
-        FormaVida cl = null;
+        Lugar cl = null;
         if (c.getCount() > 0) {
             c.moveToFirst();
             cl = setDatos(c);
@@ -44,44 +50,33 @@ public class FormaVidaDbHelper extends DbHelper {
         return cl;
     }
 
-    public ArrayList<FormaVida> getAllFormasVida() {
+    public ArrayList<Lugar> getAllLugares() {
         SQLiteDatabase db = this.getReadableDatabase();
-        ArrayList<FormaVida> formavidaes = new ArrayList<FormaVida>();
-        String selectQuery = "SELECT  * FROM " + TABLE_FORMA_VIDA;
+        ArrayList<Lugar> lugares = new ArrayList<Lugar>();
+        String selectQuery = "SELECT  * FROM " + TABLE_LUGAR;
 
         Cursor c = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
-                FormaVida cl = setDatos(c);
+                Lugar cl = setDatos(c);
 
                 // adding to tags list
-                formavidaes.add(cl);
+                lugares.add(cl);
             } while (c.moveToNext());
         }
         db.close();
-        return formavidaes;
+        return lugares;
     }
 
-    public int countAllFormasVida() {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT  count(*) count FROM " + TABLE_FORMA_VIDA;
-        Cursor c = db.rawQuery(selectQuery, null);
-        if (c.moveToFirst()) {
-            int count = c.getInt(c.getColumnIndex("count"));
-            db.close();
-            return count;
-        }
-        db.close();
-        return 0;
-    }
-
-    private FormaVida setDatos(Cursor c) {
-        FormaVida cl = new FormaVida(this.context);
+    private Lugar setDatos(Cursor c) {
+        Lugar cl = new Lugar(this.context);
         cl.setId(c.getLong((c.getColumnIndex(KEY_ID))));
         cl.setFecha(c.getString(c.getColumnIndex(KEY_FECHA)));
         cl.setNombre(c.getString(c.getColumnIndex(KEY_NOMBRE)));
+        cl.setPath(c.getString(c.getColumnIndex(KEY_PATH)));
+        cl.setIcon(c.getString(c.getColumnIndex(KEY_ICON)));
         return cl;
     }
 }

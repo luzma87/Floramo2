@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 
 import com.lzm.Cajas.MainActivity;
-import com.lzm.Cajas.db.Especie;
+import com.lzm.Cajas.models.Especie;
 
 import java.util.ArrayList;
 
