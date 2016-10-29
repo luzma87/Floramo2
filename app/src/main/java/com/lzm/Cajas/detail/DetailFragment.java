@@ -87,6 +87,7 @@ public class DetailFragment extends Fragment {
         setLifeForms(view);
         setPlaces(view);
         setDescription(view);
+        setDistribution(view);
 
         initImageGallery(view);
 
@@ -125,6 +126,10 @@ public class DetailFragment extends Fragment {
 
     private void setDescription(View view) {
         setTextView(view, R.id.detail_description, especie.getDescripcion());
+    }
+
+    private void setDistribution(View view) {
+        setTextView(view, R.id.detail_distribution, especie.getDistribucion());
     }
 
     private void setTextView(View view, int textViewId, String text) {

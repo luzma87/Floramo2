@@ -63,6 +63,7 @@
     <string name="detail_life_form">Life form</string>
     <string name="detail_place">Found in</string>
     <string name="detail_species">Species</string>
+    <string name="detail_distribution">Distribution</string>
 
     <string name="dialog_button_close">Close</string>
 

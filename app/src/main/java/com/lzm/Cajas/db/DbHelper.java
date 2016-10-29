@@ -21,7 +21,7 @@ import java.util.Locale;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 31;
+    public static final int DATABASE_VERSION = 32;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -112,7 +112,8 @@ public class DbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private void updateWhenVersionLessThan31(SQLiteDatabase db) {
+    public void updateWhenVersionLessThan31(SQLiteDatabase db) {
+        System.out.println("****************************** UPDATING ALL DB ******************************");
         upgradeTable(db, TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR);
         upgradeTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
         upgradeTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
@@ -461,20 +462,20 @@ public class DbHelper extends SQLiteOpenHelper {
         dbInserter.insertEspecies();
     }
 
-    public void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
+    private void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
         dropTable(db, tableName);
         db.execSQL(createTableSql(tableName, common, columnNames));
     }
 
-    public void createTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
+    private void createTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
         db.execSQL(createTableSql(tableName, common, columnNames));
     }
 
-    public void dropTable(SQLiteDatabase db, String tableName) {
+    private void dropTable(SQLiteDatabase db, String tableName) {
         db.execSQL("DROP TABLE " + tableName);
     }
 
-    public static String createTableSql(String tableName, String[] common, String[] columnNames) {
+    private static String createTableSql(String tableName, String[] common, String[] columnNames) {
         String sql = "CREATE TABLE " + tableName + " (" +
                 common[0] + " INTEGER PRIMARY KEY," + //id
                 common[1] + " DATETIME"; //date

@@ -208,6 +208,26 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_column="1"
+                            android:text="@string/detail_distribution" />
+
+                        <TextView
+                            android:id="@+id/detail_distribution"
+                            style="@style/detail_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:text="distribucion" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent">
+
+                        <TextView
+                            style="@style/detail_info_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="1"
                             android:text="@string/detail_place" />
 
                         <LinearLayout

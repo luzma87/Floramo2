@@ -55,6 +55,7 @@
     <string name="detail_life_form">Forma de vida</string>
     <string name="detail_place">Se encuentra en</string>
     <string name="detail_species">Especie</string>
+    <string name="detail_distribution">Distribución</string>
 
     <string name="dialog_button_close">Cerrar</string>
 

@@ -30,6 +30,10 @@ public class Especie {
 
     private Long idTropicos;
 
+    private String distribucionEn;
+    private String distribucionEs;
+    private String thumbnail;
+
     EspecieDbHelper especieDbHelper;
 
     Context context;
@@ -109,8 +113,35 @@ public class Especie {
         return description;
     }
 
+    public String getDistribucion() {
+        String language = Locale.getDefault().getLanguage();
+        String description;
+        if (language.equals("en")) {
+            description = distribucionEn;
+        } else {
+            description = distribucionEs;
+        }
+        return description;
+    }
+
+    public String getThumbnail() {
+        return this.thumbnail;
+    }
+
     public void setDescripcionEs(String descripcionEs) {
         this.descripcionEs = descripcionEs;
+    }
+
+    public void setDistribucionEn(String distribucionEn) {
+        this.distribucionEn = distribucionEn;
+    }
+
+    public void setDistribucionEs(String distribucionEs) {
+        this.distribucionEs = distribucionEs;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getAutor() {

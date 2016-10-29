@@ -19,6 +19,7 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements SectionIndexer {
 
@@ -43,14 +44,6 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         }
 
         Especie especie = especies.get(position);
-
-        List<Foto> fotos = Foto.findAllByEspecie(context, especie);
-        Foto foto = null;
-        if (fotos.size() > 0) {
-            foto = fotos.get(0);
-            LinearLayout layoutLugares = (LinearLayout) convertView.findViewById(R.id.encyclopedia_row_layout_lugares);
-            layoutLugares.removeAllViews();
-        }
 
         String labelNombreCientifico = especie.getGenero() + " " + especie.getNombre();
         String labelNombreFamilia = especie.getFamilia();
@@ -82,9 +75,9 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         } else {
             itemFormaVida2.setVisibility(View.GONE);
         }
-
-        if (foto != null) {
-            String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
+        String thumbnail = especie.getThumbnail();
+        if (!thumbnail.equals("")) {
+            String path = "thumbnails/" + thumbnail.replaceAll("-", "_");
             try {
                 Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                 itemFoto.setImageBitmap(bitmap);

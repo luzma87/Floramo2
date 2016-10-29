@@ -76,7 +76,10 @@ public class EspecieDbHelper extends DbHelper {
                 "    e.id_tropicos tropicos," +
                 "    e.descripcion_es desc_es," +
                 "    e.descripcion_en desc_en," +
+                "    e.distribucion_es dist_es," +
+                "    e.distribucion_en dist_en," +
                 "    e.autor autor," +
+                "    e.thumbnail thumbnail," +
                 "    g.nombre genero," +
                 "    f.nombre familia," +
                 "    c1.nombre color1," +
@@ -150,6 +153,9 @@ public class EspecieDbHelper extends DbHelper {
                 "    e.id_tropicos tropicos," +
                 "    e.descripcion_es desc_es," +
                 "    e.descripcion_en desc_en," +
+                "    e.distribucion_es dist_es," +
+                "    e.distribucion_en dist_en," +
+                "    e.thumbnail thumbnail," +
                 "    e.autor autor," +
                 "    g.nombre genero," +
                 "    f.nombre familia," +
@@ -294,6 +300,9 @@ public class EspecieDbHelper extends DbHelper {
         es.setIdTropicos(c.getLong(c.getColumnIndex("tropicos")));
         es.setDescripcionEn(c.getString(c.getColumnIndex("desc_en")));
         es.setDescripcionEs(c.getString(c.getColumnIndex("desc_es")));
+        es.setDistribucionEn(c.getString(c.getColumnIndex("dist_en")));
+        es.setDistribucionEs(c.getString(c.getColumnIndex("dist_es")));
+        es.setThumbnail(c.getString(c.getColumnIndex("thumbnail")));
         es.setAutor(c.getString(c.getColumnIndex("autor")));
         return es;
     }
