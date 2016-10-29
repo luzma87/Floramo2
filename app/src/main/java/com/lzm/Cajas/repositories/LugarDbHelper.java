@@ -22,7 +22,7 @@ public class LugarDbHelper extends DbHelper {
     public static final String KEY_PATH = "path";
     public static final String KEY_ICON = "icon";
 
-    public static final String[] KEYS_LUGAR = {KEY_NOMBRE, KEY_NOMBRE_NORM, KEY_PATH, KEY_ICON};
+    public static final String[] KEYS_LUGAR = {KEY_NOMBRE, KEY_NOMBRE_NORM, KEY_PATH};
 
     public LugarDbHelper(Context context) {
         super(context);

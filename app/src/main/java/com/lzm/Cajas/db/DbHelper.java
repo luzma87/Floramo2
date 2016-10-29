@@ -21,7 +21,7 @@ import java.util.Locale;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 30;
+    public static final int DATABASE_VERSION = 31;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -77,6 +77,8 @@ public class DbHelper extends SQLiteOpenHelper {
         updateWhenVersionLessThan28(db);
         updateWhenVersionLessThan29(db);
         updateWhenVersionLessThan30(db);
+
+        updateWhenVersionLessThan31(db);
     }
 
     @Override
@@ -105,6 +107,23 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 30) {
             updateWhenVersionLessThan30(db);
         }
+        if (oldVersion < 31) {
+            updateWhenVersionLessThan31(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan31(SQLiteDatabase db) {
+        upgradeTable(db, TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR);
+        upgradeTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
+        upgradeTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
+        upgradeTable(db, TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA);
+        upgradeTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
+        upgradeTable(db, TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE);
+        upgradeTable(db, TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA);
+        upgradeTable(db, TABLE_SPECIES_PLACES, KEYS_COMMON, SpeciesPlacesDbHelper.KEYS_SPECIES_PLACES);
+
+        DbInserter2 dbInserter2 = new DbInserter2(db);
+        dbInserter2.insertDb();
     }
 
     private void updateWhenVersionLessThan30(SQLiteDatabase db) {

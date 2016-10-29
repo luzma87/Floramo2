@@ -28,9 +28,13 @@ public class EspecieDbHelper extends DbHelper {
     public static final String KEY_DESCRIPCION_EN = "descripcion_en";
     public static final String KEY_AUTOR = "autor";
 
+    public static final String KEY_DISTRIBUCION_ES = "distribucion_es";
+    public static final String KEY_DISTRIBUCION_EN = "distribucion_en";
+    public static final String KEY_THUMBNAIL = "thumbnail";
+
     public static final String[] KEYS_ESPECIE = {KEY_NOMBRE_COMUN, KEY_NOMBRE_COMUN_NORM, KEY_NOMBRE, KEY_NOMBRE_NORM,
             KEY_GENERO_ID, KEY_COLOR1_ID, KEY_COLOR2_ID, KEY_FORMA_VIDA1_ID, KEY_FORMA_VIDA2_ID, KEY_ID_TROPICOS,
-            KEY_DESCRIPCION_ES, KEY_DESCRIPCION_EN, KEY_AUTOR};
+            KEY_DESCRIPCION_ES, KEY_DESCRIPCION_EN, KEY_AUTOR, KEY_DISTRIBUCION_ES, KEY_DISTRIBUCION_EN, KEY_THUMBNAIL};
 
     public EspecieDbHelper(Context context) {
         super(context);
