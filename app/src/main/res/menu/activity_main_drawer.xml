@@ -16,11 +16,13 @@
             android:icon="@drawable/ic_tropicos"
             android:title="@string/menu_tropicos" />
     </group>
-    <group
-        android:id="@+id/menu_about"
-        android:checkableBehavior="single">
-        <item android:title="@string/menu_group_about">
-            <menu>
+    <item
+        android:id="@+id/menu2"
+        android:title="@string/menu_group_about">
+        <menu>
+            <group
+                android:id="@+id/menu_about"
+                android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_about_paramo"
                     android:icon="@drawable/ic_about_paramo_24dp"
@@ -37,10 +39,9 @@
                     android:id="@+id/nav_about_app"
                     android:icon="@drawable/ic_about_app_24dp"
                     android:title="@string/menu_about_this_app" />
-            </menu>
-        </item>
-    </group>
-
+            </group>
+        </menu>
+    </item>
     <group
         android:id="@+id/menu_misc"
         android:checkableBehavior="single">

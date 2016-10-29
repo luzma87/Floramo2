@@ -24,7 +24,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.lzm.Cajas.credits.AboutAppFragment;
+import com.lzm.Cajas.credits.AboutCajasFragment;
 import com.lzm.Cajas.credits.AboutFragment;
+import com.lzm.Cajas.credits.AboutParamoFragment;
+import com.lzm.Cajas.credits.AboutQuitoFragment;
 import com.lzm.Cajas.credits.CreditsFragment;
 import com.lzm.Cajas.credits.FeedbackFragment;
 import com.lzm.Cajas.db.DbHelper;
@@ -173,19 +177,19 @@ public class MainActivity extends AppCompatActivity
                 fragment = TropicosFragment.newInstance();
                 break;
             case ABOUT_PARAMO:
-                fragment = AboutFragment.newInstance(fragmentToOpen);
+                fragment = AboutParamoFragment.newInstance();
                 titleRes = R.string.title_about;
                 break;
             case ABOUT_CAJAS:
-                fragment = AboutFragment.newInstance(fragmentToOpen);
+                fragment = AboutCajasFragment.newInstance();
                 titleRes = R.string.title_about;
                 break;
             case ABOUT_QUITO:
-                fragment = AboutFragment.newInstance(fragmentToOpen);
+                fragment = AboutQuitoFragment.newInstance();
                 titleRes = R.string.title_about;
                 break;
             case ABOUT_APP:
-                fragment = AboutFragment.newInstance(fragmentToOpen);
+                fragment = AboutAppFragment.newInstance();
                 titleRes = R.string.title_about;
                 break;
             case CREDITS:

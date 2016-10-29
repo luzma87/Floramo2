@@ -11,10 +11,10 @@ public enum FloramoFragment {
     TROPICOS_RESULTS(R.string.title_tropicos),
     WEB_VIEW(R.string.title_webview),
     CREDITS(R.string.title_credits),
-    ABOUT_CAJAS(R.string.title_about_cajas),
-    ABOUT_QUITO(R.string.title_about_quito),
-    ABOUT_PARAMO(R.string.title_about_paramo),
-    ABOUT_APP(R.string.title_about_app);
+    ABOUT_CAJAS(R.string.menu_about_cajas),
+    ABOUT_QUITO(R.string.menu_about_dmq),
+    ABOUT_PARAMO(R.string.menu_about_paramo),
+    ABOUT_APP(R.string.menu_about_this_app);
 
     private int titleId;
 
