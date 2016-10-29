@@ -77,12 +77,12 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         }
         String thumbnail = especie.getThumbnail();
         if (!thumbnail.equals("")) {
-            String path = "thumbnails/" + thumbnail.replaceAll("-", "_");
+            String path = "v2/thumbnails/" + thumbnail;
             try {
                 Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                 itemFoto.setImageBitmap(bitmap);
             } catch (IOException e) {
-                System.out.println("*********************************************************");
+                System.out.println("************************ ENCYCLOPEDIA *********************************");
                 e.printStackTrace();
                 System.out.println("*********************************************************");
             }

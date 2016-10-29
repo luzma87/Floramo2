@@ -50,14 +50,16 @@ public class DetailGridViewAdapter extends BaseAdapter {
         }
 
         Foto foto = photos.get(position);
-        String path = "new/" + foto.getPath().replaceAll("-", "_").toLowerCase();
+        String path = "v2/new/" + foto.getPath();
         try {
             Bitmap image = ResourcesHelper.getEncyclopediaAssetByName(context, path);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
             imageView.setImageBitmap(image);
         } catch (IOException e) {
+            System.out.println(".............................. GALLERY ..............................");
             e.printStackTrace();
+            System.out.println("............................................................");
         }
         return imageView;
     }

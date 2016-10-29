@@ -156,12 +156,14 @@ public class DetailFragment extends Fragment {
         if (photos.size() > 0) {
             Foto foto = photos.get(0);
             if (foto != null) {
-                String path = "full_size/" + foto.getPath().replaceAll("-", "_").toLowerCase();
+                String path = "v2/full_size/" + foto.getPath();
                 try {
                     Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                     detailImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
+                    System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,, DETAIL ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
                     e.printStackTrace();
+                    System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
                 }
             }
         }
