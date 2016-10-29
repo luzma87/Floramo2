@@ -6,6 +6,7 @@ import com.lzm.Cajas.repositories.LugarDbHelper;
 
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Lugar {
     private long id = 0;
@@ -78,5 +79,10 @@ public class Lugar {
     public static ArrayList<Lugar> list(Context context) {
         LugarDbHelper e = new LugarDbHelper(context);
         return e.getAllLugares();
+    }
+
+    public static List<Lugar> findAllByEspecie(Context context, Especie especie) {
+        LugarDbHelper e = new LugarDbHelper(context);
+        return e.getAllFotosByEspecie(especie);
     }
 }

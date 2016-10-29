@@ -12,20 +12,11 @@ public class Foto {
 
     private Long especie_id;
 
-    private double latitud;
-    private double longitud;
-    private double altitud = 0;
-    private Long coordenada_id;
-
-    private Long lugar_id;
-    private String lugarIcon;
-    private String lugar;
-
     private String path;
 
     Context context;
 
-    FotoDbHelper fotoDbHelper;
+    private FotoDbHelper fotoDbHelper;
 
     public Foto(Context context) {
         fotoDbHelper = new FotoDbHelper(context);
@@ -43,60 +34,12 @@ public class Foto {
         return path;
     }
 
-    public String getLugarIcon() {
-        return lugarIcon;
-    }
-
-    public String getLugar() {
-        return lugar;
-    }
-
-    public double getLatitud() {
-        return latitud;
-    }
-
-    public double getLongitud() {
-        return longitud;
-    }
-
-    public double getAltitud() {
-        return altitud;
-    }
-
-    public void setCoordenada_id(Long coordenada_id) {
-        this.coordenada_id = coordenada_id;
-    }
-
-    public void setLatitud(double latitud) {
-        this.latitud = latitud;
-    }
-
-    public void setAltitud(double altitud) {
-        this.altitud = altitud;
-    }
-
-    public void setLongitud(double longitud) {
-        this.longitud = longitud;
-    }
-
     public void setEspecie(Especie especie) {
         this.especie_id = especie.getId();
     }
 
     public void setEspecie_id(Long especie_id) {
         this.especie_id = especie_id;
-    }
-
-    public void setLugar_id(Long lugar_id) {
-        this.lugar_id = lugar_id;
-    }
-
-    public void setLugarIcon(String lugarIcon) {
-        this.lugarIcon = lugarIcon;
-    }
-
-    public void setLugar(String lugar) {
-        this.lugar = lugar;
     }
 
     public void setId(long id) {

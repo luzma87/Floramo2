@@ -25,6 +25,7 @@ import com.lzm.Cajas.models.Foto;
 import com.lzm.Cajas.enums.FloramoFragment;
 import com.lzm.Cajas.helpers.ResourcesHelper;
 import com.lzm.Cajas.helpers.Utils;
+import com.lzm.Cajas.models.Lugar;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.IOException;
@@ -39,6 +40,8 @@ public class DetailFragment extends Fragment {
     private Especie especie;
     private Long especieId;
     private ArrayList<Foto> photos;
+
+    private ArrayList<Lugar> places;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -67,6 +70,9 @@ public class DetailFragment extends Fragment {
 
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
+
+        places = (ArrayList<Lugar>)Lugar.findAllByEspecie(context, especie);
+
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
         CollapsingToolbarLayout collapsingToolbar = (CollapsingToolbarLayout) view.findViewById(R.id.detail_collapsing_toolbar);
@@ -89,38 +95,18 @@ public class DetailFragment extends Fragment {
 
     private void setPlaces(View view) {
         LinearLayout placeIconsLayout = (LinearLayout) view.findViewById(R.id.detail_places_layout);
-        ArrayList<String[]> places = new ArrayList<>();
-        for (Foto photo : photos) {
-            String placeIcon = photo.getLugarIcon();
-            String placeName = photo.getLugar();
-            String[] place = {placeIcon, placeName};
-            if (!places.contains(place)) {
-                places.add(place);
-            }
-        }
-        for (String[] place : places) {
+
+        for (Lugar place : places) {
             TextView textView = new TextView(context);
             if (Build.VERSION.SDK_INT < 23) {
                 textView.setTextAppearance(context, R.style.detail_info);
             } else {
                 textView.setTextAppearance(R.style.detail_info);
             }
-            textView.setText(place[1]);
-
-            int icon_size = Utils.dp2px(context, 20);
-            int margin = Utils.dp2px(context, 5);
-            RoundedImageView viewLugar = new RoundedImageView(context);
-            LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(icon_size, icon_size);
-            parms.setMargins(0, 0, margin, 0);
-            viewLugar.setLayoutParams(parms);
-            int lugarIcon = ResourcesHelper.getImageResourceByName(context, place[0]);
-            viewLugar.setImageResource(lugarIcon);
+            textView.setText(place.getNombre());
 
             LinearLayout placeLayout = new LinearLayout(context);
-
-            placeLayout.addView(viewLugar);
             placeLayout.addView(textView);
-
             placeIconsLayout.addView(placeLayout);
         }
     }

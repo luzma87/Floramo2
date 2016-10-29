@@ -45,29 +45,11 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
         Especie especie = especies.get(position);
 
         List<Foto> fotos = Foto.findAllByEspecie(context, especie);
-        ArrayList<String> lugares = new ArrayList<>();
         Foto foto = null;
         if (fotos.size() > 0) {
             foto = fotos.get(0);
-            for (Foto f : fotos) {
-                String lugarIcon = f.getLugarIcon();
-                if (!lugares.contains(lugarIcon)) {
-                    lugares.add(lugarIcon);
-                }
-            }
             LinearLayout layoutLugares = (LinearLayout) convertView.findViewById(R.id.encyclopedia_row_layout_lugares);
             layoutLugares.removeAllViews();
-            for (String lugar : lugares) {
-                int icon_size = Utils.dp2px(context, 20);
-                int margin = Utils.dp2px(context, 5);
-                RoundedImageView viewLugar = new RoundedImageView(context);
-                LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(icon_size, icon_size);
-                parms.setMargins(0, 0, margin, 0);
-                viewLugar.setLayoutParams(parms);
-                int lugarIcon = ResourcesHelper.getImageResourceByName(context, lugar);
-                viewLugar.setImageResource(lugarIcon);
-                layoutLugares.addView(viewLugar);
-            }
         }
 
         String labelNombreCientifico = especie.getGenero() + " " + especie.getNombre();

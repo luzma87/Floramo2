@@ -13,18 +13,10 @@ import java.util.List;
 
 public class FotoDbHelper extends DbHelper {
 
-    private static final String KEY_ESPECIE_ID = "especie_id";
-    private static final String KEY_PATH = "path";
-    public static final String KEY_RUTA_ID = "ruta_id";
-    private static final String KEY_LONGITUD = "longitud";
-    private static final String KEY_LATITUD = "latitud";
-    private static final String KEY_ALTITUD = "altitud";
-    private static final String KEY_LUGAR_ID = "lugar_id";
-    private static final String KEY_COORDENADA_ID = "coordenada_id";
-    private static final String KEY_ES_MIA = "es_mia";
+    public static final String KEY_ESPECIE_ID = "especie_id";
+    public static final String KEY_PATH = "path";
 
-    public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_PATH,
-            KEY_LATITUD, KEY_LONGITUD, KEY_ALTITUD, KEY_LUGAR_ID, KEY_COORDENADA_ID, KEY_RUTA_ID, KEY_ES_MIA};
+    public static final String[] KEYS_FOTO = {KEY_ESPECIE_ID, KEY_PATH};
 
     public FotoDbHelper(Context context) {
         super(context);
@@ -100,19 +92,11 @@ public class FotoDbHelper extends DbHelper {
         List<Foto> fotos = new ArrayList<>();
 
         String selectQuery = "SELECT " +
-                "f.id id," +
-                "f.fecha fecha," +
-                "f.especie_id especie_id," +
-                "f.latitud latitud," +
-                "f.longitud longitud," +
-                "f.altitud altitud," +
-                "f.path path," +
-                "f.coordenada_id coordenada_id," +
-                "f.lugar_id lugar_id," +
-                "l.icon lugar_icon," +
-                "l.nombre lugar_nombre" +
-                " FROM " + TABLE_FOTO + " f " +
-                " LEFT JOIN " + TABLE_LUGAR + " l ON f.lugar_id = l.id" +
+                "id," +
+                "fecha," +
+                "especie_id," +
+                "path" +
+                " FROM " + TABLE_FOTO  +
                 " WHERE " + KEY_ESPECIE_ID + " = " + especieId;
 
         Cursor c = db.rawQuery(selectQuery, null);
@@ -165,12 +149,7 @@ public class FotoDbHelper extends DbHelper {
         f.setId(c.getLong((c.getColumnIndex(KEY_ID))));
         f.setFecha(c.getString(c.getColumnIndex(KEY_FECHA)));
         f.setEspecie_id(c.getLong(c.getColumnIndex(KEY_ESPECIE_ID)));
-        f.setLatitud(c.getDouble(c.getColumnIndex(KEY_LATITUD)));
-        f.setLongitud(c.getDouble(c.getColumnIndex(KEY_LONGITUD)));
-        f.setAltitud(c.getDouble(c.getColumnIndex(KEY_ALTITUD)));
         f.setPath((c.getString(c.getColumnIndex(KEY_PATH))));
-        f.setCoordenada_id((c.getLong(c.getColumnIndex(KEY_COORDENADA_ID))));
-        f.setLugar_id((c.getLong(c.getColumnIndex(KEY_LUGAR_ID))));
         return f;
     }
 
@@ -179,14 +158,7 @@ public class FotoDbHelper extends DbHelper {
         f.setId(c.getLong((c.getColumnIndex("id"))));
         f.setFecha(c.getString(c.getColumnIndex("fecha")));
         f.setEspecie_id(c.getLong(c.getColumnIndex("especie_id")));
-        f.setLatitud(c.getDouble(c.getColumnIndex("latitud")));
-        f.setLongitud(c.getDouble(c.getColumnIndex("longitud")));
-        f.setAltitud(c.getDouble(c.getColumnIndex("altitud")));
         f.setPath((c.getString(c.getColumnIndex("path"))));
-        f.setCoordenada_id((c.getLong(c.getColumnIndex("coordenada_id"))));
-        f.setLugar_id((c.getLong(c.getColumnIndex("lugar_id"))));
-        f.setLugarIcon((c.getString(c.getColumnIndex("lugar_icon"))));
-        f.setLugar((c.getString(c.getColumnIndex("lugar_nombre"))));
         return f;
     }
 }

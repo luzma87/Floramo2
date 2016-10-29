@@ -11,6 +11,7 @@ import com.lzm.Cajas.repositories.FormaVidaDbHelper;
 import com.lzm.Cajas.repositories.FotoDbHelper;
 import com.lzm.Cajas.repositories.GeneroDbHelper;
 import com.lzm.Cajas.repositories.LugarDbHelper;
+import com.lzm.Cajas.repositories.SpeciesPlacesDbHelper;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -20,7 +21,7 @@ import java.util.Locale;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 28;
+    public static final int DATABASE_VERSION = 30;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -37,6 +38,8 @@ public class DbHelper extends SQLiteOpenHelper {
     protected static final String TABLE_ESPECIE = "especies";
     protected static final String TABLE_FORMA_VIDA = "formas_vida";
     protected static final String TABLE_COORDENADA = "coordenadas";
+
+    protected static final String TABLE_SPECIES_PLACES = "species_places";
 
     // Common column names
     protected static final String KEY_ID = "id";
@@ -72,6 +75,8 @@ public class DbHelper extends SQLiteOpenHelper {
         updateWhenVersionLessThan25(db);
         updateWhenVersionLessThan27(db);
         updateWhenVersionLessThan28(db);
+        updateWhenVersionLessThan29(db);
+        updateWhenVersionLessThan30(db);
     }
 
     @Override
@@ -97,6 +102,25 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 29) {
             updateWhenVersionLessThan29(db);
         }
+        if (oldVersion < 30) {
+            updateWhenVersionLessThan30(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan30(SQLiteDatabase db) {
+        String[] newPhotoKeys = {FotoDbHelper.KEY_ESPECIE_ID, FotoDbHelper.KEY_PATH};
+        db.execSQL("ALTER TABLE " + TABLE_FOTO + " RENAME TO " + TABLE_FOTO + "_old;");
+        createTable(db, TABLE_FOTO, KEYS_COMMON, newPhotoKeys);
+        db.execSQL("INSERT INTO " + TABLE_FOTO + "(" + KEY_ID + ", " + FotoDbHelper.KEY_ESPECIE_ID
+                + ", " + FotoDbHelper.KEY_PATH + ") SELECT "
+                + KEY_ID + ", " + FotoDbHelper.KEY_ESPECIE_ID + ", " + FotoDbHelper.KEY_PATH +
+                " FROM " + TABLE_FOTO + "_old;");
+        dropTable(db, TABLE_FOTO + "_old");
+        dropTable(db, TABLE_COORDENADA);
+
+        createTable(db, TABLE_SPECIES_PLACES, KEYS_COMMON, SpeciesPlacesDbHelper.KEYS_SPECIES_PLACES);
+
+        db.execSQL("INSERT INTO species_places (id, species_id, place_id) SELECT id, id, '1' FROM especies");
     }
 
     private void updateWhenVersionLessThan29(SQLiteDatabase db) {
@@ -419,12 +443,16 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     public void upgradeTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
-        db.execSQL("DROP TABLE " + tableName);
+        dropTable(db, tableName);
         db.execSQL(createTableSql(tableName, common, columnNames));
     }
 
     public void createTable(SQLiteDatabase db, String tableName, String[] common, String[] columnNames) {
         db.execSQL(createTableSql(tableName, common, columnNames));
+    }
+
+    public void dropTable(SQLiteDatabase db, String tableName) {
+        db.execSQL("DROP TABLE " + tableName);
     }
 
     public static String createTableSql(String tableName, String[] common, String[] columnNames) {

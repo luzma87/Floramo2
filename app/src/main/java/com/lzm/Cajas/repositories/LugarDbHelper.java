@@ -5,9 +5,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.lzm.Cajas.db.DbHelper;
+import com.lzm.Cajas.models.Especie;
 import com.lzm.Cajas.models.Lugar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.lzm.Cajas.repositories.SpeciesPlacesDbHelper.KEY_PLACE_ID;
+import static com.lzm.Cajas.repositories.SpeciesPlacesDbHelper.KEY_SPECIES_ID;
 
 public class LugarDbHelper extends DbHelper {
 
@@ -70,13 +76,39 @@ public class LugarDbHelper extends DbHelper {
         return lugares;
     }
 
+    public List<Lugar> getAllFotosByEspecie(Especie especie) {
+        return getAllLugaresByEspecieId(especie.getId());
+    }
+
+    private List<Lugar> getAllLugaresByEspecieId(long especieId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        List<Lugar> fotos = new ArrayList<>();
+
+        String selectQuery = "SELECT " +
+                "l." + KEY_ID + " " + KEY_ID + "," +
+                "l." + KEY_NOMBRE + " " + KEY_NOMBRE +
+                " FROM " + TABLE_SPECIES_PLACES + " s " +
+                " INNER JOIN " + TABLE_LUGAR + " l ON s." + KEY_PLACE_ID + " = l." + KEY_ID +
+                " WHERE s." + KEY_SPECIES_ID + " = " + especieId;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+//        c = db.rawQuery("select * from " + TABLE_SPECIES_PLACES + " s WHERE s." + KEY_SPECIES_ID + " = " + especieId, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Lugar f = setDatos(c);
+                fotos.add(f);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return fotos;
+    }
+
     private Lugar setDatos(Cursor c) {
         Lugar cl = new Lugar(this.context);
         cl.setId(c.getLong((c.getColumnIndex(KEY_ID))));
-        cl.setFecha(c.getString(c.getColumnIndex(KEY_FECHA)));
         cl.setNombre(c.getString(c.getColumnIndex(KEY_NOMBRE)));
-        cl.setPath(c.getString(c.getColumnIndex(KEY_PATH)));
-        cl.setIcon(c.getString(c.getColumnIndex(KEY_ICON)));
         return cl;
     }
 }
