@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="aa_new">Changed Huperzia crassa to Phlegmariurus crassus\n\nChanged Scirpus rigidus to Schoenoplectus californicus\n\nThis dialog will only appear once every time the app is updated</string>
+    <string name="aa_new">Added over 100 new species!\n\nImproved quality of pictures.\n\nThis dialog will only appear once every time the app is updated</string>
     <string name="aa_new_title">What\'s new</string>
 
     <string name="about_app"><![CDATA["<p>Flóramo is a field guide to identify some 240 species of wild plants found in the páramo, a vegetation type at the top of the Andes Mountains of tropical South America. It contains field images, species descriptions, and an identification key using life forms, flower colors or scientific names. A map with location of species, routes for personalized records. Additional features include searches into the Missouri Botanical Garden Tropicos® database. Flóramo currently includes plants found the in Ecuador, but various species are found beyond this area.</p><p>All rights reserved.</p><p>©Missouri Botanical Garden, Science and Conservation Division</p>"]]></string>

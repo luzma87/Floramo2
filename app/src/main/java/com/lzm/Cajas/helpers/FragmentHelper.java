@@ -24,26 +24,18 @@ public class FragmentHelper {
         openFragment(context, fragment, title, null, backstack);
     }
 
-    public static void openFragment(MainActivity context, Fragment fragment, String title, Bundle args, boolean backstack) {
+    private static void openFragment(MainActivity context, Fragment fragment, String title, Bundle args, boolean backstack) {
         context.setTitle(title);
         FragmentManager fragmentManager = context.getFragmentManager();
 
-        RelativeLayout mapLayout = (RelativeLayout) context.findViewById(R.id.map_layout);
-        if (mapLayout == null) {
-            return;
-        }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
                 .setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);
-        if (fragment == null) {
-            mapLayout.setVisibility(View.VISIBLE);
-            fragmentTransaction.hide(fragmentManager.findFragmentById(R.id.fragment_container));
-        } else {
-            mapLayout.setVisibility(View.GONE);
-            if (args != null) {
-                fragment.setArguments(args);
-            }
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
+
+        if (args != null) {
+            fragment.setArguments(args);
         }
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+
         if (backstack) {
             fragmentTransaction.addToBackStack(null);
         }
