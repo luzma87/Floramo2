@@ -64,12 +64,16 @@ public class DbHelper extends SQLiteOpenHelper {
         createTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
         createTable(db, TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA);
 
-        DbInserter dbInserter = new DbInserter(db);
-        dbInserter.insertDb();
+        DbInserter2 dbInserter2 = new DbInserter2(db);
+        dbInserter2.insertDb();
+
         updateWhenNew(db);
     }
 
     private void updateWhenNew(SQLiteDatabase db) {
+//        DbInserter dbInserter = new DbInserter(db);
+//        dbInserter.insertDb();
+
 //        updateWhenVersionLessThan16(db);
 //        updateWhenVersionLessThan24(db);
 //        updateWhenVersionLessThan25(db);
@@ -78,7 +82,7 @@ public class DbHelper extends SQLiteOpenHelper {
 //        updateWhenVersionLessThan29(db);
 //        updateWhenVersionLessThan30(db);
 
-        updateWhenVersionLessThan31(db);
+//        updateWhenVersionLessThan31(db);
     }
 
     @Override
