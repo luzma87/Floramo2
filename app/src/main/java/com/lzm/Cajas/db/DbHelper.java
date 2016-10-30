@@ -63,6 +63,7 @@ public class DbHelper extends SQLiteOpenHelper {
         createTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
         createTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
         createTable(db, TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA);
+        createTable(db, TABLE_SPECIES_PLACES, KEYS_COMMON, SpeciesPlacesDbHelper.KEYS_SPECIES_PLACES);
 
         DbInserter2 dbInserter2 = new DbInserter2(db);
         dbInserter2.insertDb();
