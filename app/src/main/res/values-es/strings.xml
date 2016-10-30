@@ -35,7 +35,7 @@
     <string name="cl_white">Blanco</string>
     <string name="cl_yellow">Amarillo</string>
 
-    <string name="credits_acknowledgments">Agradecemos el patrocinio del proyecto Prometeo de la Secretaría de Educación Superior, Ciencia, Tecnología e Innovación de la República del Ecuador a través de la vinculación de C. Ulloa Ulloa, Ph.D. como investigadora Prometeo a en el Herbario Nacional del Museo Ecuatoriano de Ciencias Naturales-Instituto Nacional de Biodiversidad y en el Herbario de la Universidad del Azuay. Al Ministerio del Ambiente del Ecuador y sus direcciones provinciales, al proyecto Mapa de Vegetación del Ecuador, a Etapa-Parque Nacional Cajas, a F. Sornoza (Yanacocha), Agua Potable del DMQ, a la National Geographic de los Estados Unidos. A S. Christoph y C. Davidson de FloraoftheWorld.org. M. Unda ayudó con la actualización de datos.</string>
+    <string name="credits_acknowledgments">Agradecemos el patrocinio del proyecto Prometeo de la Secretaría de Educación Superior, Ciencia, Tecnología e Innovación de la República del Ecuador a través de la vinculación de C. Ulloa Ulloa, Ph.D. como investigadora Prometeo a en el Herbario Nacional del Museo Ecuatoriano de Ciencias Naturales-Instituto Nacional de Biodiversidad y en el Herbario de la Universidad del Azuay. Agradecemos el apoyo de la National Geographic Society y de Dr. C. Davidson y S. Christoph. Al Ministerio del Ambiente del Ecuador y sus direcciones provinciales, al proyecto Mapa de Vegetación del Ecuador, a Etapa-Parque Nacional Cajas. M. Unda ayudó con la actualización de datos y traducciones.</string>
     <string name="credits_acknowledgments_title">Agradecimientos</string>
     <string name="credits_authors_cajas">C. Ulloa Ulloa, D. Minga, R. Ansaloni, A. Verdugo, S. Álvarez, P. M. Jørgensen.\n\nEl proyecto Flora del Cajas es una colaboración entre el Missouri Botanical Garden, el Herbario Azuay (Universidad del Azuay) con el Parque Nacional Cajas.</string>
     <string name="credits_authors_cajas_title">Autores contenido Cajas</string>
@@ -70,7 +70,7 @@
     <string name="fv_cushion">Almohadilla</string>
     <string name="fv_grass">Pasto</string>
     <string name="fv_herb">Hierba</string>
-    <string name="fv_liana">Bejuco</string>
+    <string name="fv_liana">Trepadora</string>
     <string name="fv_none">-Ninguna-</string>
     <string name="fv_rosette">Roseta</string>
     <string name="fv_shrub">Arbusto</string>

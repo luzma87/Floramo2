@@ -70,13 +70,13 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void updateWhenNew(SQLiteDatabase db) {
-        updateWhenVersionLessThan16(db);
-        updateWhenVersionLessThan24(db);
-        updateWhenVersionLessThan25(db);
-        updateWhenVersionLessThan27(db);
-        updateWhenVersionLessThan28(db);
-        updateWhenVersionLessThan29(db);
-        updateWhenVersionLessThan30(db);
+//        updateWhenVersionLessThan16(db);
+//        updateWhenVersionLessThan24(db);
+//        updateWhenVersionLessThan25(db);
+//        updateWhenVersionLessThan27(db);
+//        updateWhenVersionLessThan28(db);
+//        updateWhenVersionLessThan29(db);
+//        updateWhenVersionLessThan30(db);
 
         updateWhenVersionLessThan31(db);
     }
