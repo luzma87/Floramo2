@@ -21,7 +21,7 @@ import java.util.Locale;
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 32;
+    public static final int DATABASE_VERSION = 33;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -57,11 +57,11 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         createTable(db, TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR);
-        createTable(db, TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE);
-        createTable(db, TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA);
-        createTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
-        createTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
         createTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
+        createTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
+        createTable(db, TABLE_FAMILIA, KEYS_COMMON, FamiliaDbHelper.KEYS_FAMILIA);
+        createTable(db, TABLE_GENERO, KEYS_COMMON, GeneroDbHelper.KEYS_GENERO);
+        createTable(db, TABLE_ESPECIE, KEYS_COMMON, EspecieDbHelper.KEYS_ESPECIE);
         createTable(db, TABLE_FORMA_VIDA, KEYS_COMMON, FormaVidaDbHelper.KEYS_FORMA_VIDA);
         createTable(db, TABLE_SPECIES_PLACES, KEYS_COMMON, SpeciesPlacesDbHelper.KEYS_SPECIES_PLACES);
 
@@ -83,42 +83,43 @@ public class DbHelper extends SQLiteOpenHelper {
 //        updateWhenVersionLessThan29(db);
 //        updateWhenVersionLessThan30(db);
 
-//        updateWhenVersionLessThan31(db);
+//        updateWhenVersionLessThan33(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 14) {
-            updateWhenVersionLessThan14(db);
-        }
-        if (oldVersion < 16) {
-            updateWhenVersionLessThan16(db);
-        }
-        if (oldVersion < 24) {
-            updateWhenVersionLessThan24(db);
-        }
-        if (oldVersion < 25) {
-            updateWhenVersionLessThan25(db);
-        }
-        if (oldVersion < 27) {
-            updateWhenVersionLessThan27(db);
-        }
-        if (oldVersion < 28) {
-            updateWhenVersionLessThan28(db);
-        }
-        if (oldVersion < 29) {
-            updateWhenVersionLessThan29(db);
-        }
-        if (oldVersion < 30) {
-            updateWhenVersionLessThan30(db);
-        }
-        if (oldVersion < 31) {
-            updateWhenVersionLessThan31(db);
+//        if (oldVersion < 14) {
+//            updateWhenVersionLessThan14(db);
+//        }
+//        if (oldVersion < 16) {
+//            updateWhenVersionLessThan16(db);
+//        }
+//        if (oldVersion < 24) {
+//            updateWhenVersionLessThan24(db);
+//        }
+//        if (oldVersion < 25) {
+//            updateWhenVersionLessThan25(db);
+//        }
+//        if (oldVersion < 27) {
+//            updateWhenVersionLessThan27(db);
+//        }
+//        if (oldVersion < 28) {
+//            updateWhenVersionLessThan28(db);
+//        }
+//        if (oldVersion < 29) {
+//            updateWhenVersionLessThan29(db);
+//        }
+//        if (oldVersion < 30) {
+//            updateWhenVersionLessThan30(db);
+//        }
+        if (oldVersion < 33) {
+            updateWhenVersionLessThan33(db);
         }
     }
 
-    public void updateWhenVersionLessThan31(SQLiteDatabase db) {
+    private void updateWhenVersionLessThan33(SQLiteDatabase db) {
         System.out.println("****************************** UPDATING ALL DB ******************************");
+        dropTable(db, TABLE_COORDENADA);
         upgradeTable(db, TABLE_COLOR, KEYS_COMMON, ColorDbHelper.KEYS_COLOR);
         upgradeTable(db, TABLE_LUGAR, KEYS_COMMON, LugarDbHelper.KEYS_LUGAR);
         upgradeTable(db, TABLE_FOTO, KEYS_COMMON, FotoDbHelper.KEYS_FOTO);
@@ -477,7 +478,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void dropTable(SQLiteDatabase db, String tableName) {
-        db.execSQL("DROP TABLE " + tableName);
+        db.execSQL("DROP TABLE IF EXISTS " + tableName);
     }
 
     private static String createTableSql(String tableName, String[] common, String[] columnNames) {
