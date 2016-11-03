@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.main_activity);
 
-        manageNewsDialog();
+//        manageNewsDialog();
 
         DbHelper helper = new DbHelper(this);
         helper.getWritableDatabase();
