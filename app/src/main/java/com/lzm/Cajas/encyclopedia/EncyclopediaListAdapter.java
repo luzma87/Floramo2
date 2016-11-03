@@ -82,6 +82,7 @@ public class EncyclopediaListAdapter extends ArrayAdapter<Especie> implements Se
                 Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                 itemFoto.setImageBitmap(bitmap);
             } catch (IOException e) {
+                itemFoto.setImageResource(ResourcesHelper.getImageResourceByName(context, "ic_no_thumb"));
                 System.out.println("************************ ENCYCLOPEDIA *********************************");
                 e.printStackTrace();
                 System.out.println("*********************************************************");

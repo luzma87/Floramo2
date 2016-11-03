@@ -18,10 +18,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.lzm.Cajas.repositories.FotoDbHelper.KEY_ESPECIE_ID;
+import static com.lzm.Cajas.repositories.FotoDbHelper.KEY_PATH;
+
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 33;
+    public static final int DATABASE_VERSION = 37;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -72,6 +75,7 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     private void updateWhenNew(SQLiteDatabase db) {
+        updateWhenVersionLessThan37(db);
 //        DbInserter dbInserter = new DbInserter(db);
 //        dbInserter.insertDb();
 
@@ -115,6 +119,32 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 33) {
             updateWhenVersionLessThan33(db);
         }
+        if (oldVersion < 37) {
+            updateWhenVersionLessThan37(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan37(SQLiteDatabase db) {
+        System.out.println("****************************** FIXING DB ******************************");
+
+//        hay dos descripciones de Hypochaeris sessiliflora.  [175 - 1120]
+//           La foto que vale es la adjunta y solo dejar la primera descripción.
+        db.execSQL("DELETE FROM " + TABLE_ESPECIE + " WHERE " + EspecieDbHelper.KEY_ID + " = 1120");
+
+//        Ranunculus peruvianus está equivocada la foto, ver adjunto  [297 - 1091]
+        db.execSQL("DELETE FROM " + TABLE_ESPECIE + " WHERE " + EspecieDbHelper.KEY_ID + " = 1091");
+
+//        Isoete novogranatensis está equivocada la foto, ver adjunto [180]
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_THUMBNAIL + " = \"Isoet_novo.JPG\" WHERE " + GeneroDbHelper.KEY_ID + " = 180");
+        db.execSQL("UPDATE " + TABLE_FOTO + " SET " + KEY_PATH + " = \"Isoet_novo.JPG\" WHERE " + GeneroDbHelper.KEY_ID + " = 1009");
+
+//        Gentiana sedifolia: solo dejar foto con flores azuales. Eliminar las otras.  [130]
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_THUMBNAIL + " = \"Gent_sedi.JPG\" WHERE " + GeneroDbHelper.KEY_ID + " = 130");
+//        1016 - 1017 - 1018
+
+        db.execSQL("UPDATE " + TABLE_ESPECIE + " SET " + EspecieDbHelper.KEY_THUMBNAIL + " = \"Genti_foli.JPG\" WHERE " + GeneroDbHelper.KEY_ID + " = 1116");
+        db.execSQL("UPDATE " + TABLE_FOTO + " SET " + KEY_ESPECIE_ID + " = 1116 WHERE " + KEY_ID + " = 1017");
+        db.execSQL("UPDATE " + TABLE_FOTO + " SET " + KEY_ESPECIE_ID + " = 1116 WHERE " + KEY_ID + " = 1018");
     }
 
     private void updateWhenVersionLessThan33(SQLiteDatabase db) {

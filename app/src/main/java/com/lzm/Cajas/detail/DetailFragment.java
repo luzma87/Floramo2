@@ -71,7 +71,7 @@ public class DetailFragment extends Fragment {
         especie = Especie.getDatos(context, especieId);
         photos = (ArrayList<Foto>) Foto.findAllByEspecie(context, especie);
 
-        places = (ArrayList<Lugar>)Lugar.findAllByEspecie(context, especie);
+        places = (ArrayList<Lugar>) Lugar.findAllByEspecie(context, especie);
 
         View view = inflater.inflate(R.layout.detail_fragment, container, false);
 
@@ -161,7 +161,7 @@ public class DetailFragment extends Fragment {
                     Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                     detailImage.setImageBitmap(bitmap);
                 } catch (IOException e) {
-                    System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,, DETAIL ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+                    System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,, DETAIL <" + foto.getId() + "> ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
                     e.printStackTrace();
                     System.out.println(",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
                 }

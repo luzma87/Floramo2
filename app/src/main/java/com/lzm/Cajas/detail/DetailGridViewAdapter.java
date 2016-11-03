@@ -57,7 +57,7 @@ public class DetailGridViewAdapter extends BaseAdapter {
             imageView.setLayoutParams(new GridView.LayoutParams(imageWidth, imageWidth));
             imageView.setImageBitmap(image);
         } catch (IOException e) {
-            System.out.println(".............................. GALLERY ..............................");
+            System.out.println(".............................. GALLERY <" + foto.getId() + "> ..............................");
             e.printStackTrace();
             System.out.println("............................................................");
         }
