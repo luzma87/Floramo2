@@ -156,7 +156,7 @@ public class DetailFragment extends Fragment {
         if (photos.size() > 0) {
             Foto foto = photos.get(0);
             if (foto != null) {
-                String path = "v2/full_size/" + foto.getPath();
+                String path = "v2/new/" + especie.getThumbnail();
                 try {
                     Bitmap bitmap = ResourcesHelper.getEncyclopediaAssetByName(context, path);
                     detailImage.setImageBitmap(bitmap);

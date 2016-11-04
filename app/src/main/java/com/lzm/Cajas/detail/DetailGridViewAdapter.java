@@ -50,7 +50,7 @@ public class DetailGridViewAdapter extends BaseAdapter {
         }
 
         Foto foto = photos.get(position);
-        String path = "v2/new/" + foto.getPath();
+        String path = "v2/full_size/" + foto.getPath();
         try {
             Bitmap image = ResourcesHelper.getEncyclopediaAssetByName(context, path);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
