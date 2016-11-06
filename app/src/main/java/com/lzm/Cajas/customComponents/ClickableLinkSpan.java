@@ -116,6 +116,7 @@ public class ClickableLinkSpan extends ClickableSpan { //clickable span
     }
 
     private void handleWebLink() {
+        context.setOpenUrl(spanUrl);
         Fragment fragment = WebViewFragment.newInstance(spanUrl);
         int titleRes = FloramoFragment.WEB_VIEW.getTitleId();
         FragmentHelper.openFragment(context, fragment, context.getString(titleRes), true);

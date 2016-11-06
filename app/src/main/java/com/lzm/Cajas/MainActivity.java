@@ -202,6 +202,10 @@ public class MainActivity extends AppCompatActivity
         FragmentHelper.openFragment(this, fragment, getString(titleRes), true);
     }
 
+    public void setOpenUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
