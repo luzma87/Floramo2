@@ -20,11 +20,12 @@ import java.util.Locale;
 
 import static com.lzm.Cajas.repositories.FotoDbHelper.KEY_ESPECIE_ID;
 import static com.lzm.Cajas.repositories.FotoDbHelper.KEY_PATH;
+import static com.lzm.Cajas.repositories.GeneroDbHelper.KEY_FAMILIA_ID;
 
 public class DbHelper extends SQLiteOpenHelper {
 
     // Database Version
-    public static final int DATABASE_VERSION = 37;
+    public static final int DATABASE_VERSION = 38;
 
     // Database Name
 //    private static String DB_PATH = "/data/data/com.tmm.android.chuck/databases/";
@@ -76,6 +77,7 @@ public class DbHelper extends SQLiteOpenHelper {
 
     private void updateWhenNew(SQLiteDatabase db) {
         updateWhenVersionLessThan37(db);
+        updateWhenVersionLessThan38(db);
 //        DbInserter dbInserter = new DbInserter(db);
 //        dbInserter.insertDb();
 
@@ -122,6 +124,15 @@ public class DbHelper extends SQLiteOpenHelper {
         if (oldVersion < 37) {
             updateWhenVersionLessThan37(db);
         }
+        if (oldVersion < 38) {
+            updateWhenVersionLessThan38(db);
+        }
+    }
+
+    private void updateWhenVersionLessThan38(SQLiteDatabase db) {
+//        Chrysactinium acaule está como Apiaceae y debe ir como Asteraceae.
+        System.out.println("............................................ UPDATE WHEN LESS THAN 38 ................................................");
+        db.execSQL("UPDATE " + TABLE_GENERO + " SET " + KEY_FAMILIA_ID + "=\"23\" WHERE " + KEY_ID + " = 1000");
     }
 
     private void updateWhenVersionLessThan37(SQLiteDatabase db) {
