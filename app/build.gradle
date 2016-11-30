@@ -18,8 +18,8 @@ android {
         applicationId "com.lzm.Cajas"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 34
-        versionName "2.1.2"
+        versionCode 35
+        versionName "2.1.3"
     }
     buildTypes {
         release {
